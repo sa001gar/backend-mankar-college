@@ -80,39 +80,8 @@ def get_alumni_by_batch(request):
         'alumni': alumni_data
     })
 
-# def get_alumni_data(request):
-#     alumni_list = Alumni.objects.all()
-    
-#     # Filter by batch year if provided
-#     batch_year = request.GET.get('batch_year')
-#     if batch_year:
-#         alumni_list = alumni_list.filter(batch_year=batch_year)
-    
-#     # Filter by search query if provided
-#     search_query = request.GET.get('search')
-#     if search_query:
-#         alumni_list = alumni_list.filter(
-#             Q(name__icontains=search_query) |
-#             Q(current_position__icontains=search_query) |
-#             Q(company__icontains=search_query)
-#         )
-    
-#     # Convert to list of dictionaries
-#     alumni_data = []
-#     for alumni in alumni_list:
-#         alumni_data.append({
-#             'id': alumni.id,
-#             'name': alumni.name,
-#             'batch_year': alumni.batch_year,
-#             'current_position': alumni.current_position,
-#             'company': alumni.company,
-#             'profile_image': alumni.profile_image.url if alumni.profile_image else '',
-#             'linkedin_url': alumni.linkedin_url,
-#             'email': alumni.email,
-#         })
-    
-#     return JsonResponse({'alumni': alumni_data})
 
-# def get_batch_years(request):
-#     batch_years = Alumni.objects.values_list('batch_year', flat=True).distinct().order_by('-batch_year')
-#     return JsonResponse({'batch_years': list(batch_years)})
+def syllabus(request):
+    number=range(1,9)
+    return render(request, 'main/syllabus.html',{'number':number})
+    

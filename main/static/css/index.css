@@ -504,6 +504,7 @@
   align-items: center;
   justify-content: center;
   background: #f2f2f2;
+  flex-direction: column;
 }
 
 .alumni_section {
