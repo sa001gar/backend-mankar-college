@@ -27,6 +27,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','13.233.152.122','https://redesign-mccs.sagarkundu.live/','redesign-mccs.sagarkundu.live']
+CSRF_TRUSTED_ORIGINS = ['redesign-mccs.sagarkundu.live']
 
 LOGGING = {
     'version': 1,
