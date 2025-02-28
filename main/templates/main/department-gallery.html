@@ -1,38 +1,8 @@
 {%extends 'main/base.html'%} {% load static %} {%block content%}
 
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      sans-serif;
-  }
-
-  :root {
-    --primary: #1a237e;
-    --secondary: #7757e9;
-    --gradient: linear-gradient(to right, var(--primary), var(--secondary));
-    --accent: #f59e0b;
-    --text-light: #ffffff;
-    --text-dark: #111827;
-    --text-muted: #6b7280;
-    --background: #ffffff;
-    --border: #e5e7eb;
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-      0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --whatsapp: #059138;
-    --whatsapp-hover: #128c7e;
-    --social-links-bg: rgba(255, 255, 255, 0.1);
-  }
-
-  body {
-    background-color: #f8f9fa;
-    color: var(--text-dark);
-    line-height: 1.5;
-  }
-
+  
+  
   .hero {
     position: relative;
     background: var(--gradient);
@@ -390,11 +360,6 @@
   }
 </style>
 
-<nav class="breadcrumb">
-  <a href="#">Home</a>
-  <i class="fas fa-chevron-right" style="font-size: 0.875rem; opacity: 0.7"></i>
-  <a href="#">Department Gallery</a>
-</nav>
 
 <div class="filter-container">
   <div class="container">

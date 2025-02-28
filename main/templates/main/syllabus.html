@@ -4,7 +4,7 @@
 <!-- PDF.js CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 <style>
-    :root {
+    {% comment %} :root {
         --primary: #1a237e;
         --secondary: #7757e9;
         --accent: #f59e0b;
@@ -13,16 +13,17 @@
         --text-muted: #6b7280;
         --background: #ffffff;
         --border: #e5e7eb;
-    }
+    } {% endcomment %}
 
     .syllabus-section {
         min-height: calc(100vh - 300px);
         padding: 3rem 1rem;
-        background: white;
+        background: var(--gradient);
+        
     }
 
     .syllabus-container {
-        max-width: 1200px;
+        {% comment %} max-width: 1200px; {% endcomment %}
         margin: 0 auto;
         background: white;
         border-radius: 20px;

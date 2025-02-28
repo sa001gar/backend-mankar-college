@@ -8,7 +8,17 @@ body {
 
 
 .hero {
-    background-color: #eaeaf7;
+    background-color: hsla(240, 15%, 9%, 1);
+    background-image: radial-gradient(
+      at 88% 40%,
+      hsla(240, 15%, 9%, 1) 0px,
+      transparent 85%
+    ),
+    radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 0% 64%, hsla(263, 93%, 56%, 1) 0px, transparent 85%),
+    radial-gradient(at 41% 94%, hsla(284, 100%, 84%, 1) 0px, transparent 85%),
+    radial-gradient(at 100% 99%, hsla(306, 100%, 57%, 1) 0px, transparent 85%);
     padding: 80px 20px;
     position: relative;
     overflow: hidden;
@@ -24,7 +34,7 @@ body {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: black;
+    background: white;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     opacity: 0.1;
     animation: float 3s ease-in-out infinite;
@@ -67,7 +77,7 @@ body {
     font-size: 3.5rem;
     margin-bottom: 20px;
     font-weight: 700;
-    color: black;
+    color: white;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s ease forwards;
@@ -76,7 +86,7 @@ body {
 .hero-description {
     max-width: 600px;
     margin: 0 auto;
-    color: black;
+    color: white;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s ease forwards 0.2s;

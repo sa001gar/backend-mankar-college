@@ -194,7 +194,7 @@ const facultyMembers = [
 // Function to create faculty card
 function createFacultyCard(faculty) {
     return `
-        <div class="faculty-card">
+        <div class="faculty-card magicpattern">
             <div class="faculty-card-header">
                 <div class="star-icon ${faculty.featured ? 'active' : ''}" onclick="toggleFeatured(${faculty.id})">
                     <i class="fas fa-star"></i>
