@@ -7,6 +7,7 @@ db.sqlite3
 staticfiles
 .env
 venv
+media
 
 migrations
 management
