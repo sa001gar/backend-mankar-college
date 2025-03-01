@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/feedback.css' %}">
+<link rel="stylesheet" href="{% static 'css/feedback.css' %}?v={{ now|date:"U" }}">
 <section class="feedback">
     <div class="contact-container">
         <a href="index.html" class="contact-back-button"><i class="fa-solid fa-arrow-left" ></i></a>

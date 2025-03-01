@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/alumni.css'%}" />
+<link rel="stylesheet" href="{% static 'css/alumni.css'%}?v={{ now|date:"U" }}" />
 
 
 <!-- Hero Section -->

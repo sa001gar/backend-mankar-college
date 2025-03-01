@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Department of Computer Science | Mankar College</title>
-    <link rel="stylesheet" href="{% static 'css/header.css'%}" />
-    <link rel="stylesheet" href="{% static 'css/footer.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}?v={{ now|date:"U" }}">
+    <link rel="stylesheet" href="{% static 'css/footer.css'%}?v={{ now|date:"U" }}" />
     
     <!-- ===== Link Swiper's CSS ===== -->
     <link
