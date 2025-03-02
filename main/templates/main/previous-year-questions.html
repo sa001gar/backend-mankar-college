@@ -1,0 +1,79 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/previous-year-questions.css'%}?v={{ now|date:"U" }}" />
+
+<div class="page-banner pyq-banner">
+    <div class="banner-content">
+        <h1>Previous Year Question Papers</h1>
+        <p>Practice with past examination papers to excel in your exams</p>
+    </div>
+</div>
+
+<main class="main-content">
+    <div class="container">
+
+        <div class="filter-container">
+            <div class="filter-group">
+                <label for="yearFilter">Year</label>
+                <select id="yearFilter" class="filter-select">
+                    <option value="all">All Years</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="semesterFilter">Semester</label>
+                <select id="semesterFilter" class="filter-select">
+                    <option value="all">All Semesters</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="subjectFilter">Subject</label>
+                <select id="subjectFilter" class="filter-select">
+                    <option value="all">All Subjects</option>
+                    <option value="CSE101">Programming Fundamentals (CSE101)</option>
+                    <option value="MAT101">Engineering Mathematics (MAT101)</option>
+                    <option value="CSE102">Object-Oriented Programming (CSE102)</option>
+                    <option value="CSE103">Data Structures (CSE103)</option>
+                    <option value="CSE201">Database Management Systems (CSE201)</option>
+                    <option value="CSE202">Computer Organization (CSE202)</option>
+                </select>
+            </div>
+            <button id="resetFilters" class="reset-button">
+                <i class="fas fa-redo-alt"></i> Reset Filters
+            </button>
+        </div>
+
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="paperSearch" placeholder="Search for question papers...">
+            </div>
+        </div>
+
+        <div id="questionPapersContent" class="question-papers-content">
+            <div class="papers-grid">
+                <!-- 2023 Papers -->
+                
+                
+
+
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/question-papers.js' %}?v={{ now|date:"U" }}"></script>
+{% endblock %}

@@ -1,23 +1,29 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
-from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
+import json
 
-from .models import GalleryItem, GalleryCategory, Alumni, Notice
+from .models import GalleryItem, GalleryCategory, Alumni, Notice, StudentFeedback
 
 # Create your views here.
 def home(request):
-    highlights = Notice.objects.filter(highlight=True).order_by('-date')[:5]
-    notices = Notice.objects.order_by('-date')[:7]
+    highlights = Notice.objects.filter(highlight=True).order_by('date')[:5]
+    notices = Notice.objects.order_by('date')[:7]
     return render(request, 'main/index.html',{'highlights':highlights,'notices':notices})
 
 def about(request):
     return render(request, 'main/about.html')
 
+def team(request):
+    return render(request, 'main/team.html')
+
+def notices(request):
+    notices = Notice.objects.order_by('-date')[:10]
+    return render(request, 'main/notices.html',{'notices':notices})
+
 def faculty(request):
     return render(request, 'main/faculty.html')
 
-def team(request):
-    return render(request, 'main/team.html')
 
 def alumni(request):
     batch_years = Alumni.objects.values_list('batch_year', flat=True).distinct().order_by('-batch_year')
@@ -85,3 +91,35 @@ def syllabus(request):
     number=range(1,9)
     return render(request, 'main/syllabus.html',{'number':number})
     
+def previous_papers(request):
+    return render(request, 'main/previous-year-questions.html')
+
+@csrf_exempt
+def submit_feedback(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+
+            feedback = StudentFeedback.objects.create(
+                name=data.get('name'),
+                email_id=data.get('email_id'),
+                whatsapp_number=data.get('whatsapp_number'),
+                is_alumni=data.get('is_alumni'),
+                course_content_rating=data.get('course_content_rating'),
+                learning_objectives_clarity=data.get('learning_objectives_clarity'),
+                teaching_methods_effectiveness=data.get('teaching_methods_effectiveness'),
+                course_difficulty=data.get('course_difficulty'),
+                course_resources_rating=data.get('course_resources_rating'),
+                lab_sessions_helpfulness=data.get('lab_sessions_helpfulness'),
+                course_assignments_rating=data.get('course_assignments_rating'),
+                course_improvement_suggestion=data.get('course_improvement_suggestion'),
+                additional_comments=data.get('additional_comments')
+
+            )
+
+            return JsonResponse({"message": "Success"}, status=200)
+        
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
+
+    return JsonResponse({"error": "Invalid request"}, status=400)

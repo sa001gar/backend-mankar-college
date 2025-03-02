@@ -2,42 +2,213 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/feedback.css' %}?v={{ now|date:"U" }}">
-<section class="feedback">
-    <div class="contact-container">
-        <a href="index.html" class="contact-back-button"><i class="fa-solid fa-arrow-left" ></i></a>
-        <h1 class="contact-title">Share your feedback with us</h1>
 
-        <form id="contactForm">
-            <div class="contact-form-group">
-                <input type="text" class="contact-input" placeholder="Full name" required>
-            </div>
-            <div class="contact-form-group">
-                <input type="email" class="contact-input" placeholder="Email address" required>
-            </div>
-            <div class="contact-form-group">
-                <textarea class="contact-textarea" placeholder="Message..." required></textarea>
-            </div>
-            <button type="submit" class="contact-button">Submit →</button>
-        </form>
+<link rel="stylesheet" href="{% static 'css/feedback.css'%}?v={{ now|date:"U" }}" />
 
-        <div class="contact-social-links">
-            <a href="#" class="contact-social-link contact-facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="contact-social-link contact-twitter">
-                <i class="fab fa-x"></i>
-            </a>
-            <a href="#" class="contact-social-link contact-instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="#" class="contact-social-link contact-linkedin">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="#" class="contact-social-link contact-github">
-                <i class="fab fa-github"></i>
-            </a>
+<section class="feedback-section">
+    <div class="split-container">
+        <!-- Left side - Vector Image (will disappear on mobile) -->
+        <div class="image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+                <!-- Background -->
+                <rect x="0" y="0" width="500" height="500" fill="#f8f9fa" />
+                
+                <!-- Decorative elements -->
+                <circle cx="250" cy="100" r="50" fill="#e6e9ff" />
+                <circle cx="400" cy="400" r="70" fill="#e6e9ff" />
+                <circle cx="100" cy="350" r="30" fill="#e6e9ff" />
+                
+                <!-- Desk -->
+                <rect x="100" y="300" width="300" height="10" fill="#7757e9" />
+                <rect x="120" y="310" width="10" height="70" fill="#7757e9" />
+                <rect x="370" y="310" width="10" height="70" fill="#7757e9" />
+                
+                <!-- Laptop -->
+                <rect x="180" y="250" width="140" height="80" rx="5" fill="#1a237e" />
+                <rect x="185" y="255" width="130" height="70" rx="3" fill="#ffffff" />
+                <rect x="210" y="280" width="80" height="20" rx="2" fill="#f59e0b" />
+                
+                <!-- Notebook -->
+                <rect x="140" y="270" width="30" height="40" rx="2" fill="#ffffff" />
+                <line x1="150" y1="275" x2="160" y2="275" stroke="#6b7280" stroke-width="1" />
+                <line x1="145" y1="280" x2="165" y2="280" stroke="#6b7280" stroke-width="1" />
+                <line x1="150" y1="285" x2="160" y2="285" stroke="#6b7280" stroke-width="1" />
+                <line x1="145" y1="290" x2="165" y2="290" stroke="#6b7280" stroke-width="1" />
+                <line x1="150" y1="295" x2="160" y2="295" stroke="#6b7280" stroke-width="1" />
+                <line x1="145" y1="300" x2="165" y2="300" stroke="#6b7280" stroke-width="1" />
+                
+                <!-- Coffee mug -->
+                <rect x="330" y="270" width="20" height="30" rx="2" fill="#f59e0b" />
+                <path d="M350 275 C360 275, 360 295, 350 295" fill="none" stroke="#f59e0b" stroke-width="2" />
+                <ellipse cx="340" cy="270" rx="10" ry="3" fill="#f59e0b" />
+                
+                <!-- Student figure -->
+                <circle cx="250" cy="200" r="20" fill="#1a237e" />
+                <rect x="230" y="220" width="40" height="50" rx="5" fill="#1a237e" />
+                <rect x="220" y="240" width="15" height="30" fill="#1a237e" />
+                <rect x="265" y="240" width="15" height="30" fill="#1a237e" />
+                
+                <!-- Speech bubble -->
+                <path d="M300 180 C340 180, 340 140, 300 140 C300 140, 270 140, 270 160 L260 170 L270 160 C270 180, 300 180, 300 180" fill="#ffffff" stroke="#7757e9" stroke-width="2" />
+                <text x="285" y="165" text-anchor="middle" font-size="14" fill="#1a237e" font-family="Arial, sans-serif">Feedback</text>
+                
+                <!-- Stars for rating concept -->
+                <polygon points="180,100 185,110 195,112 187,120 189,130 180,125 171,130 173,120 165,112 175,110" fill="#f59e0b" />
+                <polygon points="210,110 215,120 225,122 217,130 219,140 210,135 201,140 203,130 195,122 205,120" fill="#f59e0b" />
+                <polygon points="240,100 245,110 255,112 247,120 249,130 240,125 231,130 233,120 225,112 235,110" fill="#f59e0b" />
+                <polygon points="270,110 275,120 285,122 277,130 279,140 270,135 261,140 263,130 255,122 265,120" fill="#f59e0b" />
+                <polygon points="300,100 305,110 315,112 307,120 309,130 300,125 291,130 293,120 285,112 295,110" fill="#f59e0b" opacity="0.3" />
+                
+                <!-- Text label -->
+                <text x="250" y="450" text-anchor="middle" font-size="20" fill="#1a237e" font-family="Arial, sans-serif">Your Opinion Matters!</text>
+            </svg>
+        </div>
+
+        <!-- Right side - Form -->
+        <div class="form-container">
+            <h1>Student Feedback Form</h1>
+            <div class="progress-bar">
+                <div class="progress-step active"></div>
+                <div class="progress-step"></div>
+                <div class="progress-step"></div>
+                <div class="progress-step"></div>
+            </div>
+
+            <form id="studentFeedbackForm">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            
+                <!-- Personal Details Step -->
+                <div class="form-step active" id="step1">
+                    <div class="form-group">
+                        <input type="text" id="Name" name="name" placeholder="Name of the Student" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email_id" placeholder="Email ID" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="whatsappNumber" name="whatsapp_number" placeholder="WhatsApp Number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="isAlumni"></label>
+                        <select id="isAlumni" name="is_alumni" required>
+                            <option value="">Are you an alumni?</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+            
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn next-btn">Next →</button>
+                    </div>
+                </div>
+            
+                <!-- Feedback Questions Step 1 -->
+                <div class="form-step" id="step2">
+                    <div class="form-group">
+                        <select id="courseContentRating" name="course_content_rating" required>
+                            <option value="">How do you rate the course content?</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Good">Good</option>
+                            <option value="Average">Average</option>
+                            <option value="Poor">Poor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="learningObjectives" name="learning_objectives_clarity" required>
+                            <option value="">Are the learning objectives clear?</option>
+                            <option value="Strongly Agree">Strongly Agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Neutral">Neutral</option>
+                            <option value="Disagree">Disagree</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="teachingMethods" name="teaching_methods_effectiveness" required>
+                            <option value="">How effective are the teaching methods?</option>
+                            <option value="Very Effective">Very Effective</option>
+                            <option value="Effective">Effective</option>
+                            <option value="Somewhat Effective">Somewhat Effective</option>
+                            <option value="Not Effective">Not Effective</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="courseDifficulty" name="course_difficulty" required>
+                            <option value="">Rate the course difficulty level</option>
+                            <option value="Too Difficult">Too Difficult</option>
+                            <option value="Moderately Difficult">Moderately Difficult</option>
+                            <option value="Just Right">Just Right</option>
+                            <option value="Too Easy">Too Easy</option>
+                        </select>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn btn-secondary prev-btn">← Previous</button>
+                        <button type="button" class="btn next-btn">Next →</button>
+                    </div>
+                </div>
+            
+                <!-- Feedback Questions Step 2 -->
+                <div class="form-step" id="step3">
+                    <div class="form-group">
+                        <select id="courseResources" name="course_resources_rating" required>
+                            <option value="">Course resources rating</option>
+                            <option value="Excellent">Excellent</option>
+                            <option value="Good">Good</option>
+                            <option value="Average">Average</option>
+                            <option value="Poor">Poor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="labHelpfulness" name="lab_sessions_helpfulness" required>
+                            <option value="">Lab/practical sessions helpfulness</option>
+                            <option value="Very Helpful">Very Helpful</option>
+                            <option value="Helpful">Helpful</option>
+                            <option value="Somewhat Helpful">Somewhat Helpful</option>
+                            <option value="Not Helpful">Not Helpful</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="assignmentsRating" name="course_assignments_rating" required>
+                            <option value="">Rate the course assignments</option>
+                            <option value="Very Challenging">Very Challenging</option>
+                            <option value="Challenging">Challenging</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="Easy">Easy</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select id="courseImprovement" name="course_improvement_suggestion" required>
+                            <option value="">How would you improve the course?</option>
+                            <option value="More Practical Sessions">More Practical Sessions</option>
+                            <option value="Better Study Materials">Better Study Materials</option>
+                            <option value="More Interactive Classes">More Interactive Classes</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn btn-secondary prev-btn">← Previous</button>
+                        <button type="button" class="btn next-btn">Next →</button>
+                    </div>
+                </div>
+            
+                <!-- Final Comments Step -->
+                <div class="form-step" id="step4">
+                    <div class="form-group">
+                        <textarea id="additionalComments" name="additional_comments" placeholder="Additional Comments/Suggestions" required></textarea>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn btn-secondary prev-btn">← Previous</button>
+                        <button type="submit" class="btn">Submit →</button>
+                    </div>
+                </div>
+            </form>
+            
+            
         </div>
     </div>
 </section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/feedback.js' %}?v={{ now|date:"U" }}"></script>
 {% endblock %}

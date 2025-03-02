@@ -15,7 +15,7 @@
           <span>|</span>
           <a href="#">Internal Exam 1st Sem 2024</a> {% endcomment %}
           {% for notice in highlights %}
-          <a href="#">{{ notice.title }}</a>
+          <a href="{% url 'notices' %}">{{ notice.title }}</a>
           {% if not forloop.last %}
           <span>|</span>
           {% endif %}
@@ -68,7 +68,7 @@
             {% comment %} <a href="#0" class="notice-item">New system update available!</a>
             <a href="#0" class="notice-item">Magazine Release.</a> {% endcomment %}
             {% for notice in notices %}
-            <a href="#0" class="notice-item">{{ notice.title }}</a>
+            <a href="{% url 'notices' %}" class="notice-item">{{ notice.title }}</a>
             {% endfor %}
           </div>
         </div>

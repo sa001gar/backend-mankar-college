@@ -4,17 +4,7 @@
 <!-- PDF.js CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 <style>
-    {% comment %} :root {
-        --primary: #1a237e;
-        --secondary: #7757e9;
-        --accent: #f59e0b;
-        --text-light: #ffffff;
-        --text-dark: #111827;
-        --text-muted: #6b7280;
-        --background: #ffffff;
-        --border: #e5e7eb;
-    } {% endcomment %}
-
+    
     .syllabus-section {
         min-height: calc(100vh - 300px);
         padding: 3rem 1rem;
@@ -161,7 +151,7 @@
         }
 
         .pdf-container {
-            height: 600px;
+            height: clamp(400px, 50vw, 800px);
         }
     }
 

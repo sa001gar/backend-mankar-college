@@ -52,7 +52,7 @@ body {
 }
 
 .header-container {
-  max-width: 1300px;
+  /* max-width: 1300px; */
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -449,4 +449,54 @@ body {
 .hero-header p {
   font-size: 1.1rem;
   opacity: 0.9;
+}
+
+
+/* Back Button */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  gap: 2rem;
+}
+.btn-back {
+  color: var(--primary);
+  
+  /* margin: 2rem auto; */
+  display: inline-block;
+  text-align: center;
+
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--primary);
+  padding: 10px 20px;
+  font-size: 17px;
+  cursor: pointer;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 1s;
+  overflow: hidden;
+}
+
+.btn-back:hover {
+  color: white;
+}
+
+.btn-back::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  background-color:var(--primary);
+  z-index: -1;
+  transition: all 0.7s;
+}
+
+.btn-back:hover::before {
+  width: 160%;
 }

@@ -1,0 +1,77 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/notices.css'%}?v={{ now|date:"U" }}" />
+
+    <main>
+        <div class="background-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+
+        <div class="container">
+            <h1 class="page-title">Department Notices</h1>
+
+            <div class="notices-grid">
+
+                {% for notice in notices %}
+                    <div class="notice-card">
+                        <div class="notice-date">{{ notice.date }}</div>
+                        <span class="notice-category">{{ notice.category.name }}</span>
+                        <h2 class="notice-title">{{ notice.title }}</h2>
+                        <p class="notice-content">
+                            {{ notice.description }}
+                        </p>
+
+                        {% if notice.pdf %}
+                        <a href="{{ notice.pdf.url }}" class="pdf-link" target="_blank">
+                            <div class="pdf-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <path d="M9 15h6"></path>
+                                    <path d="M9 18h6"></path>
+                                    <path d="M9 12h2"></path>
+                                </svg>
+                            </div>
+                            <div class="pdf-text">{{ notice.pdf.name|slice:"7:" }}</div>  {# Show the file name without path #}
+                        </a>
+                        {% endif %}
+
+                        {% if notice.link %}
+                        <a href="{{ notice.link }}" class="notice-link" target="_blank">View details</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+
+                {% comment %} <div class="notice-card">
+                    <div class="notice-date">February 18, 2024</div>
+                    <span class="notice-category">Academic</span>
+                    <h2 class="notice-title">Semester End Examination Schedule</h2>
+                    <p class="notice-content">
+                        The end semester examinations for all courses will commence from March 15, 2024. All students are required to check their exam centers and reporting times. The detailed schedule includes dates, times, and venues for each course examination.
+                    </p>
+                    <a href="#" class="pdf-link">
+                        <div class="pdf-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <path d="M9 15h6"></path>
+                                <path d="M9 18h6"></path>
+                                <path d="M9 12h2"></path>
+                            </svg>
+                        </div>
+                        <div class="pdf-text">Exam_Schedule_2024.pdf</div>
+                    </a>
+                    <a href="#" class="notice-link">View details</a>
+                </div> {% endcomment %}
+
+                
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
