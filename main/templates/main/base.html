@@ -4,9 +4,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Department of Computer Science | Mankar College</title>
-    <link rel="stylesheet" href="{% static 'css/header.css' %}?v={{ now|date:"U"
-    }}"> <link rel="stylesheet" href="{% static 'css/footer.css'%}?v={{
+    {% block title%}
+    <title>Home | Department of Computer Science, Mankar College</title>
+    {% endblock %}
+
+    <!-- ===== CSS Links ===== -->
+     {% block css %}
+     <link rel="stylesheet" href="{% static 'css/header.css' %}?v={{ now|date:"U" }}" /> 
+    <link rel="stylesheet" href="{% static 'css/footer.css'%}?v={{
     now|date:"U" }}" />
 
     <!-- ===== Link Swiper's CSS ===== -->
@@ -14,6 +19,8 @@
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
+     {% endblock %}
+    
     <!-- ===== Fontawesome CDN Link ===== -->
     <link
       rel="stylesheet"

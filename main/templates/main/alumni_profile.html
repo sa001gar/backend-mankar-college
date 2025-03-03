@@ -1,0 +1,77 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/alumni-profile.css'%}?v={{ now|date:"U" }}" />
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="header-content">
+            <a href="{% url 'alumni' %}" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Alumni
+            </a>
+            <a href="{% url 'update-alumni' alumni.id %}" class="edit-button">
+                <i class="fas fa-edit"></i> Edit Profile
+            </a>
+        </div>
+    </div>
+    <div class="profile-card">
+        <div class="profile-card-header">
+            <div class="profile-image-container">
+                {% if alumni.profile_image %}
+                    <img src="{{ alumni.profile_image.url }}" alt="{{ alumni.name }}'s Profile Image">
+                {% else %}
+                    <img src="{% static 'main/images/default-profile.jpg' %}" alt="Default Profile Image">
+                {% endif %}
+            </div>
+            <span class="batch-badge">Batch {{ alumni.batch_year }}</span>
+        </div>
+        
+        <div class="profile-info">
+            <h1 class="alumni-name">{{ alumni.name }}</h1>
+            <p class="alumni-position">{{ alumni.current_position }}</p>
+            <div class="alumni-company">{{ alumni.company }}</div>
+            
+            <div class="profile-sections">
+                <div class="profile-section">
+                    <h2 class="section-title"><i class="fas fa-info-circle"></i> About</h2>
+                    <p class="section-content">{{ alumni.bio|linebreaks }}</p>
+                </div>
+                
+                <!-- Since there are no related models for experiences, education, and skills in your current model,
+                     we'll need to either add those models or remove these sections -->
+                
+                <!-- If you want to keep the sections but show a message when they're not available: -->
+                <div class="profile-section">
+                    <h2 class="section-title"><i class="fas fa-briefcase"></i> Experience</h2>
+                    <div class="section-content timeline">
+                        <p>Currently working as {{ alumni.current_position }} at {{ alumni.company }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-section">
+                <h2 class="section-title"><i class="fas fa-paper-plane"></i> Connect</h2>
+                <div class="social-links">
+                    {% if alumni.email %}
+                        <a href="mailto:{{ alumni.email }}" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    {% endif %}
+                    
+                    {% if alumni.linkedin_url %}
+                        <a href="{{ alumni.linkedin_url }}" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    {% endif %}
+                    
+                    {% if alumni.github %}
+                        <a href="{{ alumni.github }}" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- No JavaScript required anymore -->
+{% endblock %}

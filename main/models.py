@@ -67,6 +67,10 @@ class Alumni(models.Model):
     email = models.EmailField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     display = models.BooleanField(default=True)
+    bio=models.TextField(blank=True)
+    passcode = models.CharField(max_length=6) # Stores the 6-digit passcode
+    highlighted = models.BooleanField(default=False)
+
     
     class Meta:
         ordering = ['-batch_year', 'name']

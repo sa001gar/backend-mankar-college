@@ -1,162 +1,184 @@
-{% extends 'main/base.html' %}
-{% load static %}
-
-{% block content %}
-<link rel="stylesheet" href="{% static 'css/alumni.css'%}?v={{ now|date:"U" }}" />
-
+{% extends 'main/base.html' %} {% load static %} {% block content %} <link
+rel="stylesheet" href="{% static 'css/alumni.css'%}?v={{ now|date:"U" }}" />
 
 <!-- Hero Section -->
 
 <div class="hero-header">
-    <div class="hero-content">
-        <h1>Our Alumni Network</h1>
-        <p>Meet our successful graduates who are making a difference in the tech world</p>
+  <div class="hero-content">
+    <h1>Our Alumni Network</h1>
+    <p>
+      Meet our successful graduates who are making a difference in the tech
+      world
+    </p>
+  </div>
+</div>
+
+<!-- End Hero Section -->
+
+<div class="container">
+  <div class="controls">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input
+        type="text"
+        placeholder="Search alumni by name or company..."
+        id="searchInput"
+      />
+    </div>
+
+    <div class="end">
+      <p>Not in the list?<a href="{% url 'register-alumni'%}">Register</a></p>
+      <select class="batch-select" id="batchSelect">
+        {% for batch_year in batch_years %}
+        <option value="{{ batch_year }}">Batch {{ batch_year }}</option>
+        {% endfor %}
+      </select>
     </div>
   </div>
 
-  <!-- End Hero Section -->
-
-<div class="container">
-    <div class="controls">
-        <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search alumni by name or company..." id="searchInput">
-        </div>
-        
-        <div class="end">
-            <p>Not in the list?<a href="#">Register</a></p>
-            <select class="batch-select" id="batchSelect">
-                {% for batch_year in batch_years %}
-                    <option value="{{ batch_year }}">Batch {{ batch_year }}</option>
-                {% endfor %}
-            </select>
-
-        </div>
-
-        
-    </div>
-
-    <div class="alumni-grid" id="alumniGrid">
-        <!-- Will be populated dynamically -->
-    </div>
+  <div class="alumni-grid" id="alumniGrid">
+    <!-- Will be populated dynamically -->
+  </div>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const select = document.getElementById('batchSelect');
-        const searchInput = document.getElementById('searchInput');
-        const grid = document.getElementById('alumniGrid');
-        let currentBatch = '';
-        let searchTerm = '';
+  document.addEventListener("DOMContentLoaded", async () => {
+    const select = document.getElementById("batchSelect");
+    const searchInput = document.getElementById("searchInput");
+    const grid = document.getElementById("alumniGrid");
+    let currentBatch = "";
+    let searchTerm = "";
 
-        function createAlumniCard(alumni) {
-            const profileImage = alumni.profile_image || '/static/main/images/default-profile.jpg';
-            return `
+    function createAlumniCard(alumni) {
+      const profileImage =
+        alumni.profile_image || "/static/main/images/default-profile.jpg";
+      return `
                 <div class="alumni-card">
-                    <div class="card-header">
-                        <span class="batch-badge">Batch ${alumni.batch_year}</span>
-                        <div class="profile-image">
-                            <img src="${profileImage}" alt="${alumni.name}" onerror="this.src='/static/main/images/default-profile.jpg'">
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="alumni-name">${alumni.name}</h3>
-                        <p class="alumni-designation">${alumni.current_position}</p>
-                        <div class="alumni-company">${alumni.company}</div>
-                        <div class="social-links">
-                            ${alumni.github ? `
-                                <a href="${alumni.github}" class="social-link" target="_blank" title="GitHub">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            ` : ''}
-                            ${alumni.linkedin_url ? `
-                                <a href="${alumni.linkedin_url}" class="social-link" target="_blank" title="LinkedIn">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            ` : ''}
-                            ${alumni.email ? `
-                                <a href="mailto:${alumni.email}" class="social-link" title="Email">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            ` : ''}
-                        </div>
-                    </div>
+            <div class="card-header">
+                <span class="batch-badge">Batch ${alumni.batch_year}</span>
+                <div class="profile-image">
+                    <img src="${profileImage}" alt="${
+        alumni.name
+      }" onerror="this.src='/static/main/images/default-profile.jpg'">
                 </div>
-            `;
+                <a href="/alumni/update/${alumni.id}" class="edit-icon" title="Edit Profile">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <h3 class="alumni-name">${alumni.name}</h3>
+                <p class="alumni-designation">${alumni.current_position}</p>
+                <div class="social-links">
+                    ${
+                      alumni.github
+                        ? `
+                        <a href="${alumni.github}" class="social-link" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    `
+                        : ""
+                    }
+                    ${
+                      alumni.linkedin_url
+                        ? `
+                        <a href="${alumni.linkedin_url}" class="social-link" target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    `
+                        : ""
+                    }
+                    ${
+                      alumni.email
+                        ? `
+                        <a href="mailto:${alumni.email}" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    `
+                        : ""
+                    }
+                </div>
+                <a href="/alumni/profile/${
+                  alumni.id
+                }" class="view-profile-link">View Profile</a>
+            </div>
+        </div>
+    `;
+    }
+
+    async function fetchAndDisplayAlumni() {
+      grid.innerHTML =
+        '<div class="loading"><i class="fas fa-spinner fa-2x"></i></div>';
+
+      try {
+        let url = "/api/alumni/?";
+        if (currentBatch) {
+          url += `batch_no=${currentBatch}`;
         }
 
-        async function fetchAndDisplayAlumni() {
-            grid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-2x"></i></div>';
+        const response = await fetch(url);
+        const data = await response.json();
 
-            try {
-                let url = '/api/alumni/?';
-                if (currentBatch) {
-                    url += `batch_no=${currentBatch}`;
-                }
-
-                const response = await fetch(url);
-                const data = await response.json();
-
-                if (!data.alumni || data.alumni.length === 0) {
-                    grid.innerHTML = `
+        if (!data.alumni || data.alumni.length === 0) {
+          grid.innerHTML = `
                         <div class="no-results">
                             <i class="fas fa-user-graduate"></i>
                             <p>No alumni found</p>
                         </div>
                     `;
-                    return;
-                }
+          return;
+        }
 
-                let filteredAlumni = data.alumni;
-                if (searchTerm) {
-                    const term = searchTerm.toLowerCase();
-                    filteredAlumni = filteredAlumni.filter(alumni => 
-                        alumni.name.toLowerCase().includes(term) ||
-                        alumni.company.toLowerCase().includes(term) ||
-                        alumni.current_position.toLowerCase().includes(term)
-                    );
-                }
+        let filteredAlumni = data.alumni;
+        if (searchTerm) {
+          const term = searchTerm.toLowerCase();
+          filteredAlumni = filteredAlumni.filter(
+            (alumni) =>
+              alumni.name.toLowerCase().includes(term) ||
+              alumni.company.toLowerCase().includes(term) ||
+              alumni.current_position.toLowerCase().includes(term)
+          );
+        }
 
-                if (filteredAlumni.length === 0) {
-                    grid.innerHTML = `
+        if (filteredAlumni.length === 0) {
+          grid.innerHTML = `
                         <div class="no-results">
                             <i class="fas fa-user-graduate"></i>
                             <p>No alumni found matching your search criteria</p>
                         </div>
                     `;
-                    return;
-                }
+          return;
+        }
 
-                grid.innerHTML = filteredAlumni.map(createAlumniCard).join('');
-            } catch (error) {
-                console.error('Error fetching alumni data:', error);
-                grid.innerHTML = `
+        grid.innerHTML = filteredAlumni.map(createAlumniCard).join("");
+      } catch (error) {
+        console.error("Error fetching alumni data:", error);
+        grid.innerHTML = `
                     <div class="no-results">
                         <i class="fas fa-exclamation-circle"></i>
                         <p>Failed to load alumni data. Please try again later.</p>
                     </div>
                 `;
-            }
-        }
+      }
+    }
 
-        // Event Listeners
-        select.addEventListener('change', () => {
-            currentBatch = select.value;
-            fetchAndDisplayAlumni();
-        });
-
-        let searchTimeout;
-        searchInput.addEventListener('input', () => {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                searchTerm = searchInput.value;
-                fetchAndDisplayAlumni();
-            }, 300);
-        });
-
-        // Initial load
-        fetchAndDisplayAlumni();
+    // Event Listeners
+    select.addEventListener("change", () => {
+      currentBatch = select.value;
+      fetchAndDisplayAlumni();
     });
+
+    let searchTimeout;
+    searchInput.addEventListener("input", () => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        searchTerm = searchInput.value;
+        fetchAndDisplayAlumni();
+      }, 300);
+    });
+
+    // Initial load
+    fetchAndDisplayAlumni();
+  });
 </script>
 
 {% endblock %}

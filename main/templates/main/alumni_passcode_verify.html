@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="container">
+    <h2>Verify Passcode</h2>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="passcode">Enter Your 6-Digit Passcode</label>
+            <input type="password" name="passcode" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Verify</button>
+    </form>
+</div>
+
+{% endblock %}

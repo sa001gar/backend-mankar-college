@@ -17,8 +17,14 @@ urlpatterns = [
     path('syllabus/', views.syllabus, name='syllabus'),
     path('previous-papers/', views.previous_papers, name='previous-papers'),
 
-    path('api/submit-feedback/', views.submit_feedback, name='submit-feedback'),
+    path('alumni/register', views.register_alumni, name='register-alumni'),
+    path('alumni/update/<int:pk>/', views.update_alumni_profile, name='update-alumni'),
+    path('alumni/profile/<int:pk>/', views.alumni_profile, name='alumni-profile'),
 
+   
+
+
+    path('api/submit-feedback/', views.submit_feedback, name='submit-feedback'),
     path('gallery-data/', views.gallery_data, name='gallery-data'),
     path('api/alumni/', views.get_alumni_by_batch, name='get_alumni_by_batch'),
 ]
