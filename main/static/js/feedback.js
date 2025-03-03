@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('studentFeedbackForm');
     const steps = document.querySelectorAll('.form-step');
     const progressSteps = document.querySelectorAll('.progress-step');
+    const successModal = document.getElementById('successModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
     let currentStep = 0;
 
     function showStep(stepIndex) {
@@ -10,6 +12,33 @@ document.addEventListener('DOMContentLoaded', () => {
             progressSteps[index].classList.toggle('active', index <= stepIndex);
         });
     }
+
+    // Show success modal
+    function showSuccessModal() {
+        successModal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+    }
+
+    // Hide success modal
+    function hideSuccessModal() {
+        successModal.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Close modal when clicking the close button
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            hideSuccessModal();
+            window.location.href = '/';
+        });
+    }
+
+    // Close modal when clicking outside the modal content
+    successModal.addEventListener('click', (e) => {
+        if (e.target === successModal) {
+            hideSuccessModal();
+        }
+    });
 
     document.querySelectorAll('.next-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -62,7 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             if (data.message === "Success") {
-                alert('Feedback submitted successfully!');
+                // Show success modal instead of alert
+                showSuccessModal();
+                
+                // Reset form
                 form.reset();
                 currentStep = 0;
                 showStep(currentStep);
@@ -76,6 +108,4 @@ document.addEventListener('DOMContentLoaded', () => {
     function getCSRFToken() {
         return document.querySelector('input[name="csrfmiddlewaretoken"]').value;
     }
-
-
 });

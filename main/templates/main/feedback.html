@@ -1,9 +1,14 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% comment %} {% block title %}Feedback Form{% endblock %} {% endcomment %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/feedback.css'%}?v={{ now|date:"U" }}" />
+{% endblock %}
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/feedback.css'%}?v={{ now|date:"U" }}" />
+
 
 <section class="feedback-section">
     <div class="split-container">
@@ -207,6 +212,18 @@
     </div>
 </section>
 
+
+<!-- Success Modal HTML - Add this to your template -->
+<div class="success-modal" id="successModal">
+    <div class="modal-content">
+        <div class="modal-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h3>Thank You!</h3>
+        <p>Your feedback has been submitted successfully.</p>
+        <button id="closeModalBtn">Close</button>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}

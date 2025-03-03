@@ -5,11 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% block title%}
-    <title>Home | Department of Computer Science, Mankar College</title>
+    
     {% endblock %}
 
     <!-- ===== CSS Links ===== -->
      {% block css %}
+     
+     {% endblock %}
+    
      <link rel="stylesheet" href="{% static 'css/header.css' %}?v={{ now|date:"U" }}" /> 
     <link rel="stylesheet" href="{% static 'css/footer.css'%}?v={{
     now|date:"U" }}" />
@@ -19,8 +22,6 @@
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
-     {% endblock %}
-    
     <!-- ===== Fontawesome CDN Link ===== -->
     <link
       rel="stylesheet"
@@ -240,9 +241,10 @@
 
     <!-- End footer Component  -->
 
-    {% block scripts %}
     <!-- Header Link  -->
     <script src="{% static 'js/header.js'%}"></script>
+    {% block scripts %}
+    
     {% endblock %}
   </body>
 </html>

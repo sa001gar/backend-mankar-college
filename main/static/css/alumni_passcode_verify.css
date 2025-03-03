@@ -1,0 +1,116 @@
+/* Passcode Verification Page Styles */
+
+.container {
+    max-width: 500px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background-color: var(--background);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+}
+
+.container h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--secondary);
+}
+
+.container .alert {
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.container .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.container .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.container .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.container .form-control:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 0.2rem rgba(119, 87, 233, 0.25);
+    outline: none;
+}
+
+.container .btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 4px;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+}
+
+.container .btn-primary {
+    color: var(--text-light);
+    background: var(--gradient);
+    border: none;
+}
+
+.container .btn-primary:hover {
+    opacity: 0.9;
+    box-shadow: var(--shadow);
+}
+
+.container .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(26, 35, 126, 0.5);
+}
+
+/* Animation for input focus */
+@keyframes highlight {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+.container .form-control:focus:invalid {
+    border-color: var(--accent);
+    animation: highlight 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .container {
+        margin: 2rem auto;
+        padding: 1.5rem;
+    }
+    
+    .container .btn {
+        display: block;
+        width: 100%;
+    }
+}

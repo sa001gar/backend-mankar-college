@@ -44,7 +44,7 @@ def gallery_data(request):
         {
             'id': item.id,
             'category': item.category.name if item.category else '',  # Used 'name' since 'slug' doesn't exist
-            'image': item.image.url if item.image else '',
+            'image': item.image.url if item.image else item.image_link,
             'title': item.title,
             'description': item.description,
             'date': item.date.strftime('%b %Y') if item.date else ''
