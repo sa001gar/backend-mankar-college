@@ -46,45 +46,15 @@ class GalleryCategory(models.Model):
     
 # Gallery Items 
 class GalleryItem(models.Model):
-    category = models.ForeignKey("GalleryCategory", on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='gallery_images/', blank=True)
-    image_link = models.URLField(blank=True)
+    category = models.ForeignKey(GalleryCategory, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='gallery_images/',blank=True)
+    image_link=models.URLField(blank=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
     date = models.DateField()
 
     def __str__(self):
         return self.title
-
-    def save(self, *args, **kwargs):
-        if self.image:
-            self.image = self.compress_image(self.image)
-        super().save(*args, **kwargs)
-
-    def compress_image(self, image):
-        img = Image.open(image)
-
-        # Convert PNG with transparency to RGB
-        if img.mode in ("RGBA", "P"):
-            img = img.convert("RGB")
-
-        img.thumbnail((1024, 1024))  # Resize keeping aspect ratio
-
-        img_io = BytesIO()
-        quality = 80  # Initial quality
-
-        while True:
-            img_io.seek(0)  # Reset buffer
-            img.save(img_io, format="JPEG", quality=quality)
-            size_kb = img_io.tell() / 1024  # Convert bytes to KB
-
-            if size_kb <= 100 or quality <= 20:  # Stop if < 100KB or quality too low
-                break
-
-            quality -= 5  # Reduce quality
-
-        return ContentFile(img_io.getvalue(), name=image.name)
-
 
 # Alumni
 class Alumni(models.Model):
@@ -98,48 +68,18 @@ class Alumni(models.Model):
     email = models.EmailField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     display = models.BooleanField(default=True)
-    bio = models.TextField(blank=True)
-    passcode = models.CharField(max_length=6)  # Stores the 6-digit passcode
+    bio=models.TextField(blank=True)
+    passcode = models.CharField(max_length=6) # Stores the 6-digit passcode
     highlighted = models.BooleanField(default=False)
 
+    
     class Meta:
         ordering = ['-batch_year', 'name']
         verbose_name_plural = 'Alumni'
-
+    
     def __str__(self):
         return f"{self.name} - Batch {self.batch_year}"
 
-    def save(self, *args, **kwargs):
-        if self.profile_image:
-            self.profile_image = self.compress_image(self.profile_image)
-        super().save(*args, **kwargs)
-
-    def compress_image(self, image):
-        img = Image.open(image)
-
-        if img.mode in ("RGBA", "P"):
-            img = img.convert("RGB")
-
-        img.thumbnail((1024, 1024))
-
-        img_io = BytesIO()
-        quality = 80
-
-        while True:
-            img_io.seek(0)
-            img.save(img_io, format="JPEG", quality=quality)
-            size_kb = img_io.tell() / 1024
-
-            if size_kb <= 100 or quality <= 20:
-                break
-
-            quality -= 5
-
-        return ContentFile(img_io.getvalue(), name=image.name)
-
-
-
-        
 # Student Feedback
 class StudentFeedback(models.Model):
     ALUMNI_CHOICES = [

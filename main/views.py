@@ -8,42 +8,44 @@ import json
 from .models import GalleryItem, GalleryCategory, Alumni, Notice, StudentFeedback
 from .forms import AlumniForm
 
-
-# Create your views here.
+"""
+Add the following views to main/views.py
+"""
+# Home View Function
 def home(request):
     highlights = Notice.objects.filter(highlight=True).order_by('date')[:5]
     notices = Notice.objects.order_by('date')[:7]
     return render(request, 'main/index.html',{'highlights':highlights,'notices':notices})
 
+# About View Function
 def about(request):
     return render(request, 'main/about.html')
 
+# Team View Function
 def team(request):
     return render(request, 'main/team.html')
 
+# Notices View Function
 def notices(request):
     notices = Notice.objects.order_by('-date')[:10]
     return render(request, 'main/notices.html',{'notices':notices})
 
+# Faculty View Function
 def faculty(request):
     return render(request, 'main/faculty.html')
 
-
-def alumni(request):
-    batch_years = Alumni.objects.values_list('batch_year', flat=True).distinct().order_by('-batch_year')
-    
-    return render(request, 'main/alumni.html',{'batch_years':batch_years,})
-
+# Gallery View Function
 def gallery(request):
     catagories=GalleryCategory.objects.all()
     return render(request, 'main/department-gallery.html',{'catagories':catagories})
 
+# API to get gallery data
 def gallery_data(request):
     items = GalleryItem.objects.select_related('category').all()
     data = [
         {
             'id': item.id,
-            'category': item.category.name if item.category else '',  # Used 'name' since 'slug' doesn't exist
+            'category': item.category.name if item.category else '',
             'image': item.image.url if item.image else item.image_link,
             'title': item.title,
             'description': item.description,
@@ -53,19 +55,19 @@ def gallery_data(request):
     ]
     return JsonResponse(data, safe=False)
 
-def feedback(request):
-    
-    return render(request, 'main/feedback.html')
+# Alumni View Function
+def alumni(request):
+    batch_years = Alumni.objects.values_list('batch_year', flat=True).distinct().order_by('-batch_year')
+    return render(request, 'main/alumni.html',{'batch_years':batch_years,})
 
-
-
+# Register Alumni View Function
 def register_alumni(request):
     if request.method == "POST":
         form = AlumniForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, "Alumni registered successfully! Use your passcode to update your profile later.")
-            return redirect("register-alumni")  # Change this to your actual alumni list view
+            return redirect("register-alumni") 
     else:
         form = AlumniForm()
 
@@ -78,7 +80,7 @@ def register_alumni(request):
         
     })
 
-
+# Update Alumni Profile View Function
 def update_alumni_profile(request, pk):
     alumni = get_object_or_404(Alumni, pk=pk)
 
@@ -87,8 +89,8 @@ def update_alumni_profile(request, pk):
         if request.method == "POST":
             entered_passcode = request.POST.get("passcode")
             if entered_passcode == alumni.passcode:
-                request.session["passcode_verified"] = pk  # Store verification in session
-                return redirect("update-alumni", pk=pk)  # Reload update page
+                request.session["passcode_verified"] = pk  
+                return redirect("update-alumni", pk=pk)  
             else:
                 messages.error(request, "Incorrect passcode. Please try again.")
         
@@ -99,14 +101,14 @@ def update_alumni_profile(request, pk):
         form = AlumniForm(request.POST, request.FILES, instance=alumni)
 
         if form.is_valid():
-            form.save()  # Prevent auto-save
-            request.session.pop("passcode_verified", None)  # Remove session after update
+            form.save()  
+            request.session.pop("passcode_verified", None)  
             messages.success(request, "Profile updated successfully!")
-            return redirect("alumni")  # Redirect to alumni list
+            return redirect("alumni")  
 
     else:
         form = AlumniForm(instance=alumni)
-        form.fields["passcode"].required = False  # Make passcode optional in the form
+       
 
     return render(request, "main/register_alumni.html", {
         "form": form,
@@ -116,16 +118,15 @@ def update_alumni_profile(request, pk):
         "passcode_help_text": "Enter a new 6-digit passcode (Or enter the current one).",
     })
 
-
+# Alumni Profile View Function
 def alumni_profile(request, pk):
-    # Get the alumni object with all related data using prefetch_related
-    # 
     alumni=Alumni.objects.get(pk=pk)
     return render(request, 'main/alumni_profile.html', {
         'alumni': alumni,
         
     })
 
+# API to get alumni data by batch number
 def get_alumni_by_batch(request):
     batch_no = request.GET.get('batch_no')
     
@@ -198,14 +199,21 @@ def get_alumni_by_batch(request):
 #     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
 
+# Syllabus View Function
 def syllabus(request):
     number=range(1,9)
     return render(request, 'main/syllabus.html',{'number':number})
-    
+
+# Previous Year Questions View Function    
 def previous_papers(request):
     return render(request, 'main/previous-year-questions.html')
 
 
+# Feedback = StudentFeedback View Function
+def feedback(request):
+    return render(request, 'main/feedback.html')
+
+# Submit Feedback API
 def submit_feedback(request):
     if request.method == "POST":
         try:

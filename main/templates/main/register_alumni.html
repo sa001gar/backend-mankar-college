@@ -1,8 +1,14 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
+{% comment %} {% block title %}Register Alumni{% endblock %} {% endcomment %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/register_alumni.css'%}?v={{ now|date:"U" }}" />
+{% endblock %}
+
+
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/register_alumni.css'%}?v={{ now|date:"U" }}" />
 
 <div class="form-container">
     <h2>{{ form_title }}</h2>
@@ -72,8 +78,11 @@
             <span class="helptext">{{ passcode_help_text }}</span>
         </div>
 
-        <button type="submit" class="btn btn-primary">{{ submit_button_text }}</button>
-        <button type="button" class="btn btn-primary" onclick="history.back()">Cancel</button>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{{ submit_button_text }}</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'alumni' %}'">Cancel</button>
+        </div>
     </form>
 </div>
 
