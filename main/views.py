@@ -253,3 +253,6 @@ def submit_feedback(request):
             return JsonResponse({"error": str(e)}, status=400)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+def study_materials(request):
+    return render(request, 'main/study-materials.html')

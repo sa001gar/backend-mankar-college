@@ -16,6 +16,7 @@ urlpatterns = [
     path('feedback/', views.feedback, name='feedback'),
     path('syllabus/', views.syllabus, name='syllabus'),
     path('previous-papers/', views.previous_papers, name='previous-papers'),
+    path('study-material/', views.study_materials, name='study-material'),
 
     path('alumni/register', views.register_alumni, name='register-alumni'),
     path('alumni/update/<int:pk>/', views.update_alumni_profile, name='update-alumni'),

@@ -1,0 +1,172 @@
+/* Study Materials Section Styles */
+.study-materials-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.study-materials-header {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.study-materials-header h2 {
+    color: white;
+    margin: 0;
+    padding-bottom: 15px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.study-materials-header p {
+    color: white;
+    margin: 0;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Filter Selection Styles */
+.filter-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.filter-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+}
+
+/* Materials Grid Styles */
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.material-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.material-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    padding: 15px;
+    color: white;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.card-header p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+.card-content {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content p {
+    margin: 0 0 15px;
+    color: #555;
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.card-action-link {
+    text-decoration: none;
+    background-color: var(--primary);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.card-action-link:hover {
+    background-color: var(--secondary);
+}
+
+/* Additional Resources Styles */
+.additional-resources {
+    margin-top: 40px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.additional-resources h3 {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.resources-list {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.resources-list li {
+    margin-bottom: 10px;
+}
+
+.resources-list a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.resources-list a:hover {
+    color: var(--secondary);
+}
