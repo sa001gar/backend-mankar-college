@@ -266,7 +266,7 @@
                             <div class="cs-student-card">
                                 <div class="cs-student-card-content">
                                     <div class="cs-student-image">
-                                        <img src="{{ alumni.profile_image.url}}" alt="{{alumni.name}}">
+                                        <img src="{% if alumni.profile_image %}{{ alumni.profile_image.url }}{% else %}https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1741016611~exp=1741020211~hmac=0077e334fa3d55a25de05d0e897c39e794840c6707c8849a530831e89b3136cc&w=740{% endif %}" alt="{{alumni.name}}">
                                     </div>
                                     <div class="cs-student-media-icons">
                                         <a href="{{alumni.linkedin_url}}"><i class="fab fa-linkedin"></i></a>
