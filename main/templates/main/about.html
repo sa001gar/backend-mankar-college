@@ -1,72 +1,534 @@
-{% extends "main/base.html" %}
-{% load static %}
+{% extends 'main/base.html' %} 
+{% load static %} 
+
+{% block title %}
+<title>About Us | Department of Computer Science, Mankar College</title>
+{% endblock %} 
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}" />
+{% endblock %} 
 
 {% block content %}
-<head>
-    <title>About Us</title>
-    <link rel="stylesheet" href="{% static 'css/about.css'%}" />
-</head>
-
-
-    <section class="hero">
-        <div class="decorative-elements">
-            <div class="star"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
+<!-- About Department Section -->
+<section class="about-department">
+    <div class="container">
+        <div class="section-header">
+            <h2>About Our Department</h2>
+            <p>Excellence in Computer Science Education and Research</p>
         </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">About Us</h1>
-                <p class="hero-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://github.com/sa001gar/Redesign-MCCS/blob/main/media/images/header/img_2.jpg?raw=true" alt="Computer Science Department" />
             </div>
-            <div class="image-gallery">
-                <div class="gallery-image">
-                    <img src="{% static 'media/images/about/image2.jpg' %}" alt="Team collaboration">
+            <div class="about-text">
+                <h3>Pioneering Computer Science Education</h3>
+                <p>
+                    The Department of Computer Science at Mankar College was established
+                    in 2005 with a vision to provide quality education in the field of
+                    computer science and information technology. Over the years, we have
+                    evolved into a center of excellence, nurturing talent and fostering
+                    innovation.
+                </p>
+                <p>
+                    Our department is equipped with state-of-the-art laboratories, a
+                    comprehensive library, and experienced faculty members dedicated to
+                    providing students with both theoretical knowledge and practical
+                    skills.
+                </p>
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Modern Curriculum</h4>
+                            <p>Industry-aligned courses updated regularly</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Expert Faculty</h4>
+                            <p>Experienced professors with research background</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Research Focus</h4>
+                            <p>Emphasis on innovation and practical applications</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="gallery-image">
-                    <img src="{% static 'media/images/about/image3.jpg' %}" alt="Working on laptop">
+                <a href="#" class="btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Programs Offered Section -->
+<section class="programs-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Programs Offered</h2>
+            <p>Comprehensive Computer Science Education at All Levels</p>
+        </div>
+        <div class="programs-container">
+            <div class="program-card">
+                <div class="program-icon">
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
-                <div class="gallery-image">
-                    <img src="{% static 'media/images/about/image4.jpg' %}" alt="Team meeting">
+                <h3>B.Sc. in Computer Science</h3>
+                <p>
+                    A three-year undergraduate program focusing on core computer science
+                    concepts, programming, and software development.
+                </p>
+                <ul class="program-features">
+                    <li><i class="fas fa-check-circle"></i> Programming Fundamentals</li>
+                    <li>
+                        <i class="fas fa-check-circle"></i> Data Structures & Algorithms
+                    </li>
+                    <li><i class="fas fa-check-circle"></i> Database Management</li>
+                    <li><i class="fas fa-check-circle"></i> Web Development</li>
+                </ul>
+                <div class="program-duration">
+                    <i class="far fa-clock"></i> Duration: 3 Years
                 </div>
-                <div class="gallery-image">
-                    <img src="{% static 'media/images/about/image3.jpg' %}" alt="Discussion">
+                <a href="#" class="btn-secondary">View Details</a>
+            </div>
+
+            <div class="program-card">
+                <div class="program-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>M.Sc. in Computer Science</h3>
+                <p>
+                    A two-year postgraduate program designed to provide advanced knowledge
+                    in specialized areas of computer science.
+                </p>
+                <ul class="program-features">
+                    <li><i class="fas fa-check-circle"></i> Advanced Algorithms</li>
+                    <li><i class="fas fa-check-circle"></i> Machine Learning</li>
+                    <li><i class="fas fa-check-circle"></i> Network Security</li>
+                    <li><i class="fas fa-check-circle"></i> Research Methodology</li>
+                </ul>
+                <div class="program-duration">
+                    <i class="far fa-clock"></i> Duration: 2 Years
+                </div>
+                <a href="#" class="btn-secondary">View Details</a>
+            </div>
+
+            <div class="program-card">
+                <div class="program-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>Certificate Courses</h3>
+                <p>
+                    Short-term certificate courses in emerging technologies to enhance
+                    skills and employability.
+                </p>
+                <ul class="program-features">
+                    <li><i class="fas fa-check-circle"></i> Web Development</li>
+                    <li><i class="fas fa-check-circle"></i> Data Science</li>
+                    <li><i class="fas fa-check-circle"></i> Cloud Computing</li>
+                    <li><i class="fas fa-check-circle"></i> Mobile App Development</li>
+                </ul>
+                <div class="program-duration">
+                    <i class="far fa-clock"></i> Duration: 3-6 Months
+                </div>
+                <a href="#" class="btn-secondary">View Details</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% comment %} 
+<!-- Faculty Section -->
+<section class="faculty-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Faculty</h2>
+            <p>Meet Our Experienced and Dedicated Team</p>
+        </div>
+
+        <div class="faculty-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="professor">Professors</button>
+            <button class="filter-btn" data-filter="assistant">
+                Assistant Professors
+            </button>
+            <button class="filter-btn" data-filter="visiting">
+                Visiting Faculty
+            </button>
+        </div>
+
+        <div class="faculty-container">
+            <div class="faculty-card" data-category="professor">
+                <div class="faculty-image">
+                    <img
+                        src="/placeholder.svg?height=300&width=300"
+                        alt="Dr. Amit Kumar"
+                    />
+                    <div class="faculty-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="faculty-info">
+                    <h3>Dr. Amit Kumar</h3>
+                    <p class="faculty-position">Professor & Head of Department</p>
+                    <p class="faculty-specialization">
+                        Specialization: Artificial Intelligence, Machine Learning
+                    </p>
+                    <p class="faculty-education">
+                        Ph.D. in Computer Science, IIT Kharagpur
+                    </p>
+                    <button class="faculty-details-btn">View Profile</button>
+                </div>
+            </div>
+
+            <div class="faculty-card" data-category="assistant">
+                <div class="faculty-image">
+                    <img
+                        src="/placeholder.svg?height=300&width=300"
+                        alt="Dr. Priya Sharma"
+                    />
+                    <div class="faculty-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="faculty-info">
+                    <h3>Dr. Priya Sharma</h3>
+                    <p class="faculty-position">Assistant Professor</p>
+                    <p class="faculty-specialization">
+                        Specialization: Data Science, Big Data Analytics
+                    </p>
+                    <p class="faculty-education">
+                        Ph.D. in Computer Science, Jadavpur University
+                    </p>
+                    <button class="faculty-details-btn">View Profile</button>
+                </div>
+            </div>
+
+            <div class="faculty-card" data-category="assistant">
+                <div class="faculty-image">
+                    <img
+                        src="/placeholder.svg?height=300&width=300"
+                        alt="Dr. Rajesh Mondal"
+                    />
+                    <div class="faculty-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="faculty-info">
+                    <h3>Dr. Rajesh Mondal</h3>
+                    <p class="faculty-position">Assistant Professor</p>
+                    <p class="faculty-specialization">
+                        Specialization: Computer Networks, Cybersecurity
+                    </p>
+                    <p class="faculty-education">
+                        Ph.D. in Computer Science, NIT Durgapur
+                    </p>
+                    <button class="faculty-details-btn">View Profile</button>
+                </div>
+            </div>
+
+            <div class="faculty-card" data-category="visiting">
+                <div class="faculty-image">
+                    <img
+                        src="/placeholder.svg?height=300&width=300"
+                        alt="Prof. Sanjay Ghosh"
+                    />
+                    <div class="faculty-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="faculty-info">
+                    <h3>Prof. Sanjay Ghosh</h3>
+                    <p class="faculty-position">Visiting Faculty</p>
+                    <p class="faculty-specialization">
+                        Specialization: Software Engineering, Cloud Computing
+                    </p>
+                    <p class="faculty-education">
+                        M.Tech in Computer Science, IIT Bombay
+                    </p>
+                    <button class="faculty-details-btn">View Profile</button>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="content-section">
-        <div class="container">
-            <h2 class="content-title">We make sure your idea & creation delivered properly</h2>
-            <div class="content-grid">
-                <div>
-                    <p>Pellentesque mollis urna vel semper egestas. Duis ac dictum lacus. Sed sagittis non nunc ac malesuada. Quisque ut eleifend urna.</p>
+        <div class="faculty-pagination">
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <button class="pagination-btn next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section> {% endcomment %}
+
+<!-- Statistics Section -->
+<section class="statistics-section">
+    <div class="statistics-overlay"></div>
+    <div class="container">
+        <div class="statistics-container">
+            <div class="statistic-item">
+                <div class="statistic-icon">
+                    <i class="fas fa-user-graduate"></i>
                 </div>
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <div class="statistic-number" data-count="1500">0</div>
+                <div class="statistic-title">Students Graduated</div>
+            </div>
+
+            <div class="statistic-item">
+                <div class="statistic-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="statistic-number" data-count="25">0</div>
+                <div class="statistic-title">Expert Faculty</div>
+            </div>
+
+            <div class="statistic-item">
+                <div class="statistic-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="statistic-number" data-count="50">0</div>
+                <div class="statistic-title">Awards Won</div>
+            </div>
+
+            <div class="statistic-item">
+                <div class="statistic-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="statistic-number" data-count="95">0</div>
+                <div class="statistic-title">Placement Rate (%)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Creative Image Section -->
+<section class="creative-image-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Campus Life</h2>
+            <p>Glimpses of Academic Excellence and Student Activities</p>
+        </div>
+        
+        <div class="creative-shape creative-shape-1"></div>
+        <div class="creative-shape creative-shape-2"></div>
+        
+        <div class="creative-image-container">
+            <div class="creative-image-item float-animation">
+                <img src="https://raw.githubusercontent.com/sa001gar/Redesign-MCCS/refs/heads/main/media/images/about/image2.jpg" alt="Winning Moments">
+                <div class="creative-image-info">
+                    <h3>Winning Moments - 2025</h3>
+                    <p>Secured first and second place at Tech Fest of Bhairab Ganguly College</p>
+                </div>
+            </div>
+            
+            <div class="creative-image-item">
+                <img src="https://raw.githubusercontent.com/sa001gar/Redesign-MCCS/refs/heads/main/media/images/about/image3.jpg" alt="Coding Competition">
+                <div class="creative-image-info">
+                    <h3>Coding Competitions</h3>
+                    <p>Students showcasing their programming skills</p>
+                </div>
+            </div>
+            
+            <div class="creative-image-item float-animation">
+                <img src="https://raw.githubusercontent.com/sa001gar/Redesign-MCCS/refs/heads/main/media/images/header/img_3.jpg" alt="Farewell Ceremony - 2024">
+                <div class="creative-image-info">
+                    <h3>Farewell Ceremony - 2024</h3>
+                    <p>Farewell ceremony celebration of batch 2024</p>
+                </div>
+            </div>
+            
+            <div class="creative-image-item">
+                <img src="https://raw.githubusercontent.com/sa001gar/Redesign-MCCS/refs/heads/main/media/images/about/image4.jpg" alt="Campus View">
+                <div class="creative-image-info">
+                    <h3>Campus Environment</h3>
+                    <p>A perfect setting for academic growth</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script>
-        // Intersection Observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
+<!-- Student Achievements Section -->
+<section class="achievements-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Student Achievements</h2>
+            <p>Celebrating the Success of Our Students</p>
+        </div>
 
-        // Observe elements
-        document.querySelectorAll('.content-title, .content-grid').forEach((el) => {
-            observer.observe(el);
-        });
-    </script>
+
+        <div class="achievements-slider">
+            <div class="swiper-container achievements-swiper">
+                <div class="swiper-wrapper">
+
+                    {% for alumni in alumnis%}
+                    <div class="swiper-slide achievement-slide">
+                        <div class="achievement-card">
+                            <div class="achievement-image">
+                                <img
+                                    src="{% if alumni.profile_image %}{{ alumni.profile_image.url }}{% else %}https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1741016611~exp=1741020211~hmac=0077e334fa3d55a25de05d0e897c39e794840c6707c8849a530831e89b3136cc&w=740{% endif %}"
+                                    alt="{{ alumni.name }}"
+                                />
+                                <div class="achievement-badge">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                            </div>
+                            <div class="achievement-content">
+                                <h3>{{alumni.name}}</h3>
+                                <p class="achievement-batch">Batch of {{alumni.batch_year}}</p>
+                                <p class="achievement-title">{{alumni.company}}</p>
+                                <p class="achievement-description">
+                                    {{alumni.bio}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="swiper-button-next achievements-button-next"></div>
+            <div class="swiper-button-prev achievements-button-prev"></div>
+            <div class="swiper-pagination achievements-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="testimonials-shape testimonials-shape-1"></div>
+    <div class="testimonials-shape testimonials-shape-2"></div>
     
+    <div class="container">
+        <div class="section-header">
+            <h2>What Our Students Say</h2>
+            <p>Hear from Our Students and Alumni</p>
+        </div>
+
+        <div class="testimonials-container">
+            <div class="swiper-container testimonials-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                The Computer Science Department at Mankar College provided me
+                                with a strong foundation in programming and problem-solving
+                                skills. The faculty members are highly knowledgeable and always
+                                ready to help students.
+                            </p>
+                            <div class="testimonial-author">
+                                <img
+                                    src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1741016611~exp=1741020211~hmac=0077e334fa3d55a25de05d0e897c39e794840c6707c8849a530831e89b3136cc&w=740"
+                                    alt="Rajesh Kumar"
+                                />
+                                <div class="author-info">
+                                    <h4>Rajesh Kumar</h4>
+                                    <p>Software Engineer, Microsoft</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                The practical approach to teaching and the emphasis on
+                                industry-relevant skills helped me secure a good job right after
+                                graduation. The department's placement cell provided excellent
+                                support throughout the process.
+                            </p>
+                            <div class="testimonial-author">
+                                <img
+                                    src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1741016611~exp=1741020211~hmac=0077e334fa3d55a25de05d0e897c39e794840c6707c8849a530831e89b3136cc&w=740"
+                                    alt="Ananya Sen"
+                                />
+                                <div class="author-info">
+                                    <h4>Ananya Sen</h4>
+                                    <p>Data Scientist, Amazon</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                The extracurricular activities, technical workshops, and coding
+                                competitions organized by the department helped me develop not
+                                just technical skills but also teamwork and leadership
+                                abilities.
+                            </p>
+                            <div class="testimonial-author">
+                                <img
+                                    src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1741016611~exp=1741020211~hmac=0077e334fa3d55a25de05d0e897c39e794840c6707c8849a530831e89b3136cc&w=740"
+                                    alt="Vikram Mehta"
+                                />
+                                <div class="author-info">
+                                    <h4>Vikram Mehta</h4>
+                                    <p>Full Stack Developer, Infosys</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-pagination testimonials-pagination"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} 
+
+{% block scripts %}
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{% static 'js/about.js' %}"></script>
 {% endblock %}

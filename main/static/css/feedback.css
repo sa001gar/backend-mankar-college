@@ -17,7 +17,7 @@
     background-size: 12px 20.78px, 12px 20.78px, 200% 200%, 200% 200%, 200% 200%, 200% 20.78px;
     --p: 0px 0px, 6px 10.39px;
     background-position: var(--p), 0% 0%, 0% 0%, 0% 0px;
-    animation: wee 10s linear infinite, filt 6s linear infinite;
+    animation: wee 60s linear infinite, filt 6s linear infinite;
 }
 
 @keyframes filt {

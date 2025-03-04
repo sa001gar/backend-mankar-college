@@ -13,7 +13,7 @@
      
      {% endblock %}
     
-     <link rel="stylesheet" href="{% static 'css/header.css' %}?v={{ now|date:"U" }}" /> 
+    <link rel="stylesheet" href="{% static 'css/header.css' %}?v={{ now|date:"U" }}" /> 
     <link rel="stylesheet" href="{% static 'css/footer.css'%}?v={{
     now|date:"U" }}" />
 
@@ -160,6 +160,11 @@
 
     <!-- End Breadcrumb-->
 
+    <!-- Lazy Loading Spinner -->
+      <div id="cs-lazy-loader" class="cs-lazy-loader">
+        <div class="cs-spinner"></div>
+      </div>
+
     {% block content %} {% endblock %}
 
     <!-- Go Back Button -->
@@ -238,8 +243,12 @@
         <p>© Department of Computer Science | Developed by CS-Team</p>
       </div>
     </footer>
-
     <!-- End footer Component  -->
+
+    <!-- Scroll to Top Button -->
+    <button id="cs-scroll-top" class="cs-scroll-top-btn" aria-label="Scroll to top">
+      <i class="fas fa-chevron-up"></i>
+    </button>
 
     <!-- Header Link  -->
     <script src="{% static 'js/header.js'%}"></script>

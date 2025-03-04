@@ -13,13 +13,16 @@ Add the following views to main/views.py
 """
 # Home View Function
 def home(request):
-    highlights = Notice.objects.filter(highlight=True).order_by('date')[:5]
-    notices = Notice.objects.order_by('date')[:7]
-    return render(request, 'main/index.html',{'highlights':highlights,'notices':notices})
+    highlights = Notice.objects.filter(highlight=True).order_by('-date')[:5]
+    notices = Notice.objects.order_by('-date')[:7]
+    filtered_alumni = Alumni.objects.filter(display=True)
+    return render(request, 'main/index.html',{'highlights':highlights,'notices':notices,'alumnis':filtered_alumni})
 
 # About View Function
 def about(request):
-    return render(request, 'main/about.html')
+    filtered_alumni = Alumni.objects.filter(display=True)
+    return render(request, 'main/about.html',{'alumnis':filtered_alumni})
+
 
 # Team View Function
 def team(request):

@@ -1,420 +1,339 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title%}
+{% block title %}
     <title>Home | Department of Computer Science, Mankar College</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}?v={{ now|date:"U" }}" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 {% endblock %}
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/index.css'%}?v={{ now|date:"U" }}" />
-
-
-<!-- Highlights Section  -->
-    <section class="highlights">
-      <div class="highlight-label">Highlights</div>
-      <div class="highlight-scroll">
-        <div class="scroll-content">
-          {% comment %} <a href="#">Annual Magazine Published (i-Deserve)</a>
-          <span>|</span>
-          <a href="#">Internal Exam 1st Sem 2024</a> {% endcomment %}
-          {% for notice in highlights %}
-          <a href="{% url 'notices' %}">{{ notice.title }}</a>
-          {% if not forloop.last %}
-          <span>|</span>
-          {% endif %}
-          {% endfor %}
+    <!-- Highlights Section -->
+    <section class="cs-highlights">
+        <div class="cs-highlight-label">Highlights</div>
+        <div class="cs-highlight-scroll">
+            <div class="cs-scroll-content">
+                {% for notice in highlights %}
+                <a href="{% url 'notices' %}">{{ notice.title }}</a>
+                {% if not forloop.last %}
+                <span>|</span>
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
-      </div>
     </section>
-    <!-- End Highlights Section  -->
 
-    <!-- Home Section  ( With Carrousel ) -->
-    <div class="homepage-container">
-      <div class="top-section">
-        <div class="image-slider">
-          <img
-            src="{% static 'media/images/header/img_1.jpg' %}"
-            alt="Slide 1"
-            class="slider-image active"
-          />
-          <img
-            src="{% static 'media/images/header/img_2.jpg' %}"
-            alt="Slide 2"
-            class="slider-image"
-          />
-          <img
-            src="{% static 'media/images/header/img_3.jpg' %}"
-            alt="Slide 3"
-            class="slider-image"
-          />
-          <img
-            src="{% static 'media/images/header/img_4.jpg' %}"
-            alt="Slide 4"
-            class="slider-image"
-          />
-          <img
-            src="{% static 'media/images/header/img_5.jpg' %}"
-            alt="Slide 5"
-            class="slider-image"
-          />
-          <img
-            src="{% static 'media/images/header/img_1.jpg' %}"
-            alt="Slide 6"
-            class="slider-image"
-          />
-          <button class="arrow left-arrow">&#9664;</button>
-          <button class="arrow right-arrow">&#9654;</button>
+    <!-- Home Section (With Carousel) -->
+    <div class="cs-homepage-container">
+        <div class="cs-top-section">
+            <div class="cs-image-slider">
+                <img src="{% static 'media/images/header/img_1.jpg' %}" alt="Slide 1" class="cs-slider-image active">
+                <img src="{% static 'media/images/header/img_2.jpg' %}" alt="Slide 2" class="cs-slider-image">
+                <img src="{% static 'media/images/header/img_3.jpg' %}" alt="Slide 3" class="cs-slider-image">
+                <img src="{% static 'media/images/header/img_4.jpg' %}" alt="Slide 4" class="cs-slider-image">
+                <img src="{% static 'media/images/header/img_5.jpg' %}" alt="Slide 5" class="cs-slider-image">
+                <button class="cs-arrow cs-left-arrow"><i class="fa-solid fa-angle-left"></i></button>
+                <button class="cs-arrow cs-right-arrow"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+            <div class="cs-notice-board">
+                <h2 class="cs-notice-title">Notice Board</h2>
+                <div class="cs-notice-content">
+                    {% for notice in notices %}
+                    <a href="{% url 'notices' %}" class="cs-notice-item">{{ notice.title }}</a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        <div class="notice-board">
-          <h2 class="notice-title">Notice Board</h2>
-          <div class="notice-content">
-            {% comment %} <a href="#0" class="notice-item">New system update available!</a>
-            <a href="#0" class="notice-item">Magazine Release.</a> {% endcomment %}
-            {% for notice in notices %}
-            <a href="{% url 'notices' %}" class="notice-item">{{ notice.title }}</a>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-      <!-- End Home Section  -->
+    </div>
 
-      <!-- Welcome Section(HOD Message) -->
-      <div class="welcome-section">
-        <h1>Welcome to Our Department</h1>
-        <div class="welcome-content">
-          <img
-            src="{% static 'media/images/header/img_1.jpg' %}"
-            alt="Department"
-            class="department-image"
-          />
-          <div class="welcome-text">
-            <p>
-              Department of Computer Science, Mankar College, has been imparting
-              quality education to students for over two decades. This
-              department is a pioneer in starting undergraduate Computer Science
-              courses under the University of Burdwan, way back in 1999.
-              Department has already undertaken many research projects funded by
-              various funding agencies.
-            </p>
-            <p>
-              The department has modern well-designed classrooms and is well
-              equipped for adopting modern teaching aids like LCD projectors,
-              Smart Class Rooms, etc. The laboratories are well equipped with
-              the latest equipment, demonstration kits, charts, etc. Effective
-              and reasonable use of ICT - Google form of assignments is
-              encouraged among students.
-            </p>
-          </div>
+    <!-- About Department Section -->
+    <section class="cs-about-department">
+        <div class="cs-container">
+            <div class="cs-section-header">
+                <h2>About Our Department</h2>
+                <div class="cs-underline"></div>
+                <p>Excellence in Computer Science Education and Research</p>
+            </div>
+            <div class="cs-about-content">
+                <div class="cs-about-image">
+                    <img src="https://github.com/sa001gar/Redesign-MCCS/blob/main/media/images/header/img_2.jpg?raw=true" alt="Computer Science Department">
+                </div>
+                <div class="cs-about-text">
+                    <h3>Pioneering Computer Science Education</h3>
+                    <p>The Department of Computer Science at Mankar College was established in 2005 with a vision to provide quality education in the field of computer science and information technology. Over the years, we have evolved into a center of excellence, nurturing talent and fostering innovation.</p>
+                    <p>Our department is equipped with state-of-the-art laboratories, a comprehensive library, and experienced faculty members dedicated to providing students with both theoretical knowledge and practical skills.</p>
+                    <div class="cs-about-features">
+                        <div class="cs-feature">
+                            <div class="cs-feature-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="cs-feature-text">
+                                <h4>Modern Curriculum</h4>
+                                <p>Industry-aligned courses updated regularly</p>
+                            </div>
+                        </div>
+                        <div class="cs-feature">
+                            <div class="cs-feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="cs-feature-text">
+                                <h4>Expert Faculty</h4>
+                                <p>Experienced professors with research background</p>
+                            </div>
+                        </div>
+                        <div class="cs-feature">
+                            <div class="cs-feature-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="cs-feature-text">
+                                <h4>Research Focus</h4>
+                                <p>Emphasis on innovation and practical applications</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'about' %}" class="cs-btn-primary">Learn More</a>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="hod-message">
-        <h2>Message from the HOD</h2>
-        <div class="message-content">
-          <div class="hod-image">
-          <img
-            src="{% static 'media/images/faculty/ab_sir.jpg' %}"
-            alt="HOD"
+    <!-- Programs Offered Section -->
+    <section class="cs-programs-section">
+        <div class="cs-container">
+            <div class="cs-section-header">
+                <h2>Programs Offered</h2>
+                <div class="cs-underline"></div>
+                <p>Comprehensive Computer Science Education at All Levels</p>
+            </div>
+            <div class="cs-programs-container">
+                <div class="cs-program-card">
+                    <div class="cs-program-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>B.Sc. in Computer Science</h3>
+                    <p>A three-year undergraduate program focusing on core computer science concepts, programming, and software development.</p>
+                    <ul class="cs-program-features">
+                        <li><i class="fas fa-check-circle"></i> Programming Fundamentals</li>
+                        <li><i class="fas fa-check-circle"></i> Data Structures & Algorithms</li>
+                        <li><i class="fas fa-check-circle"></i> Database Management</li>
+                        <li><i class="fas fa-check-circle"></i> Web Development</li>
+                    </ul>
+                    <div class="cs-program-duration">
+                        <i class="far fa-clock"></i> Duration: 3 Years
+                    </div>
+                    <a href="" class="cs-btn-secondary">View Details</a>
+                </div>
+                
+                <div class="cs-program-card">
+                    <div class="cs-program-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>M.Sc. in Computer Science</h3>
+                    <p>A two-year postgraduate program designed to provide advanced knowledge in specialized areas of computer science.</p>
+                    <ul class="cs-program-features">
+                        <li><i class="fas fa-check-circle"></i> Advanced Algorithms</li>
+                        <li><i class="fas fa-check-circle"></i> Machine Learning</li>
+                        <li><i class="fas fa-check-circle"></i> Network Security</li>
+                        <li><i class="fas fa-check-circle"></i> Research Methodology</li>
+                    </ul>
+                    <div class="cs-program-duration">
+                        <i class="far fa-clock"></i> Duration: 2 Years
+                    </div>
+                    <a href="" class="cs-btn-secondary">View Details</a>
+                </div>
+                
+                <div class="cs-program-card">
+                    <div class="cs-program-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certificate Courses</h3>
+                    <p>Short-term certificate courses in emerging technologies to enhance skills and employability.</p>
+                    <ul class="cs-program-features">
+                        <li><i class="fas fa-check-circle"></i> Web Development</li>
+                        <li><i class="fas fa-check-circle"></i> Data Science</li>
+                        <li><i class="fas fa-check-circle"></i> Cloud Computing</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile App Development</li>
+                    </ul>
+                    <div class="cs-program-duration">
+                        <i class="far fa-clock"></i> Duration: 3-6 Months
+                    </div>
+                    <a href="" class="cs-btn-secondary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Improved Statistics Section -->
+    <section class="cs-statistics-section">
+        <div class="cs-statistics-overlay"></div>
+        <div class="cs-container">
+            <div class="cs-section-header cs-light">
+                <h2>Department at a Glance</h2>
+                <div class="cs-underline"></div>
+                <p>Our achievements in numbers</p>
+            </div>
             
-          />
+            <div class="cs-statistics-container">
+                <div class="cs-statistic-item">
+                    <div class="cs-statistic-icon-wrapper">
+                        <div class="cs-statistic-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                    </div>
+                    <div class="cs-statistic-content">
+                        <div class="cs-statistic-number" data-count="1500">0</div>
+                        <div class="cs-statistic-title">Students Graduated</div>
+                        <div class="cs-statistic-description">Successful alumni working worldwide in top tech companies and research institutions</div>
+                    </div>
+                    <div class="cs-statistic-progress">
+                        <div class="cs-progress-bar" data-percentage="75"></div>
+                    </div>
+                </div>
+                
+                <div class="cs-statistic-item">
+                    <div class="cs-statistic-icon-wrapper">
+                        <div class="cs-statistic-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                    </div>
+                    <div class="cs-statistic-content">
+                        <div class="cs-statistic-number" data-count="25">0</div>
+                        <div class="cs-statistic-title">Expert Faculty</div>
+                        <div class="cs-statistic-description">PhD holders and industry experts with decades of combined experience</div>
+                    </div>
+                    <div class="cs-statistic-progress">
+                        <div class="cs-progress-bar" data-percentage="90"></div>
+                    </div>
+                </div>
+                
+                <div class="cs-statistic-item">
+                    <div class="cs-statistic-icon-wrapper">
+                        <div class="cs-statistic-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                    </div>
+                    <div class="cs-statistic-content">
+                        <div class="cs-statistic-number" data-count="50">0</div>
+                        <div class="cs-statistic-title">Awards Won</div>
+                        <div class="cs-statistic-description">National and international recognition for academic excellence and innovation</div>
+                    </div>
+                    <div class="cs-statistic-progress">
+                        <div class="cs-progress-bar" data-percentage="60"></div>
+                    </div>
+                </div>
+                
+                {% comment %} <div class="cs-statistic-item">
+                    <div class="cs-statistic-icon-wrapper">
+                        <div class="cs-statistic-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                    </div>
+                    <div class="cs-statistic-content">
+                        <div class="cs-statistic-number" data-count="95">0</div>
+                        <div class="cs-statistic-title">Placement Rate (%)</div>
+                        <div class="cs-statistic-description">Graduates placed in Fortune 500 companies and leading tech startups</div>
+                    </div>
+                    <div class="cs-statistic-progress">
+                        <div class="cs-progress-bar" data-percentage="95"></div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+            
+            
         </div>
-          <blockquote>
-            "Our department is committed to fostering innovation, critical
-            thinking, and excellence in the field of Computer Science. We strive
-            to prepare our students for the challenges of the rapidly evolving
-            tech industry."
-          </blockquote>
-        </div>
-        <div class="hod-name">- Prof. Amitava Bandyopadhyay</div>
-      </div>
-    </div>
-
-    <!-- end Welcome Section  -->
-
-    <!-- Cta Section  -->
-    <section class="contact_section">
-      <div class="contact_overlay"></div>
-      <div class="contact_container">
-        <div class="contact_content">
-          <p class="contact_subtitle">
-            <i class="fas fa-headset contact_icon pulse"></i>
-            For Online Contact Please Call Us Today
-          </p>
-          <h1 class="contact_title">
-            Get Early Contact to <span class="highlight">Our Department</span>
-          </h1>
-        </div>
-        <a href="https://wa.me/your-number" class="whatsapp_button">
-          <i class="fab fa-whatsapp"></i>
-          Join To WhatsApp
-        </a>
-      </div>
     </section>
-    <!-- End Cta Section  -->
 
-    <!-- Alumni Section   -->
-    <div class="alumni_container">
-      <h2 class="alumni_title">Our Alumni</h2>
-      <p class="alumni_subtitle">
-        Our alumni are working in top companies around the world. Here are some
-        of our successful alumni.
-      <section class="alumni_section">
-        <!-- Swiper container -->
-        <div class="swiper mySwiper alumni_swiper">
-          <div class="swiper-wrapper alumni_content">
-            <!-- Swiper slide item 1 -->
-            <div class="swiper-slide alumni_card">
-              <div class="alumni_card_content">
-                <!-- Profile image -->
-                <div class="alumni_image">
-                  <img
-                    src="https://computersciencemancoll.in/admin/alumniimg/sudip.jpg"
-                    alt="Profile Image 1"
-                  />
-                </div>
-
-                <!-- Social media icons -->
-                <div class="alumni_media_icons">
-                  <i class="fab fa-facebook"></i>
-                  <i class="fab fa-twitter"></i>
-                  <i class="fab fa-github"></i>
-                </div>
-
-                <!-- Name and profession -->
-                <div class="alumni_name_profession">
-                  <span class="alumni_name">Sudip Mondal</span>
-                  <span class="alumni_year">2017-18</span>
-                  <span class="alumni_profession">PHP Developer</span>
-                  <span class="alumni_company">SAAMSA Solutions pvt lt</span>
-                </div>
-
-                <!-- Buttons -->
-                <div class="alumni_button">
-                  <button class="alumni_about_me">About Me</button>
-                  <button class="alumni_contact_me">Contact Me</button>
-                </div>
-              </div>
+    <!-- Improved Student Achievements Section -->
+    <section class="cs-achievements-section">
+        <div class="cs-container">
+            <div class="cs-section-header">
+                <h2>Student Achievements</h2>
+                <div class="cs-underline"></div>
+                <p>Celebrating the Success of Our Brilliant Students</p>
             </div>
+            
+            <div class="cs-achievements-slider">
+                <div class="swiper-container cs-achievements-swiper">
+                    <div class="swiper-wrapper">
 
-            <!-- Swiper slide item 2 -->
-            <div class="swiper-slide alumni_card">
-              <div class="alumni_card_content">
-                <!-- Profile image -->
-                <div class="alumni_image">
-                  <img
-                    src="https://computersciencemancoll.in/admin/alumniimg/my.jpg"
-                    alt="Profile Image 2"
-                  />
-                </div>
+                      {% for alumni in alumnis%}
+                        <!-- Student Card 1 -->
+                        <div class="swiper-slide cs-achievement-slide">
+                            <div class="cs-student-card">
+                                <div class="cs-student-card-content">
+                                    <div class="cs-student-image">
+                                        <img src="{{ alumni.profile_image.url}}" alt="{{alumni.name}}">
+                                    </div>
+                                    <div class="cs-student-media-icons">
+                                        <a href="{{alumni.linkedin_url}}"><i class="fab fa-linkedin"></i></a>
+                                        <a href="{{alumni.github}}"><i class="fab fa-github"></i></a>
+                                        <a href="{{alumni.email}}"><i class="fa-regular fa-envelope"></i></a>
+                                    </div>
+                                    <div class="cs-student-details">
+                                        <span class="cs-student-name">{{alumni.name}} </span>
+                                        <span class="cs-student-year">Batch of {{alumni.batch_year}}</span>
+                                        <span class="cs-student-achievement">{{alumni.company}}</span>
+                                        <p class="cs-student-description">{{alumni.bio}} </p>
+                                    </div>
+                                    <div class="cs-student-buttons">
+                                        <a href="" class="cs-profile-btn">View Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <!-- Social media icons -->
-                <div class="alumni_media_icons">
-                  <i class="fab fa-facebook"></i>
-                  <i class="fab fa-twitter"></i>
-                  <i class="fab fa-github"></i>
+                        {% endfor %}
+                        
+                        
+                          
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Name and profession -->
-                <div class="alumni_name_profession">
-                  <span class="alumni_name">Sourav Hazra</span>
-                  <span class="alumni_year">2017-18</span>
-                  <span class="alumni_profession">Web Developer</span>
-                  <span class="alumni_company">SAAMSA Solutions pvt lt</span>
-                </div>
-
-                <!-- Buttons -->
-                <div class="alumni_button">
-                  <button class="alumni_about_me">About Me</button>
-                  <button class="alumni_contact_me">Contact Me</button>
-                </div>
-              </div>
+                
+                <div class="swiper-button-next cs-achievements-button-next"></div>
+                <div class="swiper-button-prev cs-achievements-button-prev"></div>
+                <div class="swiper-pagination cs-achievements-pagination"></div>
             </div>
-
-            <!-- Swiper slide item 3 -->
-            <div class="swiper-slide alumni_card">
-              <div class="alumni_card_content">
-                <!-- Profile image -->
-                <div class="alumni_image">
-                  <img
-                    src="https://computersciencemancoll.in/admin/alumniimg/1693938728-IMG-20230906-WA0000.jpg"
-                    alt="Profile Image 3"
-                  />
-                </div>
-
-                <!-- Social media icons -->
-                <div class="alumni_media_icons">
-                  <i class="fab fa-facebook"></i>
-                  <i class="fab fa-twitter"></i>
-                  <i class="fab fa-github"></i>
-                </div>
-
-                <!-- Name and profession -->
-                <div class="alumni_name_profession">
-                  <span class="alumni_name">Anuvab Goswami</span>
-                  <span class="alumni_year">2017-18</span>
-                  <span class="alumni_profession">Web Developer</span>
-                  <span class="alumni_company">SAAMSA Solutions pvt lt</span>
-                </div>
-
-                <!-- Buttons -->
-                <div class="alumni_button">
-                  <button class="alumni_about_me">About Me</button>
-                  <button class="alumni_contact_me">Contact Me</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Swiper slide item 4 -->
-            <div class="swiper-slide alumni_card">
-              <div class="alumni_card_content">
-                <!-- Profile image -->
-                <div class="alumni_image">
-                  <img
-                    src="https://computersciencemancoll.in/admin/alumniimg/1603075284-IMG_20201018_220202%20(1).jpg"
-                    alt="Profile Image 4"
-                  />
-                </div>
-
-                <!-- Social media icons -->
-                <div class="alumni_media_icons">
-                  <i class="fab fa-facebook"></i>
-                  <i class="fab fa-twitter"></i>
-                  <i class="fab fa-github"></i>
-                </div>
-
-                <!-- Name and profession -->
-                <div class="alumni_name_profession">
-                  <span class="alumni_name">Debika Das</span>
-                  <span class="alumni_year">2017-18</span>
-                  <span class="alumni_profession">Web Developer</span>
-                  <span class="alumni_company">Cognizant</span>
-                </div>
-
-                <!-- Buttons -->
-                <div class="alumni_button">
-                  <button class="alumni_about_me">About Me</button>
-                  <button class="alumni_contact_me">Contact Me</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Swiper slide item 5 -->
-            <div class="swiper-slide alumni_card">
-              <div class="alumni_card_content">
-                <!-- Profile image -->
-                <div class="alumni_image">
-                  <img
-                    src="https://computersciencemancoll.in/admin/alumniimg/1633157471-IMG-20211002-WA0014~2.jpg"
-                    alt="Profile Image 5"
-                  />
-                </div>
-
-                <!-- Social media icons -->
-                <div class="alumni_media_icons">
-                  <i class="fab fa-facebook"></i>
-                  <i class="fab fa-twitter"></i>
-                  <i class="fab fa-github"></i>
-                </div>
-
-                <!-- Name and profession -->
-                <div class="alumni_name_profession">
-                  <span class="alumni_name">Aditya Chatterjee</span>
-                  <span class="alumni_year">2016-17</span>
-                  <span class="alumni_profession">Web Developer</span>
-                  <span class="alumni_company">TCS</span>
-                </div>
-
-                <!-- Buttons -->
-                <div class="alumni_button">
-                  <button class="alumni_about_me">About Me</button>
-                  <button class="alumni_contact_me">Contact Me</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Swiper slide item 6 -->
-            <div class="swiper-slide alumni_card">
-              <div class="alumni_card_content">
-                <!-- Profile image -->
-                <div class="alumni_image">
-                  <img
-                    src="https://computersciencemancoll.in/admin/alumniimg/1732540608-sayan_jpg.jpg"
-                    alt="Profile Image 6"
-                  />
-                </div>
-
-                <!-- Social media icons -->
-                <div class="alumni_media_icons">
-                  <i class="fab fa-facebook"></i>
-                  <i class="fab fa-twitter"></i>
-                  <i class="fab fa-github"></i>
-                </div>
-
-                <!-- Name and profession -->
-                <div class="alumni_name_profession">
-                  <span class="alumni_name">Sayan Das</span>
-                  <span class="alumni_year">2019-20</span>
-                  <span class="alumni_profession">AWS Expert</span>
-                  <span class="alumni_company">Affine</span>
-                </div>
-
-                <!-- Buttons -->
-                <div class="alumni_button">
-                  <button class="alumni_about_me">About Me</button>
-                  <button class="alumni_contact_me">Contact Me</button>
-                </div>
-              </div>
-            </div>
-          </div>
+            
         </div>
+            
+        </div>
+    </section>
 
-        <!-- Swiper navigation buttons -->
-        <div class="swiper-button-next alumni_swiper_button_next"></div>
-        <div class="swiper-button-prev alumni_swiper_button_prev"></div>
-        <div class="swiper-pagination alumni_swiper_pagination"></div>
-      </section>
-    </div>
-    <!-- End Alumni Section  -->
+    <!-- Contact Section -->
+    <section class="cs-contact-section">
+        <div class="cs-contact-overlay"></div>
+        <div class="cs-container">
+            <div class="cs-contact-content">
+                <p class="cs-contact-subtitle">
+                    <i class="fas fa-headset cs-contact-icon pulse"></i>
+                    For Online Contact Please Call Us Today
+                </p>
+                <h1 class="cs-contact-title">
+                    Get Early Contact to <span class="cs-highlight">Our Department</span>
+                </h1>
+            </div>
+            <div class="cs-whatsapp-button-container">
+              <a href="https://wa.me/your-number" class="cs-whatsapp-button">
+                <i class="fab fa-whatsapp"></i>
+                Join To WhatsApp
+            </a>
+            </div>
+                
+            
+        </div>
+    </section>
 
-   
+    
+    
 
-    <script src="{% static 'js/hero.js'%}"></script>
+{% endblock %}
 
-    <!-- Swiper JS -->
+{% block scripts%}
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Initialize Swiper -->
-    <script>
-      var swiper = new Swiper(".mySwiper", {
-        spaceBetween: 30,
-        grabCursor: true,
-        loop: true,
-
-        // Pagination
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-
-        // Next and previous navigation
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-
-        // Responsive breakpoints
-        breakpoints: {
-          0: {
-            slidesPerView: 1,
-          },
-          768: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
-        },
-      });
-    </script>
+    <script src="{% static 'js/index.js' %}?v={{ now|date:"U" }}"></script>
 {% endblock %}

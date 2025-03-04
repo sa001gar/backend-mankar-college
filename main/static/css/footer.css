@@ -6,7 +6,7 @@
   }
 
   .footer {
-    background: linear-gradient(135deg, #1a237e, #534bae);
+    background: linear-gradient(to right, #00246B, #001A4D);
     color: var(--text-light);
     padding: 2.5rem 0 1.5rem; /* Reduced padding */
     position: relative;

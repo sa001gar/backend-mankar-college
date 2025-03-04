@@ -1,5 +1,14 @@
 // Header JS file for toggle..
 document.addEventListener("DOMContentLoaded", function () {
+
+  // Lazy Loading
+  var lazyLoader = document.getElementById("cs-lazy-loader");
+  window.addEventListener("load", function() {
+    setTimeout(function() {
+      lazyLoader.style.display = "none";
+    }, 500);
+  });
+
   const menuToggle = document.querySelector(".menu-toggle");
   const closeMenu = document.querySelector(".close-menu");
   const navWrapper = document.querySelector(".nav-wrapper");
@@ -87,6 +96,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+
+  // Scroll to Top Button
+  var scrollTopBtn = document.getElementById("cs-scroll-top");
+
+  if (scrollTopBtn) {
+    // Show/hide button based on scroll position
+    window.addEventListener("scroll", function() {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add("visible");
+      } else {
+        scrollTopBtn.classList.remove("visible");
+      }
+    });
+
+    // Smooth scroll to top
+    scrollTopBtn.addEventListener("click", function() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  // Add smooth scrolling to all links
+  var anchorLinks = document.querySelectorAll('a[href^="#"]');
+  for (var i = 0; i < anchorLinks.length; i++) {
+    anchorLinks[i].addEventListener("click", function(e) {
+      e.preventDefault();
+
+      var targetId = this.getAttribute("href");
+      if (targetId === "#") return;
+
+      var targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    });
+  }
   
 
   
