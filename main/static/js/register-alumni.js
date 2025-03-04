@@ -1,35 +1,87 @@
-document.getElementById('alumni-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const submitButton = document.querySelector("button[type='submit']");
+    const modal = document.getElementById("successModal");
+    const modalTitle = document.getElementById("modalTitle"); // Modal title (Success/Error)
+    const modalMessage = document.getElementById("modalMessage"); // Modal message (JSON response)
+    const modalErrors = document.getElementById("modalErrors"); // Form validation errors list
+    const closeModalBtn = document.getElementById("closeModalBtn");
 
-    let formData = new FormData();
-    formData.append('name', document.getElementById('name').value);
-    formData.append('batch_year', document.getElementById('batch_year').value);
-    formData.append('current_position', document.getElementById('current_position').value);
-    formData.append('company', document.getElementById('company').value);
-    formData.append('linkedin_url', document.getElementById('linkedin_url').value);
-    formData.append('github', document.getElementById('github').value);
-    formData.append('email', document.getElementById('email').value);
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
 
-    // Append profile image if selected
-    let profileImage = document.getElementById('profile_image').files[0];
-    if (profileImage) {
-        formData.append('profile_image', profileImage);
-    }
+        const formData = new FormData(form);
 
-    fetch('/api/register-alumni/', {
-        method: 'POST',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',  // Needed for identifying AJAX requests
-            'X-CSRFToken': document.getElementById('csrf_token').value
-        },
-        body: formData  // FormData handles multipart/form-data automatically
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('message').innerText = data.message;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('message').innerText = "Something went wrong!";
+        submitButton.disabled = true;
+        submitButton.textContent = "Processing...";
+
+        fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            modalErrors.innerHTML = ""; // Clear previous errors
+
+            if (data.success) {
+                modalTitle.textContent = "Success!";
+                modalTitle.style.color = "#22c55e"; // Green color
+                modalMessage.textContent = data.message || "Your request was successful.";
+
+                form.reset(); // Reset form after success
+
+                modal.classList.add("show"); // Show modal
+                
+                // Hide modal and redirect after 3 seconds
+                setTimeout(() => {
+                    modal.classList.remove("show");
+                    window.location.href = "/alumni"; // Redirect to alumni page
+                }, 3000);
+            } else {
+                modalTitle.textContent = "Error!";
+                modalTitle.style.color = "#dc3545"; // Red color
+                modalMessage.textContent = data.error || "Something went wrong. Please try again.";
+
+                // Display form validation errors
+                if (data.errors) {
+                    Object.entries(data.errors).forEach(([field, messages]) => {
+                        messages.forEach(msg => {
+                            const errorItem = document.createElement("li");
+                            errorItem.textContent = msg;
+                            modalErrors.appendChild(errorItem);
+                        });
+                    });
+                }
+
+                modal.classList.add("show"); // Show modal
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            modalTitle.textContent = "Error!";
+            modalTitle.style.color = "#dc3545";
+            modalMessage.textContent = "Something went wrong. Please try again.";
+
+            modal.classList.add("show"); // Show modal
+        })
+        .finally(() => {
+            submitButton.disabled = false;
+            submitButton.textContent = "Register";
+        });
+    });
+
+    // Close modal when close button is clicked
+    closeModalBtn.addEventListener("click", function () {
+        modal.classList.remove("show");
+    });
+
+    // Close modal when clicking outside the content
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.classList.remove("show");
+        }
     });
 });

@@ -13,13 +13,6 @@
 <div class="form-container">
     <h2>{{ form_title }}</h2>
 
-    {% if messages %}
-        <div class="alert alert-success">
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        </div>
-    {% endif %}
 
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -86,4 +79,24 @@
     </form>
 </div>
 
+
+<!-- Success Modal -->
+<div class="success-modal" id="successModal">
+    <div class="modal-content">
+        <div class="modal-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h3 id="modalTitle"></h3>  <!-- Title (Success/Error) -->
+        <p id="modalMessage"></p>  <!-- Message (from JSON response) -->
+        <ul id="modalErrors" style="color: red; list-style: none; padding: 0;"></ul> <!-- Form Errors List -->
+        <button id="closeModalBtn">Close</button>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'js/register-alumni.js' %}?v={{ now|date:"U" }}"></script>
 {% endblock %}

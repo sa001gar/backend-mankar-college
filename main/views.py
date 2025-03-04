@@ -20,8 +20,9 @@ def home(request):
 
 # About View Function
 def about(request):
-    filtered_alumni = Alumni.objects.filter(display=True)
-    return render(request, 'main/about.html',{'alumnis':filtered_alumni})
+    # filtered_alumni = Alumni.objects.filter(display=True)
+    # return render(request, 'main/about.html',{'alumnis':filtered_alumni})
+    return render(request, 'main/about.html')
 
 
 # Team View Function
@@ -67,59 +68,66 @@ def alumni(request):
 def register_alumni(request):
     if request.method == "POST":
         form = AlumniForm(request.POST, request.FILES)
+        
         if form.is_valid():
             form.save()
-            messages.success(request, "Alumni registered successfully! Use your passcode to update your profile later.")
-            return redirect("register-alumni") 
-    else:
-        form = AlumniForm()
+            return JsonResponse({"success": True, "message": "Alumni registered successfully!"})
+        else:
+            return JsonResponse({
+                "success": False,
+                "error": "Please correct the errors in the form.",
+                "errors": form.errors  # Send form errors as JSON
+            }, status=400)
 
-    return render(request, "main/register_alumni.html", {
-        "form": form,
-        "form_title": "Register Alumni",
+    # If it's NOT an AJAX request, return HTML page
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return JsonResponse({"error": "Invalid request method"}, status=400)
+
+    form = AlumniForm()
+    return render(request, "main/register_alumni.html", {"form": form,"form_title": "Register Alumni",
         "submit_button_text": "Register",
-        "passcode_label":"Create a 6-Digit Passcode",
-        "passcode_help_text":"This passcode will be required for profile updates.",
+        "passcode_label": "Create a 6-Digit Passcode",
+        "passcode_help_text": "This passcode will be required for profile updates.",})
         
-    })
 
 # Update Alumni Profile View Function
 def update_alumni_profile(request, pk):
     alumni = get_object_or_404(Alumni, pk=pk)
 
-    # Step 1: Require Passcode Verification Before Update
-    if "passcode_verified" not in request.session or request.session["passcode_verified"] != pk:
+    # Step 1: Enforce Passcode Verification Before Allowing Updates
+    if request.session.get("passcode_verified") != pk:
         if request.method == "POST":
             entered_passcode = request.POST.get("passcode")
             if entered_passcode == alumni.passcode:
-                request.session["passcode_verified"] = pk  
+                request.session["passcode_verified"] = pk  # Store verification in session
                 return redirect("update-alumni", pk=pk)  
             else:
                 messages.error(request, "Incorrect passcode. Please try again.")
-        
+
         return render(request, "main/alumni_passcode_verify.html", {"alumni": alumni})
 
-    # Step 2: Show the Update Form if Passcode is Verified
+    # Step 2: Allow Profile Update Only If Passcode Is Verified
     if request.method == "POST":
         form = AlumniForm(request.POST, request.FILES, instance=alumni)
-
         if form.is_valid():
-            form.save()  
-            request.session.pop("passcode_verified", None)  
+            form.save()
+            request.session.pop("passcode_verified", None)  # Remove verification after updating
             messages.success(request, "Profile updated successfully!")
-            return redirect("alumni")  
+            return redirect("alumni")  # Redirect to alumni page after update
+        else:
+            messages.error(request, "Please correct the errors in the form.")
 
     else:
         form = AlumniForm(instance=alumni)
-       
 
     return render(request, "main/register_alumni.html", {
         "form": form,
         "form_title": "Update Alumni Profile",
         "submit_button_text": "Update Profile",
         "passcode_label": "Enter Passcode",
-        "passcode_help_text": "Enter a new 6-digit passcode (Or enter the current one).",
+        "passcode_help_text": "Enter your 6-digit passcode to update the profile.",
     })
+
 
 # Alumni Profile View Function
 def alumni_profile(request, pk):

@@ -19,7 +19,7 @@ class Notice(models.Model):
     category = models.ForeignKey(NoticeCategory, on_delete=models.CASCADE, null=True, blank=True)
     pdf = models.FileField(upload_to='notices/', validators=[
         FileExtensionValidator(allowed_extensions=['pdf'])
-    ], null=True, blank=True)
+    ], blank=True)
     link = models.URLField(blank=True)
     date = models.DateField()
     highlight = models.BooleanField(default=False)
@@ -67,11 +67,9 @@ class Alumni(models.Model):
     github = models.URLField(blank=True)
     email = models.EmailField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    display = models.BooleanField(default=True)
+    display = models.BooleanField(default=False)
     bio=models.TextField(blank=True)
     passcode = models.CharField(max_length=6) # Stores the 6-digit passcode
-    highlighted = models.BooleanField(default=False)
-
     
     class Meta:
         ordering = ['-batch_year', 'name']

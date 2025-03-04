@@ -12,13 +12,13 @@
 }
 
 .form-container:hover {
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Heading styles */
 .form-container h2 {
-    color: #3D348B;
+    color: var(--primary);
     font-weight: 700;
     text-align: center;
     position: relative;
@@ -72,7 +72,7 @@ label {
 
 .form-control:focus {
     border-color: #3D348B;
-    box-shadow: 0 0 0 4px rgba(61, 52, 139, 0.2);
+    /* box-shadow: 0 0 0 4px rgba(61, 52, 139, 0.2); */
     outline: none;
     background: white;
 }
@@ -176,19 +176,6 @@ input[type="file"]::file-selector-button:hover {
     }
 }
 
-/* Alert messages */
-.alert {
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-}
-
-.alert-success {
-    background-color: rgba(16, 185, 129, 0.1);
-    border-left: 5px solid #10b981;
-    color: #065f46;
-    font-weight: 600;
-}
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -223,4 +210,82 @@ ul.errorlist {
     font-weight: 500;
 }
 
+
+/* Success Modal */
+.success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-modal.show {
+    display: flex;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background-color: var(--background);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    max-width: 400px;
+    width: 90%;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.success-modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-icon {
+    font-size: 4rem;
+    color: #22c55e;
+    margin-bottom: 1rem;
+}
+
+.modal-content h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.modal-content button {
+    background: var(--gradient);
+    color: var(--text-light);
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.modal-content button:hover {
+    opacity: 0.9;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
