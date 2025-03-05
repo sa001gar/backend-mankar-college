@@ -97,9 +97,7 @@
               <li class="nav-item">
                 <a href="{% url 'faculty' %}">Faculty</a>
               </li>
-              <li class="nav-item">
-                <a href="{% url 'notices' %}">Notices</a>
-              </li>
+              
               <li class="nav-item"><a href="{% url 'alumni' %}">Alumni</a></li>
               <li class="nav-item">
                 <a href="{% url 'gallery' %}">Student Corner</a>
@@ -110,6 +108,9 @@
                   <i class="fas fa-chevron-down"></i>
                 </a>
                 <ul class="dropdown-menu">
+                  <li class="nav-item">
+                    <a href="{% url 'notices' %}">Notices</a>
+                  </li>
                   <li><a href="#creativity">Research Works</a></li>
                   <li><a href="#magazine">Annual Magazine</a></li>
                   <li><a href="#projects">Social Projects</a></li>
