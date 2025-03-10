@@ -98,8 +98,8 @@ body {
 }
 
 .faculty-card-header {
-    /* background: var(--gradient); */
-    background-color: hsla(240, 15%, 9%, 1);
+    background: var(--gradient);
+    /* background-color: hsla(240, 15%, 9%, 1);
     background-image: radial-gradient(
       at 88% 40%,
       hsla(240, 15%, 9%, 1) 0px,
@@ -109,7 +109,7 @@ body {
     radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
     radial-gradient(at 0% 64%, hsla(263, 93%, 56%, 1) 0px, transparent 85%),
     radial-gradient(at 41% 94%, hsla(284, 100%, 84%, 1) 0px, transparent 85%),
-    radial-gradient(at 100% 99%, hsla(306, 100%, 57%, 1) 0px, transparent 85%);
+    radial-gradient(at 100% 99%, hsla(306, 100%, 57%, 1) 0px, transparent 85%); */
     /* background-color: white;
     border: 2px solid transparent;
     border-image: var(--gradient) 1;
@@ -177,6 +177,7 @@ body {
     padding: 0.5rem;
     border: none;
     border-radius: 5px;
+    text-align: center;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -257,7 +258,7 @@ body {
 }
 
 .faculty-header img {
-    width: 120px;
+    /* width: 120px; */
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
