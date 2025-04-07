@@ -60,21 +60,24 @@ class GalleryItem(models.Model):
 class Alumni(models.Model):
     name = models.CharField(max_length=100)
     batch_year = models.IntegerField()
-    current_position = models.CharField(max_length=100)
-    company = models.CharField(max_length=100)
+    current_position = models.CharField(max_length=100, blank=True)
+    company = models.CharField(max_length=100, blank=True)
     profile_image = models.ImageField(upload_to='alumni_photos/', null=True, blank=True)
     linkedin_url = models.URLField(blank=True)
     github = models.URLField(blank=True)
     email = models.EmailField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     display = models.BooleanField(default=False)
-    bio=models.TextField(blank=True)
-    passcode = models.CharField(max_length=6) # Stores the 6-digit passcode
-    
+    bio = models.TextField(blank=True)
+    passcode = models.CharField(max_length=6)  # Stores the 6-digit passcode
+    title=models.CharField(max_length=100, blank=True)  # New field for title
+    achievements = models.JSONField(default=list, blank=True)  # New field for multiple achievements
+    quote = models.TextField(blank=True)  # New field for a personal quote
+
     class Meta:
         ordering = ['-batch_year', 'name']
         verbose_name_plural = 'Alumni'
-    
+
     def __str__(self):
         return f"{self.name} - Batch {self.batch_year}"
 

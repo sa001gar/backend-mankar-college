@@ -3,6 +3,7 @@ from django.urls import path
 
 from . import views
 
+
 urlpatterns = [
     path('',views.home, name='home'),
     path('about/', views.about, name='about'),
@@ -28,4 +29,8 @@ urlpatterns = [
     path('api/submit-feedback/', views.submit_feedback, name='submit-feedback'),
     path('gallery-data/', views.gallery_data, name='gallery-data'),
     path('api/alumni/', views.get_alumni_by_batch, name='get_alumni_by_batch'),
+
+
+    path('api/chatbot/response/', views.chatbot_response, name='chatbot_response'),
+    path('api/chatbot/status/', views.check_api_status, name='chatbot_api_status'),
 ]

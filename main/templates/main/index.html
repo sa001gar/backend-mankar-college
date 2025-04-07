@@ -50,7 +50,7 @@
         </div>
     </div>
 
-    <!-- About Department Section -->
+    <!-- About Department Section - Redesigned -->
     <section class="cs-about-department">
         <div class="cs-container">
             <div class="cs-section-header">
@@ -60,178 +60,211 @@
             </div>
             <div class="cs-about-content">
                 <div class="cs-about-image">
-                    <img src="https://github.com/sa001gar/Redesign-MCCS/blob/main/media/images/header/img_2.jpg?raw=true" alt="Computer Science Department">
+                    <div class="cs-image-grid">
+                        <div class="cs-grid-item cs-grid-item-1">
+                            <img src="https://media.computersciencemancoll.in/media/images/header/img_4.jpg" alt="Computer Lab">
+                            <div class="cs-grid-overlay">
+                                <span>Computer Lab</span>
+                            </div>
+                        </div>
+                        <div class="cs-grid-item cs-grid-item-2">
+                            <img src="https://media.computersciencemancoll.in/media/images/header/img_3.jpg" alt="Students">
+                            <div class="cs-grid-overlay">
+                                <span>Student Activities</span>
+                            </div>
+                        </div>
+                        <div class="cs-grid-item cs-grid-item-3">
+                            <img src="https://media.computersciencemancoll.in/media/images/header/img_1.jpg" alt="Campus">
+                            <div class="cs-grid-overlay">
+                                <span>Campus View</span>
+                            </div>
+                        </div>
+                        <div class="cs-grid-item cs-grid-item-4">
+                            <img src="https://media.computersciencemancoll.in/media/images/header/img_4.jpg" alt="Event">
+                            <div class="cs-grid-overlay">
+                                <span>Tech Events</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="cs-about-text">
-                    <h3>Pioneering Computer Science Education</h3>
-                    <p>The Department of Computer Science at Mankar College was established in 2005 with a vision to provide quality education in the field of computer science and information technology. Over the years, we have evolved into a center of excellence, nurturing talent and fostering innovation.</p>
-                    <p>Our department is equipped with state-of-the-art laboratories, a comprehensive library, and experienced faculty members dedicated to providing students with both theoretical knowledge and practical skills.</p>
-                    <div class="cs-about-features">
-                        <div class="cs-feature">
-                            <div class="cs-feature-icon">
-                                <i class="fas fa-laptop-code"></i>
+                    <div class="cs-about-card">
+                        <h3>Pioneering Computer Science Education</h3>
+                        <p>The Department of Computer Science at Mankar College was established in 2005 with a vision to provide quality education in the field of computer science and information technology. Over the years, we have evolved into a center of excellence, nurturing talent and fostering innovation.</p>
+                        <p>Our department is equipped with state-of-the-art laboratories, a comprehensive library, and experienced faculty members dedicated to providing students with both theoretical knowledge and practical skills.</p>
+                        {% comment %} <div class="cs-about-features">
+                            <div class="cs-feature">
+                                <div class="cs-feature-icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <div class="cs-feature-text">
+                                    <h4>Modern Curriculum</h4>
+                                    <p>Industry-aligned courses updated regularly</p>
+                                </div>
                             </div>
-                            <div class="cs-feature-text">
-                                <h4>Modern Curriculum</h4>
-                                <p>Industry-aligned courses updated regularly</p>
+                            <div class="cs-feature">
+                                <div class="cs-feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="cs-feature-text">
+                                    <h4>Expert Faculty</h4>
+                                    <p>Experienced professors with research background</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="cs-feature">
-                            <div class="cs-feature-icon">
-                                <i class="fas fa-users"></i>
+                            <div class="cs-feature">
+                                <div class="cs-feature-icon">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <div class="cs-feature-text">
+                                    <h4>Research Focus</h4>
+                                    <p>Emphasis on innovation and practical applications</p>
+                                </div>
                             </div>
-                            <div class="cs-feature-text">
-                                <h4>Expert Faculty</h4>
-                                <p>Experienced professors with research background</p>
-                            </div>
-                        </div>
-                        <div class="cs-feature">
-                            <div class="cs-feature-icon">
-                                <i class="fas fa-flask"></i>
-                            </div>
-                            <div class="cs-feature-text">
-                                <h4>Research Focus</h4>
-                                <p>Emphasis on innovation and practical applications</p>
-                            </div>
-                        </div>
+                        </div> {% endcomment %}
+                        <a href="{% url 'about' %}" class="cs-btn-primary">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    <a href="{% url 'about' %}" class="cs-btn-primary">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    {% comment %} <!-- Programs Offered Section -->
-    <section class="cs-programs-section">
+    <!-- HOD Message Section -->
+    <section class="cs-hod-message">
         <div class="cs-container">
             <div class="cs-section-header">
-                <h2>Programs Offered</h2>
+                <h2>Message From HOD</h2>
                 <div class="cs-underline"></div>
-                <p>Comprehensive Computer Science Education at All Levels</p>
+                <p>Words of Wisdom and Guidance</p>
             </div>
-            <div class="cs-programs-container">
-                <div class="cs-program-card">
-                    <div class="cs-program-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>B.Sc. in Computer Science</h3>
-                    <p>A three-year undergraduate program focusing on core computer science concepts, programming, and software development.</p>
-                    <ul class="cs-program-features">
-                        <li><i class="fas fa-check-circle"></i> Programming Fundamentals</li>
-                        <li><i class="fas fa-check-circle"></i> Data Structures & Algorithms</li>
-                        <li><i class="fas fa-check-circle"></i> Database Management</li>
-                        <li><i class="fas fa-check-circle"></i> Web Development</li>
-                    </ul>
-                    <div class="cs-program-duration">
-                        <i class="far fa-clock"></i> Duration: 3 Years
-                    </div>
-                    <a href="" class="cs-btn-secondary">View Details</a>
-                </div>
-                
-                <div class="cs-program-card">
-                    <div class="cs-program-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>M.Sc. in Computer Science</h3>
-                    <p>A two-year postgraduate program designed to provide advanced knowledge in specialized areas of computer science.</p>
-                    <ul class="cs-program-features">
-                        <li><i class="fas fa-check-circle"></i> Advanced Algorithms</li>
-                        <li><i class="fas fa-check-circle"></i> Machine Learning</li>
-                        <li><i class="fas fa-check-circle"></i> Network Security</li>
-                        <li><i class="fas fa-check-circle"></i> Research Methodology</li>
-                    </ul>
-                    <div class="cs-program-duration">
-                        <i class="far fa-clock"></i> Duration: 2 Years
-                    </div>
-                    <a href="" class="cs-btn-secondary">View Details</a>
-                </div>
-                
-                <div class="cs-program-card">
-                    <div class="cs-program-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>Certificate Courses</h3>
-                    <p>Short-term certificate courses in emerging technologies to enhance skills and employability.</p>
-                    <ul class="cs-program-features">
-                        <li><i class="fas fa-check-circle"></i> Web Development</li>
-                        <li><i class="fas fa-check-circle"></i> Data Science</li>
-                        <li><i class="fas fa-check-circle"></i> Cloud Computing</li>
-                        <li><i class="fas fa-check-circle"></i> Mobile App Development</li>
-                    </ul>
-                    <div class="cs-program-duration">
-                        <i class="far fa-clock"></i> Duration: 3-6 Months
-                    </div>
-                    <a href="" class="cs-btn-secondary">View Details</a>
-                </div>
-            </div>
-        </div>
-    </section> {% endcomment %}
-
-    <!-- Improved Statistics Section -->
-    <section class="cs-statistics-section">
-        <div class="cs-statistics-overlay"></div>
-        <div class="cs-container">
-            <div class="cs-section-header cs-light"style="margin-bottom: 20px;" > 
-                <h2>Department at a Glance</h2>
-                <div class="cs-underline"></div>
-                <p>Our achievements in numbers</p>
-            </div>
-            
-            <div class="cs-statistics-container">
-                <div class="cs-statistic-item">
-                    <div class="cs-statistic-icon-wrapper">
-                        <div class="cs-statistic-icon">
-                            <i class="fas fa-user-graduate"></i>
+            <div class="cs-message-wrapper">
+                <div class="cs-hod-image">
+                    <img src="https://media.computersciencemancoll.in/media/images/faculty/ab_sir.jpg" alt="HOD">
+                    <div class="cs-hod-info">
+                        <h3>Dr. Amitava Bandhupadhyay</h3>
+                        <p>Head of Department</p>
+                        <div class="cs-hod-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                            <a href="#"><i class="fa-brands fa-researchgate"></i></a>
                         </div>
                     </div>
-                    <div class="cs-statistic-content">
-                        <div class="cs-statistic-number" data-count="1500">0</div>
-                        <div class="cs-statistic-title">Students Graduated</div>
-                    </div>
-                    <div class="cs-statistic-progress">
-                        <div class="cs-progress-bar" data-percentage="75"></div>
-                    </div>
                 </div>
-                
-                <div class="cs-statistic-item">
-                    <div class="cs-statistic-icon-wrapper">
-                        <div class="cs-statistic-icon">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                        </div>
+                <div class="cs-hod-message-content">
+                    <div class="cs-quote-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    <div class="cs-statistic-content">
-                        <div class="cs-statistic-number" data-count="25">0</div>
-                        <div class="cs-statistic-title">Expert Faculty</div>
+                    <div class="cs-message-text">
+                        <p>Welcome to the Department of Computer Science at Mankar College. Our mission is to provide a transformative educational experience that prepares students to be leaders in the rapidly evolving field of technology.</p>
+                        <p>In today's digital era, computer science education is not just about learning programming languages or algorithms; it's about developing problem-solving skills, critical thinking, and a mindset of continuous learning. Our department strives to create an environment where students can explore, innovate, and grow both academically and personally.</p>
+                        <p>We have designed our curriculum to blend theoretical foundations with practical applications, ensuring our graduates are well-equipped to meet the demands of the industry or pursue higher education. Our faculty members are dedicated educators and active researchers who bring their expertise and passion into the classroom.</p>
+                        <p>I invite you to explore the opportunities our department offers and join us in our journey of academic excellence and technological advancement.</p>
                     </div>
-                    <div class="cs-statistic-progress">
-                        <div class="cs-progress-bar" data-percentage="90"></div>
-                    </div>
-                </div>
-                
-                <div class="cs-statistic-item">
-                    <div class="cs-statistic-icon-wrapper">
-                        <div class="cs-statistic-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                    </div>
-                    <div class="cs-statistic-content">
-                        <div class="cs-statistic-number" data-count="50">0</div>
-                        <div class="cs-statistic-title">Awards Won</div>
-                    </div>
-                    <div class="cs-statistic-progress">
-                        <div class="cs-progress-bar" data-percentage="60"></div>
-                    </div>
-                </div>
-                
-                
+                    
                 </div>
             </div>
-            
-            
         </div>
     </section>
 
-    <!-- Improved Student Achievements Section -->
+    <!-- Creative Section: Technology Ecosystem -->
+    <section class="cs-tech-ecosystem">
+        <div class="cs-container">
+            <div class="cs-section-header">
+                <h2>Our Technology Ecosystem</h2>
+                <div class="cs-underline"></div>
+                <p>Explore the cutting-edge technologies our students master</p>
+            </div>
+            
+            <div class="cs-tech-orbit">
+                <div class="cs-orbit-center">
+                    <div class="cs-orbit-core">
+                        <i class="fas fa-microchip"></i>
+                        <span>Core CS</span>
+                    </div>
+                </div>
+                
+                <div class="cs-orbit-path cs-orbit-1">
+                    <div class="cs-orbit-item" style="--i:1">
+                        <div class="cs-tech-bubble">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                    <div class="cs-orbit-item" style="--i:2">
+                        <div class="cs-tech-bubble">
+                            <i class="fab fa-java"></i>
+                            <span>Java</span>
+                        </div>
+                    </div>
+                    <div class="cs-orbit-item" style="--i:3">
+                        <div class="cs-tech-bubble">
+                            <i class="fas fa-database"></i>
+                            <span>SQL</span>
+                        </div>
+                    </div>
+                    <div class="cs-orbit-item" style="--i:4">
+                        <div class="cs-tech-bubble">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cs-orbit-path cs-orbit-2">
+                    <div class="cs-orbit-item" style="--i:1">
+                        <div class="cs-tech-bubble">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                    </div>
+                    <div class="cs-orbit-item" style="--i:2">
+                        <div class="cs-tech-bubble">
+                            <i class="fab fa-android"></i>
+                            <span>Android</span>
+                        </div>
+                    </div>
+                    <div class="cs-orbit-item" style="--i:3">
+                        <div class="cs-tech-bubble">
+                            <i class="fab fa-aws"></i>
+                            <span>AWS</span>
+                        </div>
+                    </div>
+                    <div class="cs-orbit-item" style="--i:4">
+                        <div class="cs-tech-bubble">
+                            <i class="fas fa-robot"></i>
+                            <span>AI/ML</span>
+                        </div>
+                    </div>
+                    <div class="cs-orbit-item" style="--i:5">
+                        <div class="cs-tech-bubble">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Cybersecurity</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cs-tech-categories">
+                <div class="cs-tech-category">
+                    <h3>Programming</h3>
+                    <p>C, C++, Java, Python, JavaScript</p>
+                </div>
+                <div class="cs-tech-category">
+                    <h3>Web Development</h3>
+                    <p>HTML, CSS, React, Angular, Node.js</p>
+                </div>
+                <div class="cs-tech-category">
+                    <h3>Data Science</h3>
+                    <p>Machine Learning, Data Analytics, Big Data</p>
+                </div>
+                <div class="cs-tech-category">
+                    <h3>Cloud Computing</h3>
+                    <p>AWS, Azure, Google Cloud, DevOps</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Achievements Section - Enhanced Cards -->
     <section class="cs-achievements-section">
         <div class="cs-container">
             <div class="cs-section-header">
@@ -244,37 +277,43 @@
                 <div class="swiper-container cs-achievements-swiper">
                     <div class="swiper-wrapper">
 
-                      {% for alumni in alumnis%}
+                        {% for alumni in alumnis %}
                         <!-- Student Card 1 -->
                         <div class="swiper-slide cs-achievement-slide">
                             <div class="cs-student-card">
-                                <div class="cs-student-card-content">
+                                <div class="cs-card-glass"></div>
+                                <div class="cs-student-header">
                                     <div class="cs-student-image">
                                         <img src="{% if alumni.profile_image %}{{ alumni.profile_image.url }}{% else %}https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1741016611~exp=1741020211~hmac=0077e334fa3d55a25de05d0e897c39e794840c6707c8849a530831e89b3136cc&w=740{% endif %}" alt="{{alumni.name}}">
                                     </div>
-                                    <div class="cs-student-media-icons">
-                                        <a href="{{alumni.linkedin_url}}"><i class="fab fa-linkedin"></i></a>
+                                    <div class="cs-student-badge">
+                                        <i class="fas fa-star"></i> {{alumni.title}}
+                                    </div>
+                                </div>
+                                <div class="cs-student-body">
+                                    <h3 class="cs-student-name">{{alumni.name}}</h3>
+                                    <p class="cs-student-batch">Batch of {{ alumni.batch_year }}-{{ alumni.batch_year|add:3 }}</p>
+            
+                                    <div class="cs-achievement-tags">
+                                        {% for tag in alumni.achievements %}
+                                            <span>{{ tag }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    <p class="cs-student-quote">{{ alumni.quote|truncatechars:100 }}</p>
+                                    <div class="cs-student-social">
+                                        <a href="{{alumni.linkedin}}"><i class="fab fa-linkedin"></i></a>
                                         <a href="{{alumni.github}}"><i class="fab fa-github"></i></a>
-                                        <a href="{{alumni.email}}"><i class="fa-regular fa-envelope"></i></a>
+                                        <a href="{{alumni.email}}"><i class="fas fa-envelope"></i></a>
                                     </div>
-                                    <div class="cs-student-details">
-                                        <span class="cs-student-name">{{alumni.name}} </span>
-                                        <span class="cs-student-year">Batch of {{alumni.batch_year}}</span>
-                                        <span class="cs-student-achievement">{{alumni.company}}</span>
-                                        {% comment %} <p class="cs-student-description">{{alumni.bio}} </p> {% endcomment %}
-                                    </div>
-                                    <div class="cs-student-buttons">
-                                        <a href="" class="cs-profile-btn">View Profile</a>
-                                    </div>
+                                    <a href="{% url 'alumni-profile' alumni.pk %}" class="cs-btn-profile ">View Profile</a>
                                 </div>
                             </div>
                         </div>
-
                         {% endfor %}
                         
                         
-                          
-                        </div>
+                        
+                        
                     </div>
                 </div>
                 
@@ -282,36 +321,176 @@
                 <div class="swiper-button-prev cs-achievements-button-prev"></div>
                 <div class="swiper-pagination cs-achievements-pagination"></div>
             </div>
-            
-        </div>
-            
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="cs-contact-section">
-        <div class="cs-contact-overlay"></div>
+    <!-- Where Our Students Are Working Section -->
+    <section class="cs-students-working">
         <div class="cs-container">
-            <div class="cs-contact-content">
-                <p class="cs-contact-subtitle">
-                    <i class="fas fa-headset cs-contact-icon pulse"></i>
-                    For Online Contact Please Call Us Today
-                </p>
-                <h1 class="cs-contact-title">
-                    Get Early Contact to <span class="cs-highlight">Our Department</span>
-                </h1>
+            <div class="cs-section-header">
+            <h2>Our Students Are Working At</h2>
+            <div class="cs-underline"></div>
+            <p>Our alumni have established successful careers across various prestigious organizations</p>
             </div>
-            <div class="cs-whatsapp-button-container">
-              <a href="https://wa.me/your-number" class="cs-whatsapp-button">
-                <i class="fab fa-whatsapp"></i>
-                Join To WhatsApp
-            </a>
-            </div>
-                
             
+            <div class="cs-working-categories">
+            <div class="cs-category-box">
+                <div class="cs-category-icon">
+                <i class="fas fa-building"></i>
+                </div>
+                <div class="cs-category-number" data-count="200">0+</div>
+                <h3>Corporate Leaders</h3>
+                <p>Working at top companies like Google, Microsoft, Amazon, IBM, TCS, Infosys</p>
+                <div class="cs-company-logos">
+                <img src="https://media.computersciencemancoll.in/media/images/company_logos/ibm.webp" alt="IBM" class="cs-company-logo" style="height:40px; width:auto;">
+                <img src="https://media.computersciencemancoll.in/media/images/company_logos/tcs.png" alt="TCS" class="cs-company-logo" style="height:40px; width:auto;">
+                </div>
+            </div>
+            
+            <div class="cs-category-box">
+                <div class="cs-category-icon">
+                <i class="fas fa-landmark"></i>
+                </div>
+                <div class="cs-category-number" data-count="150">0+</div>
+                <h3>Government Services</h3>
+                <p>Serving in various government departments and public sector organizations</p>
+                <div class="cs-company-logos">
+                <img src="{% static 'media/company_logos/indian_government.png' %}" alt="Indian Government" class="cs-company-logo" style="height:40px; width:auto;">
+                <img src="{% static 'media/company_logos/railways.png' %}" alt="Indian Railways" class="cs-company-logo" style="height:40px; width:auto;">
+                <img src="{% static 'media/company_logos/isro.png' %}" alt="ISRO" class="cs-company-logo" style="height:40px; width:auto;">
+                </div>
+            </div>
+            
+            <div class="cs-category-box">
+                <div class="cs-category-icon">
+                <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="cs-category-number" data-count="75">0+</div>
+                <h3>Startups & Entrepreneurs</h3>
+                <p>Founding and leading innovative startups across various domains</p>
+                <div class="cs-company-logos">
+                <img src="{% static 'media/company_logos/zoho.png' %}" alt="Zoho" class="cs-company-logo" style="height:40px; width:auto;">
+                <img src="{% static 'media/company_logos/freshworks.png' %}" alt="Freshworks" class="cs-company-logo" style="height:40px; width:auto;">
+                <img src="{% static 'media/company_logos/paytm.png' %}" alt="Paytm" class="cs-company-logo" style="height:40px; width:auto;">
+                </div>
+            </div>
+            
+            <div class="cs-category-box">
+                <div class="cs-category-icon">
+                <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="cs-category-number" data-count="100">0+</div>
+                <h3>Higher Education</h3>
+                <p>Pursuing advanced degrees at prestigious universities worldwide</p>
+                <div class="cs-company-logos">
+                <img src="{% static 'media/company_logos/mit.png' %}" alt="MIT" class="cs-company-logo" style="height:40px; width:auto;">
+                <img src="{% static 'media/company_logos/stanford.png' %}" alt="Stanford" class="cs-company-logo" style="height:40px; width:auto;">
+                <img src="{% static 'media/company_logos/oxford.png' %}" alt="Oxford" class="cs-company-logo" style="height:40px; width:auto;">
+                </div>
+            </div>
+            </div>
+            
+            <div class="cs-view-more-container">
+            <a href="#" class="cs-btn-outline">View More Alumni Profiles</a>
+            </div>
         </div>
     </section>
 
+    <!-- Enhanced CTA Section -->
+    <section class="cs-cta-section">
+        <div class="cs-container">
+            <div class="cs-cta-wrapper">
+                <div class="cs-cta-content">
+                    <h2>Begin Your Journey in Tech Excellence</h2>
+                    <p>Join our vibrant community of innovators and problem-solvers. Take the first step toward a rewarding career in computer science.</p>
+                    
+                    <div class="cs-cta-features">
+                        <div class="cs-cta-feature">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>World-class Education</span>
+                        </div>
+                        <div class="cs-cta-feature">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Industry Connections</span>
+                        </div>
+                        <div class="cs-cta-feature">
+                            <i class="fas fa-users"></i>
+                            <span>Supportive Community</span>
+                        </div>
+                        <div class="cs-cta-feature">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Innovation Hub</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cs-cta-buttons">
+                        <a href="tel:+919000000000" class="cs-btn-cta"><i class="fas fa-phone"></i> Call Now </a>
+                        <a href="https://wa.me/919000000000" class="cs-btn-outline-light"><i class="fab fa-whatsapp"></i>Contact on WhatsApp </a>
+                    </div>
+                </div>
+                
+                <div class="cs-cta-image">
+                    <img src="https://media.computersciencemancoll.in/media/images/about/image2.jpg" alt="Campus">
+                    <div class="cs-cta-card">
+                        <div class="cs-cta-card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="cs-cta-card-content">
+                            <h3>Next Admission Cycle</h3>
+                            <p>Applications open: June 15, 2025</p>
+                            <a href="#" class="cs-cta-card-link">Set a Reminder <i class="fas fa-bell"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% comment %} <!-- Contact Section - Redesigned CTA -->
+    <section class="cs-contact-section">
+        <div class="cs-container">
+            <div class="cs-contact-wrapper">
+                <div class="cs-contact-content">
+                    <h2>Begin Your Educational Journey With Us</h2>
+                    <p>Discover how our programs can help you achieve your academic and professional goals.</p>
+                    <div class="cs-contact-buttons">
+                        <a href="#" class="cs-btn-primary">Apply Now <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="cs-btn-outline-light">Contact Us</a>
+                    </div>
+                </div>
+                <div class="cs-contact-image">
+                    <img src="/placeholder.svg?height=300&width=500" alt="Campus">
+                </div>
+            </div>
+            
+            <div class="cs-contact-info-boxes">
+                <div class="cs-info-box">
+                    <div class="cs-info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Us</h3>
+                    <p>Mankar College, Mankar<br>West Bengal, India</p>
+                </div>
+                
+                <div class="cs-info-box">
+                    <div class="cs-info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>(0342)-265012, 265043<br>+91-9000000000</p>
+                </div>
+                
+                <div class="cs-info-box">
+                    <div class="cs-info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>info@gmail.com<br>admissions@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+    
     
     
 

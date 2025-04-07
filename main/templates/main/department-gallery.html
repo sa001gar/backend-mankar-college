@@ -456,144 +456,143 @@
     // JavaScript code to fetch gallery data and store it in galleryData variable
     let galleryData = [];
 
-      function createGalleryItem(item, index) {
-          return `
-              <div class="gallery-item loading-animation"
-                   data-category="${item.category}"
-                   data-id="${item.id}"
-                   style="animation-delay: ${index * 0.1}s">
-                  <img src="${item.image}" alt="${item.title}">
-                  <div class="gallery-date">${item.date}</div>
-                  <div class="gallery-overlay">
-                      <h3>${item.title}</h3>
-                      <p>${item.description}</p>
-                  </div>
-              </div>
-          `;
-      }
+function createGalleryItem(item, index) {
+    return `
+        <div class="gallery-item loading-animation"
+             data-category="${item.category}"
+             data-id="${item.id}"
+             data-index="${index}"  <!-- ✅ track actual index -->
+             style="animation-delay: ${index * 0.1}s">
+            <img src="${item.image}" alt="${item.title}">
+            <div class="gallery-date">${item.date}</div>
+            <div class="gallery-overlay">
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+            </div>
+        </div>
+    `;
+}
 
-      function filterGallery(category) {
-          const items = document.querySelectorAll('.gallery-item');
-          items.forEach((item, index) => {
-              item.classList.remove('loading-animation');
-              void item.offsetWidth; // Trigger reflow
-              item.classList.add('loading-animation');
-              item.style.animationDelay = `${index * 0.1}s`;
+function filterGallery(category) {
+    const items = document.querySelectorAll('.gallery-item');
+    items.forEach((item, index) => {
+        item.classList.remove('loading-animation');
+        void item.offsetWidth; // Trigger reflow
+        item.classList.add('loading-animation');
+        item.style.animationDelay = `${index * 0.1}s`;
 
-              if (category === 'all' || item.dataset.category === category) {
-                  item.style.display = 'block';
-              } else {
-                  item.style.display = 'none';
-              }
-          });
-      }
+        if (category === 'all' || item.dataset.category === category) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
 
-      let currentImageIndex = 0;
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImage');
-      const captionText = document.getElementById('modalCaption');
+let currentImageIndex = 0;
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const captionText = document.getElementById('modalCaption');
 
-      function openModal(index) {
-          currentImageIndex = index;
-          const item = galleryData[index];
+function openModal(index) {
+    currentImageIndex = index;
+    const item = galleryData[index];
 
-          modalImg.src = item.image;
-          captionText.innerHTML = `
-              <h3>${item.title}</h3>
-              <p>${item.description}</p>
-              <p>${item.date}</p>
-          `;
+    if (!item) return; // 🔒 Safety check
 
-          modal.classList.add('show');
-          updateNavigationButtons();
-      }
+    modalImg.src = item.image;
+    captionText.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <p>${item.date}</p>
+    `;
 
-      function closeModal() {
-          modal.classList.remove('show');
-      }
+    modal.classList.add('show');
+    updateNavigationButtons();
+}
 
-      function changeImage(direction) {
-          currentImageIndex = (currentImageIndex + direction + galleryData.length) % galleryData.length;
-          const item = galleryData[currentImageIndex];
+function closeModal() {
+    modal.classList.remove('show');
+}
 
-          modalImg.classList.remove('slide-in');
-          void modalImg.offsetWidth; // Trigger reflow
-          modalImg.classList.add('slide-in');
+function changeImage(direction) {
+    currentImageIndex = (currentImageIndex + direction + galleryData.length) % galleryData.length;
+    const item = galleryData[currentImageIndex];
 
-          modalImg.src = item.image;
-          captionText.innerHTML = `
-              <h3>${item.title}</h3>
-              <p>${item.description}</p>
-              <p>${item.date}</p>
-          `;
+    modalImg.classList.remove('slide-in');
+    void modalImg.offsetWidth;
+    modalImg.classList.add('slide-in');
 
-          updateNavigationButtons();
-      }
+    modalImg.src = item.image;
+    captionText.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <p>${item.date}</p>
+    `;
 
-      function updateNavigationButtons() {
-          document.getElementById('prevButton').style.display = currentImageIndex > 0 ? 'flex' : 'none';
-          document.getElementById('nextButton').style.display = currentImageIndex < galleryData.length - 1 ? 'flex' : 'none';
-      }
+    updateNavigationButtons();
+}
 
-      document.addEventListener('DOMContentLoaded', () => {
+function updateNavigationButtons() {
+    document.getElementById('prevButton').style.display = currentImageIndex > 0 ? 'flex' : 'none';
+    document.getElementById('nextButton').style.display = currentImageIndex < galleryData.length - 1 ? 'flex' : 'none';
+}
 
-        fetch('/gallery-data/')
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/gallery-data/')
         .then(response => response.json())
         .then(data => {
-            
             galleryData = data;
             const gallery = document.querySelector('.gallery');
-          gallery.innerHTML = galleryData.map((item, index) =>
-              createGalleryItem(item, index)
-          ).join('');
+            gallery.innerHTML = galleryData.map((item, index) =>
+                createGalleryItem(item, index)
+            ).join('');
 
-          const filterButtons = document.querySelectorAll('.filter-btn');
-          filterButtons.forEach(button => {
-              button.addEventListener('click', () => {
-                  filterButtons.forEach(btn => btn.classList.remove('active'));
-                  button.classList.add('active');
-                  filterGallery(button.dataset.filter);
-              });
-          });
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    filterGallery(button.dataset.filter);
+                });
+            });
 
-          // Modal functionality
-          gallery.addEventListener('click', (e) => {
-              const galleryItem = e.target.closest('.gallery-item');
-              if (galleryItem) {
-                  const index = parseInt(galleryItem.dataset.id) - 1;
-                  openModal(index);
-              }
-          });
+            // Modal functionality
+            gallery.addEventListener('click', (e) => {
+                const galleryItem = e.target.closest('.gallery-item');
+                if (galleryItem) {
+                    const index = parseInt(galleryItem.dataset.index); // ✅ Use index
+                    openModal(index);
+                }
+            });
 
-          // Keyboard navigation
-          document.addEventListener('keydown', (e) => {
-              if (!modal.classList.contains('show')) return;
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('show')) return;
 
-              switch(e.key) {
-                  case 'ArrowLeft':
-                      changeImage(-1);
-                      break;
-                  case 'ArrowRight':
-                      changeImage(1);
-                      break;
-                  case 'Escape':
-                      closeModal();
-                      break;
-              }
-          });
+                switch (e.key) {
+                    case 'ArrowLeft':
+                        changeImage(-1);
+                        break;
+                    case 'ArrowRight':
+                        changeImage(1);
+                        break;
+                    case 'Escape':
+                        closeModal();
+                        break;
+                }
+            });
 
-          // Close modal when clicking outside
-          modal.addEventListener('click', (e) => {
-              if (e.target === modal) {
-                  closeModal();
-              }
-          });
-
+            // Close modal on click outside image
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
         })
         .catch(error => console.error('Error fetching gallery data:', error));
+});
 
-          
-      });
 </script>
 
 {%endblock%}

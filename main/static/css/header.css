@@ -509,8 +509,8 @@ body {
 /* Scroll to Top Button */
 .cs-scroll-top-btn {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 60px;
+  left: 30px;
   width: 50px;
   height: 50px;
   background-color: #e6483d;
@@ -534,7 +534,7 @@ body {
 }
 
 .cs-scroll-top-btn:hover {
-  background-color: #3e92cc;
+  background-color: #473ecc;
   transform: translateY(-5px);
 }
 

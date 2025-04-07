@@ -4,18 +4,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% block title%}
-    
-    {% endblock %}
+    {% block title%} {% endblock %}
 
     <!-- ===== CSS Links ===== -->
-     {% block css %}
-     
-     {% endblock %}
-    
+    {% block css %} {% endblock %} 
     <link rel="stylesheet" href="{% static 'css/header.css' %}?v={{ now|date:"U" }}" /> 
-    <link rel="stylesheet" href="{% static 'css/footer.css'%}?v={{
-    now|date:"U" }}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css'%}?v={{ now|date:"U" }}" /> 
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}?v={{ now|date:"U" }}" />
 
     <!-- ===== Link Swiper's CSS ===== -->
     <link
@@ -75,15 +70,16 @@
             <ul class="nav-list">
               <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
               <li class="nav-item"><a href="{% url 'about' %}">About</a></li>
-              
-              
+
               <li class="nav-item dropdown">
                 <a href="#" class="dropdown-toggle">
                   Academics
                   <i class="fas fa-chevron-down"></i>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="{% url 'study-material' %}">Study Materials</a></li>
+                  <li>
+                    <a href="{% url 'study-material' %}">Study Materials</a>
+                  </li>
                   <li>
                     <a href="{% url 'previous-papers' %}"
                       >Previous Year Questions</a
@@ -97,7 +93,7 @@
               <li class="nav-item">
                 <a href="{% url 'faculty' %}">Faculty</a>
               </li>
-              
+
               <li class="nav-item"><a href="{% url 'alumni' %}">Alumni</a></li>
               <li class="nav-item">
                 <a href="{% url 'gallery' %}">Student Corner</a>
@@ -167,99 +163,134 @@
     <!-- End Breadcrumb-->
 
     <!-- Lazy Loading Spinner -->
-      <div id="cs-lazy-loader" class="cs-lazy-loader">
-        <div class="cs-spinner"></div>
-      </div>
-
-    {% block content %} {% endblock %}
-
-    <!-- Go Back Button -->
-    {% if request.resolver_match.url_name != 'home' %}
-    <div class="btn-container">
-      <button onclick="history.back()" class="btn-back">Previous</button>
-      <button
-        onclick="window.location.href='{% url 'home' %}'"
-        class="btn-back"
-      >
-        Back to Home
-      </button>
+    <div id="cs-lazy-loader" class="cs-lazy-loader">
+      <div class="cs-spinner"></div>
     </div>
-    {% endif %}
-    <!-- End Go Back Button -->
 
-    <!-- Footer Component  -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-section department-info">
-          <h2>Computer Science</h2>
-          <p>
-            The department has played a key role in making it one of the best in
-            the University, known not only for its placement assistance but also
-            for its focus on student-centric learning. The students of this
-            department are working in India and abroad with reputed MNCs like
-            TCS, CTS, Wipro, IBM etc and in different government organisations,
-            Banks and PSUs.
-          </p>
-          <div class="footer-social-links">
-            <a href="#" aria-label="Facebook"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="#" aria-label="Instagram"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a href="#" aria-label="LinkedIn"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
-          </div>
+    <!-- Main Content -->
+    {% block content %} {% endblock %} {% comment %} ChatBot {% endcomment %}
+    {% include 'main/chatbot.html' %}
+    <!-- Footer Component -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section department-info">
+        <h2>Computer Science</h2>
+        <p>
+          The department has played a key role in making it one of the best in
+          the University, known not only for its placement assistance but also
+          for its focus on student-centric learning. The students of this
+          department are working in India and abroad with reputed MNCs like
+          TCS, CTS, Wipro, IBM etc and in different government organisations,
+          Banks and PSUs.
+        </p>
+        <div class="newsletter">
+          <h3>Subscribe to Newsletter</h3>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+          </form>
         </div>
-
-        <div class="footer-section useful-links">
-          <h2>Useful Links</h2>
-          <ul>
-            <li><a href="#">Alumni</a></li>
-            <li><a href="{% url 'faculty' %}">Faculty</a></li>
-            <li><a href="#">Study Material</a></li>
-            <li><a href="#">Question Bank</a></li>
-            <li><a href="#">Student FeedBack</a></li>
-            <li><a href="#">Department Gallery</a></li>
-            <li><a href="#">Mankar College</a></li>
-            <li><a href="#">University of Burdwan</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section contact-info">
-          <h2>Contact Us</h2>
-          <p><i class="fas fa-phone"></i> Phone: +91 9475929208 | 8967857658</p>
-          <p><i class="fas fa-envelope"></i> Email: kkm.nitdgp@gmail.com</p>
-          <div class="map-container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.7085208178646!2d87.5518191746706!3d23.434894200816913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f9d5ecab9342b5%3A0x4da93261a190148!2sMankar%20College!5e0!3m2!1sen!2sin!4v1735737363527!5m2!1sen!2sin"
-              width="600"
-              height="450"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+        <div class="footer-social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© Department of Computer Science | Developed by CS-Team</p>
+
+      <div class="footer-section useful-links">
+        <h2>Useful Links</h2>
+        <ul>
+          <li><a href="#">Alumni</a></li>
+          <li><a href="#">Faculty</a></li>
+          <li><a href="#">Study Material</a></li>
+          <li><a href="#">Question Bank</a></li>
+          <li><a href="#">Student FeedBack</a></li>
+          <li><a href="#">Department Gallery</a></li>
+          <li><a href="#">Mankar College</a></li>
+          <li><a href="#">University of Burdwan</a></li>
+        </ul>
       </div>
-    </footer>
-    <!-- End footer Component  -->
+
+      <div class="footer-section contact-info">
+        <h2>Contact Us</h2>
+        <p><i class="fas fa-phone"></i> Phone: +91 9475929208 | 8967857658</p>
+        <p><i class="fas fa-envelope"></i> Email: kkm.nitdgp@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> Mankar College, Mankar, West Bengal</p>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.7085208178646!2d87.5518191746706!3d23.434894200816913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f9d5ecab9342b5%3A0x4da93261a190148!2sMankar%20College!5e0!3m2!1sen!2sin!4v1735737363527!5m2!1sen!2sin"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <p>© <span id="current-year"></span> All rights reserved | Department of Computer Science, Mankar College</p>
+        
+        <p style="margin: 0; font-size: 14px;">
+          Made with ❤️ by CS Team
+        </p>
+      </div>
+      
+    </div>
+    <button class="back-to-top" id="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </footer>
+  <!-- End footer Component -->
 
     <!-- Scroll to Top Button -->
-    <button id="cs-scroll-top" class="cs-scroll-top-btn" aria-label="Scroll to top">
+    <button
+      id="cs-scroll-top"
+      class="cs-scroll-top-btn"
+      aria-label="Scroll to top"
+    >
       <i class="fas fa-chevron-up"></i>
     </button>
 
     <!-- Header Link  -->
     <script src="{% static 'js/header.js'%}"></script>
-    {% block scripts %}
-    
-    {% endblock %}
+    <script src="{% static 'js/chatbot.js'%}"></script>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+      });
+      // Form submission
+      document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+        alert(`Thank you for subscribing with ${email}! You'll receive our newsletter soon.`);
+        this.reset();
+      });
+  
+      // Animation on scroll
+      document.addEventListener('DOMContentLoaded', function() {
+        const footerSections = document.querySelectorAll('.footer-section');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        footerSections.forEach(section => {
+          section.style.opacity = '0';
+          section.style.transform = 'translateY(20px)';
+          section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+          observer.observe(section);
+        });
+      });
+    </script>
+
+    {% block scripts %} {% endblock %}
   </body>
 </html>

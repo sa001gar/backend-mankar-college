@@ -13,6 +13,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(os.path.join(BASE_DIR, ".env"))
@@ -52,6 +53,9 @@ LOGGING = {
 # Application definition
 
 INSTALLED_APPS = [
+    'unfold',
+
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -161,10 +165,55 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
         # "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
+}
+
+# settings.py
+
+INSTALLED_APPS += ['storages']
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')  # Your R2 bucket name
+AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
+
+AWS_S3_REGION_NAME = 'auto'
+AWS_S3_ADDRESSING_STYLE = 'virtual'
+AWS_QUERYSTRING_AUTH = True  # makes uploaded files publicly accessible
+
+MEDIA_URL = 'https://media.computersciencemancoll.in/'
+
+
+from django.templatetags.static import static
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+from django.conf import settings
+UNFOLD = {
+    "SITE_TITLE": "Department of Computer Science | Mankar College",
+    "SITE_HEADER": "MCCS",
+    "SITE_SUBHEADER": "Empowering students for the future",
+    "SITE_ICON":  os.path.join('/static/', "media/images/admin-panel.png"),
+    "SITE_FAVICONS": [
+        {
+            "rel": "icon",
+            "sizes": "32x32",
+            "type": "image/png",
+            "href": lambda request: os.path.join('/static/', "media/images/admin-panel.png"),
+        },
+    ],
+    "LOGIN": {
+        "image": lambda request: os.path.join('/static/', "media/images/login_side.png"),
+    },
+    "SIDEBAR":{
+        "show_search": True,  # Search in applications and models names
+    },
+
+    
 }

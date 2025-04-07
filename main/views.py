@@ -5,6 +5,13 @@ from django.contrib import messages
 import json
 
 
+from django.views.decorators.http import require_POST
+import json
+import os
+import requests
+from django.conf import settings
+
+
 from .models import GalleryItem, GalleryCategory, Alumni, Notice, StudentFeedback
 from .forms import AlumniForm
 
@@ -256,3 +263,141 @@ def submit_feedback(request):
 
 def study_materials(request):
     return render(request, 'main/study-materials.html')
+
+
+
+# Chatbot Response API
+
+
+# In a real application, this should be stored securely, like in environment variables
+# You would access it with: API_KEY = os.environ.get('GEMINI_API_KEY')
+API_KEY = 'AIzaSyC3pNfBx5m7x5W5l-9-vYWAlKb4Yjz0i1k'  # Replace with your actual API key or use environment variable
+API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent'
+
+# Fallback responses if API fails
+def fallback_response(message):
+    message_lower = message.lower()
+    
+    if any(term in message_lower for term in ["course", "program"]):
+        return "The Department of Computer Science offers various programs including B.Sc. in Computer Science, BCA, and M.Sc. in Computer Science. Each program is designed to provide both theoretical knowledge and practical skills needed in the industry. Would you like specific information about any of these programs?"
+    elif any(term in message_lower for term in ["faculty", "professor", "teacher"]):
+        return "Our department has 12 faculty members specializing in various areas of computer science including AI, data science, networking, and software engineering. All our faculty members hold advanced degrees and have significant research or industry experience. Would you like to know about specific faculty members or research areas?"
+    elif any(term in message_lower for term in ["admission", "apply", "enroll"]):
+        return "Admission to our programs is based on merit and entrance examinations. The application process typically begins in May each year. You'll need to submit an online application, academic transcripts, and attend an entrance test. Would you like details about eligibility criteria or application deadlines?"
+    elif any(term in message_lower for term in ["lab", "facility", "infrastructure"]):
+        return "We have 5 state-of-the-art computer labs equipped with the latest hardware and software. This includes specialized labs for AI research, networking, and software development. Our facilities also include high-performance computing resources, IoT lab, and cybersecurity testing environments."
+    elif any(term in message_lower for term in ["research", "project"]):
+        return "The CS Department focuses on several key research areas including Machine Learning, Cybersecurity, Cloud Computing, Internet of Things (IoT), and Data Analytics. Faculty members actively publish in these fields and we have multiple ongoing projects with industry collaboration. Students can join these research groups based on their interests."
+    elif any(term in message_lower for term in ["career", "job", "placement"]):
+        return "Our CS graduates have excellent career prospects. Many join leading tech companies as software developers, data scientists, cybersecurity specialists, or system architects. We have strong industry connections and a dedicated placement cell that helps students with internships and job placements. Our placement rate is consistently above 90% for all programs."
+    elif any(term in message_lower for term in ["contact", "reach", "email"]):
+        return "You can contact the Department of Computer Science at cs@mankarcollege.edu or call us at +91-XXXXXXXXXX. Our office is located in the Science Building, Room 301. Office hours are Monday to Friday, 9 AM to 5 PM. For admissions-specific queries, you can also contact admissions@mankarcollege.edu."
+    else:
+        return "Thank you for your question about our Computer Science department. While I'm currently operating in offline mode, I'd be happy to help with information about our courses, faculty, research areas, admissions, facilities, or career opportunities. Could you please provide more specific details about what you're looking for?"
+
+def call_gemini_api(message, conversation_history=None):
+    if conversation_history is None:
+        conversation_history = []
+    
+    try:
+        # Build the prompt with enhanced context for better responses
+        system_prompt = """You are an AI assistant for the Computer Science Department at Mankar College. 
+        You are helpful, clear, and knowledgeable about computer science topics and the department's offerings.
+        
+        Some key information about the CS Department at Mankar College:
+        1. Programs: B.Sc. in Computer Science.
+        2. Faculty: 12 faculty members specializing in AI, data science, networking, and software engineering
+        3. Facilities: 5 state-of-the-art computer labs for AI research, networking, and software development
+        4. Research Areas: Machine Learning, Cybersecurity, Cloud Computing, IoT, and Data Analytics
+        5. Contact: deptofcompsc@mankarcollege.ac.in, Phone: +91-XXXXXXXXXX, Office hours: Monday to Friday, 9 AM to 5 PM
+        
+        Always be conversational, concise, and accurate in your responses.
+        Your task is to assist users with their queries related to the CS Department.
+        User's question: {}""".format(message)
+        
+        # Prepare the API request data
+        request_data = {
+            "contents": [
+                {
+                    "role": "user",
+                    "parts": [{"text": system_prompt}]
+                }
+            ]
+        }
+        
+        # Add conversation history to the request (limit to last 10 for performance)
+        recent_messages = conversation_history[-10:] if len(conversation_history) > 10 else conversation_history
+        for msg in recent_messages:
+            request_data["contents"].append({
+                "role": "model" if msg["role"] == "assistant" else "user",
+                "parts": [{"text": msg["content"]}]
+            })
+        
+        # Make the API request
+        response = requests.post(
+            f"{API_URL}?key={API_KEY}",
+            headers={"Content-Type": "application/json"},
+            json=request_data
+        )
+        
+        # Check if the response is successful
+        if response.status_code != 200:
+            print(f"Gemini API error: {response.text}")
+            return fallback_response(message)
+        
+        # Parse the response
+        response_data = response.json()
+        
+        # Extract and return the response text
+        return response_data["candidates"][0]["content"]["parts"][0]["text"]
+    
+    except Exception as e:
+        print(f"Error in Gemini API call: {str(e)}")
+        return fallback_response(message)
+
+@csrf_exempt
+@require_POST
+def chatbot_response(request):
+    try:
+        data = json.loads(request.body)
+        user_message = data.get('message', '')
+        conversation_history = data.get('conversation_history', [])
+        
+        # Validate input
+        if not user_message:
+            return JsonResponse({'status': 'error', 'message': 'No message provided'}, status=400)
+        
+        # Call the Gemini API or use fallback
+        response_text = call_gemini_api(user_message, conversation_history)
+        
+        # Return the response
+        return JsonResponse({
+            'status': 'success',
+            'response': response_text
+        })
+    
+    except json.JSONDecodeError:
+        return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")
+        return JsonResponse({
+            'status': 'error', 
+            'message': 'An error occurred processing your request',
+            'response': fallback_response(user_message) if 'user_message' in locals() else "I'm sorry, I couldn't process your request."
+        })
+
+# Endpoint to check if the API is available (helpful for client-side decisions)
+def check_api_status(request):
+    try:
+        response = requests.get(
+            f"https://generativelanguage.googleapis.com/v1/models?key={API_KEY}",
+            timeout=5
+        )
+        api_available = response.status_code == 200
+    except:
+        api_available = False
+    
+    return JsonResponse({
+        'status': 'success',
+        'api_available': api_available
+    })

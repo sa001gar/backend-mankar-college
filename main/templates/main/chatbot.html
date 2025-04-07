@@ -1,0 +1,95 @@
+<!-- Chat Toggle Button -->
+<button id="csbot-toggle-btn" class="csbot-toggle-btn">
+    <i class="fa-solid fa-message"></i> Chat with AI
+  </button>
+
+  <!-- Chat Modal -->
+  <div id="csbot-modal" class="csbot-modal">
+    <div class="csbot-container">
+      <!-- Header -->
+      <div class="csbot-header">
+        <div class="csbot-logo-container">
+          <div class="csbot-logo">MC</div>
+        </div>
+        <div class="csbot-header-text">
+          <h1>AI Asistant</h1>
+          <p>Talk to our AI Asistant</p>
+        </div>
+        <div class="csbot-feature-icons">
+          <button id="csbot-voice-toggle" class="csbot-feature-btn" aria-label="Toggle voice input">
+            <i class="fa-solid fa-microphone"></i>
+          </button>
+          <button id="csbot-theme-toggle" class="csbot-feature-btn" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+        <button id="csbot-close-btn" class="csbot-close-btn" aria-label="Close chat">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Chat Messages Area -->
+      <div class="csbot-messages" id="csbot-messages">
+        <!-- Messages will be added here by JavaScript -->
+      </div>
+
+      <!-- Shortcuts Panel -->
+      <div class="csbot-shortcuts-panel" id="csbot-shortcuts-panel">
+        <p>Common questions:</p>
+        <div class="csbot-shortcuts-container">
+          <button class="csbot-shortcut-btn" data-prompt="What courses are offered in the CS department?">
+            Course information
+          </button>
+          <button class="csbot-shortcut-btn" data-prompt="Who are the faculty members in the CS department?">
+            Faculty details
+          </button>
+          <button class="csbot-shortcut-btn" data-prompt="How can I apply for admission to CS programs?">
+            Admission process
+          </button>
+          <button class="csbot-shortcut-btn" data-prompt="What lab facilities are available for CS students?">
+            Lab facilities
+          </button>
+          <button class="csbot-shortcut-btn" data-prompt="How can I contact the CS department?">
+            Contact information
+          </button>
+          <button class="csbot-shortcut-btn" data-prompt="What career opportunities are available after CS degree?">
+            Career paths
+          </button>
+          <button class="csbot-shortcut-btn" data-prompt="What research areas does the CS department focus on?">
+            Research areas
+          </button>
+        </div>
+      </div>
+
+      <!-- Voice Panel -->
+      <div class="csbot-voice-panel" id="csbot-voice-panel">
+        <button id="csbot-voice-btn" class="csbot-voice-btn">
+          <i class="fas fa-microphone"></i>
+        </button>
+        <div id="csbot-voice-status" class="csbot-voice-status">
+          Click to start speaking
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="csbot-input-area">
+        <form id="csbot-form">
+          <button type="button" id="csbot-shortcuts-btn" class="csbot-icon-btn" aria-label="Show shortcuts">
+            <i class="fas fa-bolt"></i>
+          </button>
+          <div class="csbot-input-container">
+            <input type="text" id="csbot-message-input" placeholder="Type your message..." autocomplete="off" />
+            <button type="button" class="csbot-info-btn" aria-label="Information">
+              <i class="fas fa-info-circle"></i>
+            </button>
+          </div>
+          <button type="submit" id="csbot-send-btn" class="csbot-send-btn" aria-label="Send message">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+        <div class="csbot-footer-text">
+          <p>Department of Computer Science, Mankar College</p>
+        </div>
+      </div>
+    </div>
+  </div>
