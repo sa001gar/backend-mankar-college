@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Chat State
   let messages = [
-    { role: "assistant", content: "Hello! I'm the Department of Computer Science AI assistant powered by Gemini 2.0 Flash. How can I help you today? You can type your question or click the microphone to speak." }
+    { role: "assistant", content: "Hello! I'm the Department of Computer Science AI assistant powered by Kitto AI. How can I help you today? You can type your question or click the microphone to speak." }
   ];
   let isLoading = false;
   let isRecording = false;
