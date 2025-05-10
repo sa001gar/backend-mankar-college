@@ -6,12 +6,10 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
   
-  body {
-    background-color: #f9fafb;
-  }
 
-  .no-scroll {
-  overflow: hidden;
+
+body.no-scroll {
+  overflow: hidden!important;
   height: 100vh;
 }
 
