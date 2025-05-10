@@ -34,11 +34,7 @@ DEBUG = False
 # ALLOWED_HOSTS = ['127.0.0.1','localhost','13.233.152.122','https://redesign-mccs.sagarkundu.live/',]
 
 # CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    "https://computersciencemancoll.in",
-    "https://media.computersciencemancoll.in",
-]
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_COOKIE_SECURE = True
