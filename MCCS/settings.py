@@ -148,14 +148,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 
-import os
 
 # Static files settings
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Media files settings
-MEDIA_URL = "media/"    
+MEDIA_URL = 'https://media.computersciencemancoll.in/'
 MEDIA_ROOT = BASE_DIR / "media"
 
 
@@ -193,7 +192,7 @@ AWS_S3_REGION_NAME = 'auto'
 AWS_S3_ADDRESSING_STYLE = 'virtual'
 AWS_QUERYSTRING_AUTH = True  # makes uploaded files publicly accessible
 
-MEDIA_URL = 'https://media.computersciencemancoll.in/'
+
 
 
 from django.templatetags.static import static
@@ -204,17 +203,17 @@ UNFOLD = {
     "SITE_TITLE": "Department of Computer Science | Mankar College",
     "SITE_HEADER": "MCCS",
     "SITE_SUBHEADER": "Empowering students for the future",
-    "SITE_ICON":  os.path.join('/static/', "media/images/admin-panel.png"),
+    "SITE_ICON":  "https://media.computersciencemancoll.in/media/images/admin-panel.png",
     "SITE_FAVICONS": [
         {
             "rel": "icon",
             "sizes": "32x32",
             "type": "image/png",
-            "href": lambda request: os.path.join('/static/', "media/images/admin-panel.png"),
+            "href": "https://media.computersciencemancoll.in/media/images/admin-panel.png",
         },
     ],
     "LOGIN": {
-        "image": lambda request: os.path.join('/static/', "media/images/login_side.png"),
+        "image": "https://media.computersciencemancoll.in/media/images/login_side.png",
     },
     "SIDEBAR":{
         "show_search": True,  # Search in applications and models names

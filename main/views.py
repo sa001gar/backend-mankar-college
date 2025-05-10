@@ -267,11 +267,7 @@ def study_materials(request):
 
 
 # Chatbot Response API
-
-
-# In a real application, this should be stored securely, like in environment variables
-# You would access it with: API_KEY = os.environ.get('GEMINI_API_KEY')
-API_KEY = 'AIzaSyC3pNfBx5m7x5W5l-9-vYWAlKb4Yjz0i1k'  # Replace with your actual API key or use environment variable
+API_KEY = os.environ.get('GEMINI_API_KEY') 
 API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent'
 
 # Fallback responses if API fails
@@ -306,10 +302,10 @@ def call_gemini_api(message, conversation_history=None):
         
         Some key information about the CS Department at Mankar College:
         1. Programs: B.Sc. in Computer Science.
-        2. Faculty: 12 faculty members specializing in AI, data science, networking, and software engineering
+        2. Faculty: 8 faculty members specializing in AI, data science, networking, and software engineering
         3. Facilities: 5 state-of-the-art computer labs for AI research, networking, and software development
         4. Research Areas: Machine Learning, Cybersecurity, Cloud Computing, IoT, and Data Analytics
-        5. Contact: deptofcompsc@mankarcollege.ac.in, Phone: +91-XXXXXXXXXX, Office hours: Monday to Friday, 9 AM to 5 PM
+        5. Contact: deptofcompsc@mankarcollege.ac.in, Phone: +91-94759 29208, Office hours: Monday to Friday, 9 AM to 5 PM
         
         Always be conversational, concise, and accurate in your responses.
         Your task is to assist users with their queries related to the CS Department.

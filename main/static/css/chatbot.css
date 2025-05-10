@@ -9,7 +9,13 @@
   body {
     background-color: #f9fafb;
   }
-  
+
+  .no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+
   /* Chat Toggle Button */
   .csbot-toggle-btn {
     position: fixed;
@@ -24,7 +30,7 @@
     font-weight: 500;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-    z-index: 999;
+    z-index: 999!important;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -47,7 +53,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1000!important;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
