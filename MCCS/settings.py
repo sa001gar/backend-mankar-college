@@ -34,7 +34,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['127.0.0.1','localhost','13.233.152.122','https://redesign-mccs.sagarkundu.live/',]
 ALLOWED_HOSTS = ['*']
 CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['*',]
+CSRF_TRUSTED_ORIGINS = ['https://computersciencemancoll.in',]
 
 LOGGING = {
     'version': 1,
