@@ -936,7 +936,7 @@
   overflow: hidden;
   box-shadow: var(--cs-shadow);
   transition: var(--cs-transition);
-  height: clamp(400px, 50vw, 550px);
+  height: 400px;
   border: 1px solid var(--cs-primary);
   position: relative;
 }

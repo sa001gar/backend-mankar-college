@@ -294,12 +294,12 @@
                                     <h3 class="cs-student-name">{{alumni.name}}</h3>
                                     <p class="cs-student-batch">Batch of {{ alumni.batch_year }}-{{ alumni.batch_year|add:3 }}</p>
             
-                                    <div class="cs-achievement-tags">
+                                    {% comment %} <div class="cs-achievement-tags">
                                         {% for tag in alumni.achievements %}
                                             <span>{{ tag }}</span>
                                         {% endfor %}
                                     </div>
-                                    <p class="cs-student-quote">{{ alumni.quote|truncatechars:100 }}</p>
+                                    <p class="cs-student-quote">{{ alumni.quote|truncatechars:100 }}</p> {% endcomment %}
                                     <div class="cs-student-social">
                                         <a href="{{alumni.linkedin}}"><i class="fab fa-linkedin"></i></a>
                                         <a href="{{alumni.github}}"><i class="fab fa-github"></i></a>
@@ -342,8 +342,7 @@
                 <h3>Corporate Leaders</h3>
                 <p>Working at top companies like Google, Microsoft, Amazon, IBM, TCS, Infosys</p>
                 <div class="cs-company-logos">
-                <img src="https://media.computersciencemancoll.in/media/images/company_logos/ibm.webp" alt="IBM" class="cs-company-logo" style="height:40px; width:auto;">
-                <img src="https://media.computersciencemancoll.in/media/images/company_logos/tcs.png" alt="TCS" class="cs-company-logo" style="height:40px; width:auto;">
+                
                 </div>
             </div>
             
@@ -355,9 +354,7 @@
                 <h3>Government Services</h3>
                 <p>Serving in various government departments and public sector organizations</p>
                 <div class="cs-company-logos">
-                <img src="{% static 'media/company_logos/indian_government.png' %}" alt="Indian Government" class="cs-company-logo" style="height:40px; width:auto;">
-                <img src="{% static 'media/company_logos/railways.png' %}" alt="Indian Railways" class="cs-company-logo" style="height:40px; width:auto;">
-                <img src="{% static 'media/company_logos/isro.png' %}" alt="ISRO" class="cs-company-logo" style="height:40px; width:auto;">
+                
                 </div>
             </div>
             
@@ -369,9 +366,7 @@
                 <h3>Startups & Entrepreneurs</h3>
                 <p>Founding and leading innovative startups across various domains</p>
                 <div class="cs-company-logos">
-                <img src="{% static 'media/company_logos/zoho.png' %}" alt="Zoho" class="cs-company-logo" style="height:40px; width:auto;">
-                <img src="{% static 'media/company_logos/freshworks.png' %}" alt="Freshworks" class="cs-company-logo" style="height:40px; width:auto;">
-                <img src="{% static 'media/company_logos/paytm.png' %}" alt="Paytm" class="cs-company-logo" style="height:40px; width:auto;">
+                
                 </div>
             </div>
             
@@ -383,9 +378,7 @@
                 <h3>Higher Education</h3>
                 <p>Pursuing advanced degrees at prestigious universities worldwide</p>
                 <div class="cs-company-logos">
-                <img src="{% static 'media/company_logos/mit.png' %}" alt="MIT" class="cs-company-logo" style="height:40px; width:auto;">
-                <img src="{% static 'media/company_logos/stanford.png' %}" alt="Stanford" class="cs-company-logo" style="height:40px; width:auto;">
-                <img src="{% static 'media/company_logos/oxford.png' %}" alt="Oxford" class="cs-company-logo" style="height:40px; width:auto;">
+                
                 </div>
             </div>
             </div>
