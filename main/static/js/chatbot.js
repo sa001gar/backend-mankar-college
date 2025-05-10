@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
     chatModal.classList.add('active');
     messageInput.focus();
     chatToggleBtn.style.animation = 'none';
-    document.body.classList.add('no-scroll')
     
   }
   
@@ -125,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
     chatModal.classList.remove('active');
     shortcutsPanel.classList.remove('active');
     voicePanel.classList.remove('active');
-    document.body.classList.remove('no-scroll')
     
     if (isRecording && recognition) {
       recognition.stop();

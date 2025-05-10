@@ -8,11 +8,6 @@
   
 
 
-body.no-scroll {
-  overflow: hidden!important;
-  height: 100vh;
-}
-
 
   /* Chat Toggle Button */
   .csbot-toggle-btn {
