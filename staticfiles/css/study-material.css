@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --gradient: linear-gradient(135deg, #1a237e, #534bae);
+    /* --gradient: linear-gradient(to right, #8d0486, #e95783); */
+
+    --primary: #1a237e!important;
+    --secondary: #0a053dde!important;
+    --accent-study: #007bff!important;
+    --white: #ffffff!important;
+    --gray-100: #f8f9fa!important;
+    --gray-200: #e9ecef!important;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1)!important;
+}
+
+body {
+    background-color: var(--gray-100);
+    min-height: 100vh;
+    
+}
+
+.container {
+    max-width: 1200px;
+    margin: 35px auto;
+    padding: 0 2rem;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.tab {
+    padding: 1rem 2rem;
+    border: none;
+    background: var(--white);
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tab.active {
+    background: var(--gradient);
+    color: var(--white);
+}
+
+.year-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.year-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.semester-header {
+    background: var(--gradient);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.semester-header:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.semester-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.semester-header p {
+    opacity: 0.9;
+}
+
+.materials-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.materials-grid.active {
+    display: grid;
+    animation: fadeIn 0.5s ease;
+}
+
+.subject-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.subject-header {
+    background: var(--gradient);
+    color: var(--white);
+    padding: 1.5rem;
+    position: relative;
+}
+
+.subject-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.subject-header p {
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.material-list {
+    padding: 1.5rem;
+}
+
+.material-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+    transition: all 0.3s ease;
+}
+
+.material-item:last-child {
+    border-bottom: none;
+}
+
+.material-item:hover {
+    background: var(--gray-100);
+}
+
+.material-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    margin-right: 1rem;
+}
+
+.material-info {
+    flex: 1;
+}
+
+.material-info h4 {
+    color: var(--primary);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.material-info p {
+    color: var(--secondary);
+    font-size: 0.85rem;
+}
+
+.download-link {
+    color: var(--accent-study);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.download-link:hover {
+    color: var(--primary);
+}
+
+.question-papers {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 2rem 1rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+}
+
+.question-papers h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.papers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.paper-card {
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.paper-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.paper-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.paper-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.2rem;
+}
+
+.paper-info h4 {
+    color: var(--primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.paper-info p {
+    color: var(--secondary);
+    font-size: 0.85rem;
+}
+
+.paper-details {
+    margin: 1rem 0;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.year-select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    .tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab {
+        flex: 1 1 calc(50% - 1rem);
+        text-align: center;
+    }
+
+    .materials-grid, .papers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .semester-header {
+        padding: 1.5rem;
+    }
+
+    .semester-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .material-item {
+        padding: 1rem 0.4rem;
+    }
+    .material-list {
+        padding: 1.5rem 0.7rem;
+    }
+}

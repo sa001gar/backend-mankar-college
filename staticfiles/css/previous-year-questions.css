@@ -1,0 +1,450 @@
+/* Root Variables */
+:root {
+    /* Additional Variables */
+    --card-bg: #ffffff;
+    --card-hover-bg: #f9fafb;
+    --header-height: 70px;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+  }
+  
+
+  
+  /* Base Styles
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+  }
+   */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+  }
+  
+ 
+  
+  /* Banner Styles */
+  .page-banner {
+    background: var(--gradient);
+    color: var(--text-light);
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .page-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+  }
+  
+  .pyq-banner {
+    background: linear-gradient(to right, #f59e0b, #d97706);
+  }
+  
+  .banner-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .banner-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  
+  .banner-content p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+  }
+  
+  /* Main Content Styles */
+  .main-content {
+    flex: 1;
+    padding: 40px 0;
+  }
+  
+  /* Year Tabs */
+  .year-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .year-tab {
+    padding: 10px 25px;
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .year-tab:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .year-tab.active {
+    background: var(--gradient);
+    color: var(--text-light);
+  }
+  
+  /* Search Box */
+  .search-container {
+    margin-bottom: 30px;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 12px 20px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .search-box:focus-within {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  
+  .search-box i {
+    color: #6b7280;
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    color: var(--text-dark);
+  }
+  
+  .search-box input::placeholder {
+    color: #6b7280;
+  }
+  
+  
+  
+  /* Filter Container */
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .filter-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+  
+  .filter-select {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    transition: var(--transition);
+  }
+  
+  .filter-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(119, 87, 233, 0.2);
+  }
+  
+  .reset-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: var(--card-bg);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    font-weight: 500;
+    transition: var(--transition);
+    margin-top: 24px;
+  }
+  
+  .reset-button:hover {
+    background-color: var(--primary);
+    color: var(--text-light);
+  }
+  
+  /* Question Papers Content */
+  .question-papers-content {
+    margin-top: 40px;
+  }
+  
+  .papers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+  }
+  
+  .paper-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .paper-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .paper-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .paper-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+  }
+  
+  .paper-code {
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+  
+  .paper-details {
+    padding: 15px 20px;
+  }
+  
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .detail-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .detail-label {
+    color: #6b7280;
+  }
+  
+  .detail-value {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+  
+  .paper-actions {
+    padding: 15px 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .paper-btn {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+  
+  .download-paper-btn {
+    background-color: var(--primary);
+    color: var(--text-light);
+  }
+  
+  .download-paper-btn:hover {
+    background-color: var(--secondary);
+  }
+  
+  .view-paper-btn {
+    background-color: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+  }
+  
+  .view-paper-btn:hover {
+    background-color: rgba(119, 87, 233, 0.1);
+  }
+  
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .empty-state i {
+    font-size: 3rem;
+    color: #6b7280;
+    margin-bottom: 20px;
+  }
+  
+  .empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+  }
+  
+  .empty-state p {
+    color: #6b7280;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .banner-content h1 {
+      font-size: 2.2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .main-nav {
+      display: none;
+    }
+    
+    .mobile-menu-toggle {
+      display: flex;
+    }
+    
+    .banner-content h1 {
+      font-size: 1.8rem;
+    }
+    
+    .year-tab {
+      padding: 8px 15px;
+      font-size: 0.9rem;
+    }
+    
+    .semester-header {
+      padding: 15px 20px;
+    }
+    
+    .semester-header h2 {
+      font-size: 1.3rem;
+    }
+    
+    
+  }
+  
+  @media (max-width: 576px) {
+    .page-banner {
+      padding: 60px 20px;
+    }
+    
+    .banner-content h1 {
+      font-size: 1.5rem;
+    }
+    
+    .banner-content p {
+      font-size: 0.9rem;
+    }
+    
+    .year-tabs {
+      gap: 10px;
+    }
+    
+    .year-tab {
+      flex: 1;
+      min-width: 70px;
+      text-align: center;
+    }
+    
+    .filter-group {
+      min-width: 100%;
+    }
+    
+    .reset-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  /* Dark Mode Toggle Animation */
+  .theme-toggle i {
+    transition: var(--transition);
+  }
+  
+  .dark-mode .theme-toggle i {
+    transform: rotate(360deg);
+  }
+  
+  .dark-mode .theme-toggle i.fa-moon {
+    display: none;
+  }
+  
+  .dark-mode .theme-toggle i.fa-sun {
+    display: block;
+  }
+  
+  .theme-toggle i.fa-sun {
+    display: none;
+  }
