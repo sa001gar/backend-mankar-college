@@ -20,6 +20,8 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -32,7 +34,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['127.0.0.1','localhost','13.233.152.122','https://redesign-mccs.sagarkundu.live/',]
 ALLOWED_HOSTS = ['*']
 CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['https://redesign-mccs.sagarkundu.live',]
+CSRF_TRUSTED_ORIGINS = ['*',]
 
 LOGGING = {
     'version': 1,
