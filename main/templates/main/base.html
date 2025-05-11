@@ -107,9 +107,10 @@
               </li>
 
               <li class="nav-item"><a href="{% url 'alumni' %}">Alumni</a></li>
-              <li class="nav-item">
+              {% comment %} <li class="nav-item">
                 <a href="{% url 'gallery' %}">Student Corner</a>
-              </li>
+              </li> {% endcomment %}
+              
               <li class="nav-item dropdown">
                 <a href="#" class="dropdown-toggle">
                   Activities
@@ -130,7 +131,10 @@
               <li class="nav-item">
                 <a href="{% url 'feedback' %}">Feedback</a>
               </li>
-              <li class="nav-item"><a href="{% url 'team' %}">Team</a></li>
+              {% comment %} <li class="nav-item"><a href="{% url 'team' %}">Team</a></li> {% endcomment %}
+              <li class="nav-item">
+                <a href="https://beta.computersciencemancoll.in/quiz_system/" target="_blank">Quiz Portal</a>
+              </li>
             </ul>
           </div>
         </div>
