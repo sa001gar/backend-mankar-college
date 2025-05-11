@@ -1,6 +1,10 @@
 from django.contrib import admin
 from django.urls import path
 
+from django.contrib import sitemaps
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap
+
 from . import views
 
 
@@ -8,9 +12,7 @@ urlpatterns = [
     path('',views.home, name='home'),
     path('about/', views.about, name='about'),
     path('team/', views.team, name='team'),
-
     path('notices/', views.notices, name='notices'),
-
     path('faculty/', views.faculty, name='faculty'),
     path('alumni/', views.alumni, name='alumni'),
     path('gallery/', views.gallery, name='gallery'),
@@ -33,4 +35,6 @@ urlpatterns = [
 
     path('api/chatbot/response/', views.chatbot_response, name='chatbot_response'),
     path('api/chatbot/status/', views.check_api_status, name='chatbot_api_status'),
+
+    path('sitemap.xml', sitemap, {'sitemaps': {'static': StaticViewSitemap}}, name='sitemap'),
 ]
