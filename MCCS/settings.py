@@ -153,8 +153,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-
-
 # Static files settings
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -163,15 +161,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = 'https://media.computersciencemancoll.in/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
-
-
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
@@ -183,19 +176,12 @@ STORAGES = {
 }
 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-
-
-# settings.py
-
-
-
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')  # Your R2 bucket name
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
-
 AWS_S3_REGION_NAME = 'auto'
 AWS_S3_ADDRESSING_STYLE = 'virtual'
 AWS_QUERYSTRING_AUTH = True  # makes uploaded files publicly accessible
@@ -208,16 +194,16 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 UNFOLD = {
-    "SITE_TITLE": "Department of Computer Science | Mankar College",
-    "SITE_HEADER": "MCCS",
+    "SITE_TITLE": "Admin - Department of Computer Science | Mankar College",
+    "SITE_HEADER": "Admin Panel",
     "SITE_SUBHEADER": "Empowering students for the future",
-    "SITE_ICON":  "https://media.computersciencemancoll.in/media/images/admin-panel.png",
+    "SITE_ICON":  "https://media.computersciencemancoll.in/media/images/logo.jpeg",
     "SITE_FAVICONS": [
         {
             "rel": "icon",
             "sizes": "32x32",
             "type": "image/png",
-            "href": "https://media.computersciencemancoll.in/media/images/admin-panel.png",
+            "href": "https://media.computersciencemancoll.in/media/images/logo.jpeg",
         },
     ],
     "LOGIN": {
