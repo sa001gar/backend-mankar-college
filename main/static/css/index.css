@@ -524,6 +524,7 @@
   box-shadow: var(--cs-shadow);
   transition: var(--cs-transition);
   border-top: 4px solid var(--cs-accent);
+  text-align: justify!important;
 }
 
 .cs-about-card:hover {
@@ -554,7 +555,7 @@
   margin-bottom: 20px;
   line-height: 1.8;
   color: var(--cs-text-dark);
-  text-align: justify!important;
+  
 }
 
 .cs-about-features {
