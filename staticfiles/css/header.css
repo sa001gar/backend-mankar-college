@@ -41,6 +41,10 @@ body {
   background: var(--background);
 }
 
+a {
+  text-decoration: none!important;
+  
+}
 /* Header Css  */
 .header {
   /* position: sticky;
