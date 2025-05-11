@@ -1,5 +1,10 @@
 {% extends 'main/base.html' %}
 {% load static %}
+
+{% block title%} 
+<title>Alumni Profile | Department of Computer Science, Mankar College</title>
+{% endblock %}
+
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/alumni-profile.css'%}?v={{ now|date:"U" }}" />
 <div class="profile-container">

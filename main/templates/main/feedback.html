@@ -2,6 +2,10 @@
 {% load static %}
 {% comment %} {% block title %}Feedback Form{% endblock %} {% endcomment %}
 
+{% block title%} 
+<title>FeedBack | Department of Computer Science, Mankar College</title>
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/feedback.css'%}?v={{ now|date:"U" }}" />
 {% endblock %}

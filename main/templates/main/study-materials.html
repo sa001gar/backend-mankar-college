@@ -1,6 +1,9 @@
 {% extends 'main/base.html'%}
 {% load static %}
 
+{% block title%} 
+<title>Study Materials | Department of Computer Science, Mankar College</title>
+{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/study_materials.css'%}?v={{ now|date:"U" }}" />
