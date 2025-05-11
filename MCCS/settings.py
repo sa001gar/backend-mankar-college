@@ -30,16 +30,12 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-# ALLOWED_HOSTS = ['127.0.0.1','localhost','13.233.152.122','https://redesign-mccs.sagarkundu.live/',]
-
-# CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOW_ALL_ORIGINS = True
-
 ALLOWED_HOSTS = ['*']
+# CORS_ALLOW_ALL_ORIGINS = True
+
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = ['https://computersciencemancoll.in',]
-
+SESSION_COOKIE_SECURE = True
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -71,8 +67,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'storages',
+    'whitenoise.runserver_nostatic',
     # 'corsheaders',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -160,7 +160,7 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Media files settings
-MEDIA_URL = 'https://media.computersciencemancoll.in/'
+MEDIA_URL = 'https://media.computersciencemancoll.in/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
 
@@ -171,7 +171,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 STORAGES = {
     "default": {
@@ -185,7 +184,7 @@ STORAGES = {
 
 # settings.py
 
-INSTALLED_APPS += ['storages']
+
 
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
