@@ -159,7 +159,7 @@ class StudentFeedback(models.Model):
 class StudyMaterial(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    semester = models.CharField(max_length=10)
+    semester = models.IntegerField(max_length=2)
     subject = models.CharField(max_length=255)
     Lecture_notes = models.FileField(upload_to='lecture_notes/', validators=[
         FileExtensionValidator(allowed_extensions=['pdf', 'docx', 'pptx'])

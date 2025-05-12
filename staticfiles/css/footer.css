@@ -369,13 +369,13 @@
 .visitors-count h3 {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  color: var(--accent);
+  color: var(--footer-text);
   text-align: center;
 }
 
 .visitors-count p {
   font-size: 1rem;
-  color: var(--footer-text);
+  color: var(--accent);
   margin: 0;
 }
 

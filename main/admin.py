@@ -36,7 +36,7 @@ class GroupAdmin(BaseGroupAdmin, ModelAdmin):
 
 """Here all models of the app are registered with the admin site"""
 # Register your models here.
-from .models import GalleryCategory, GalleryItem , Alumni, Notice, NoticeCategory, StudentFeedback
+from .models import GalleryCategory, GalleryItem , Alumni, Notice, NoticeCategory, StudentFeedback, StudyMaterial
 @admin.register(Notice)
 class NoticeAdmin(ModelAdmin):
     pass
@@ -59,4 +59,8 @@ class AlumniAdmin(ModelAdmin):
 
 @admin.register(StudentFeedback)
 class StudentFeedbackAdmin(ModelAdmin):
+    pass
+
+@admin.register(StudyMaterial)
+class StudyMaterialAdmin(ModelAdmin):
     pass

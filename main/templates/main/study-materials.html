@@ -22,116 +22,49 @@
         <div class="lp-learning-filter-section">
             <div class="lp-learning-filter">
                 <select id="lp-semester-filter" aria-label="Select Semester">
+
                     <option value="">All Semesters</option>
-                    <option value="Semester 1">Semester 1</option>
-                    <option value="Semester 2">Semester 2</option>
-                    <option value="Semester 3">Semester 3</option>
-                    <option value="Semester 4">Semester 4</option>
-                    <option value="Semester 5">Semester 5</option>
+                    {% for semester in semesters %}
+                    <option value="Semester {{semester}}">Semester {{semester}}</option>
+                    {% endfor %}
+                    
                 </select>
             </div>
             <div class="lp-learning-filter">
                 <select id="lp-subject-filter" aria-label="Select Subject">
                     <option value="">All Subjects</option>
-                    <option value="Programming Foundations">Programming Foundations</option>
-                    <option value="Advanced Programming">Advanced Programming</option>
-                    <option value="Data Structures">Data Structures</option>
-                    <option value="Database Systems">Database Systems</option>
-                    <option value="Network Technologies">Network Technologies</option>
+                    {% for subject in subjects %}
+                    <option value="{{subject}}">{{subject}}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
 
         <div id="lp-courses-grid" class="lp-learning-courses-grid">
-            <div class="lp-learning-course-card" data-semester="Semester 1" data-subject="Programming Foundations">
-                <div class="lp-learning-course-header">
-                    <h2 class="lp-learning-course-title">Programming Foundations</h2>
-                    <span class="lp-learning-course-semester">Semester 1</span>
-                </div>
-                <p class="lp-learning-course-description">
-                    Dive into the world of programming with fundamental concepts, problem-solving techniques, and computational thinking.
-                </p>
-                <div class="lp-learning-course-actions">
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-notes">
-                        <i class="fas fa-file-alt"></i> Lecture Notes
-                    </a>
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-assignment">
-                        <i class="fas fa-tasks"></i> Assignments
-                    </a>
-                </div>
-            </div>
 
-            <div class="lp-learning-course-card" data-semester="Semester 2" data-subject="Advanced Programming">
+            {% for course in study_materials %}
+            <div class="lp-learning-course-card" data-semester="Semester {{course.semester}}" data-subject="{{course.subject}}">
                 <div class="lp-learning-course-header">
-                    <h2 class="lp-learning-course-title">Advanced Programming</h2>
-                    <span class="lp-learning-course-semester">Semester 2</span>
+                    <h2 class="lp-learning-course-title">{{course.title}} </h2>
+                    <span class="lp-learning-course-semester">Sem {{course.semester}} </span>
                 </div>
                 <p class="lp-learning-course-description">
-                    Explore advanced programming paradigms, design patterns, and sophisticated coding techniques for complex problem-solving.
+                    {{course.description}}
                 </p>
                 <div class="lp-learning-course-actions">
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-notes">
+                    <a href="{{course.Lecture_notes.url}}" class="lp-learning-course-btn lp-learning-course-btn-notes">
                         <i class="fas fa-file-alt"></i> Lecture Notes
                     </a>
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-assignment">
+                    <a href="{{course.assignment.url}}" class="lp-learning-course-btn lp-learning-course-btn-assignment">
                         <i class="fas fa-tasks"></i> Assignments
                     </a>
                 </div>
             </div>
+            {% endfor %}
 
-            <div class="lp-learning-course-card" data-semester="Semester 3" data-subject="Data Structures">
-                <div class="lp-learning-course-header">
-                    <h2 class="lp-learning-course-title">Data Structures</h2>
-                    <span class="lp-learning-course-semester">Semester 3</span>
-                </div>
-                <p class="lp-learning-course-description">
-                    Master essential data structures, algorithmic complexity, and efficient problem-solving strategies in computational thinking.
-                </p>
-                <div class="lp-learning-course-actions">
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-notes">
-                        <i class="fas fa-file-alt"></i> Lecture Notes
-                    </a>
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-assignment">
-                        <i class="fas fa-tasks"></i> Assignments
-                    </a>
-                </div>
-            </div>
+            
 
-            <div class="lp-learning-course-card" data-semester="Semester 4" data-subject="Database Systems">
-                <div class="lp-learning-course-header">
-                    <h2 class="lp-learning-course-title">Database Systems</h2>
-                    <span class="lp-learning-course-semester">Semester 4</span>
-                </div>
-                <p class="lp-learning-course-description">
-                    Comprehensive exploration of database design, SQL querying, normalization, and advanced data management techniques.
-                </p>
-                <div class="lp-learning-course-actions">
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-notes">
-                        <i class="fas fa-file-alt"></i> Lecture Notes
-                    </a>
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-assignment">
-                        <i class="fas fa-tasks"></i> Assignments
-                    </a>
-                </div>
-            </div>
-
-            <div class="lp-learning-course-card" data-semester="Semester 5" data-subject="Network Technologies">
-                <div class="lp-learning-course-header">
-                    <h2 class="lp-learning-course-title">Network Technologies</h2>
-                    <span class="lp-learning-course-semester">Semester 5</span>
-                </div>
-                <p class="lp-learning-course-description">
-                    In-depth study of network architectures, protocols, security mechanisms, and modern communication technologies.
-                </p>
-                <div class="lp-learning-course-actions">
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-notes">
-                        <i class="fas fa-file-alt"></i> Lecture Notes
-                    </a>
-                    <a href="#" class="lp-learning-course-btn lp-learning-course-btn-assignment">
-                        <i class="fas fa-tasks"></i> Assignments
-                    </a>
-                </div>
-            </div>
+            
         </div>
     </div>
 {% endblock %}

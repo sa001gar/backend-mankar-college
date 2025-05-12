@@ -12,7 +12,7 @@ import requests
 from django.conf import settings
 
 
-from .models import GalleryItem, GalleryCategory, Alumni, Notice, StudentFeedback
+from .models import GalleryItem, GalleryCategory, Alumni, Notice, StudentFeedback,StudyMaterial
 from .forms import AlumniForm
 
 """
@@ -263,7 +263,15 @@ def submit_feedback(request):
     return JsonResponse({"error": "Invalid request"}, status=400)
 
 def study_materials(request):
-    return render(request, 'main/study-materials.html')
+    # Get all study materials
+    study_materials = StudyMaterial.objects.all()
+    subjects= StudyMaterial.objects.values_list('subject', flat=True).distinct()
+    semesters= StudyMaterial.objects.values_list('semester', flat=True).distinct()
+    return render(request, 'main/study-materials.html', {
+        'study_materials': study_materials,
+        'subjects': subjects,
+        'semesters': semesters,
+    })
 
 
 
