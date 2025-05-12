@@ -69,10 +69,10 @@ class Alumni(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     display = models.BooleanField(default=False)
     bio = models.TextField(blank=True)
-    passcode = models.CharField(max_length=6)  # Stores the 6-digit passcode
-    title=models.CharField(max_length=100, blank=True)  # New field for title
-    achievements = models.JSONField(default=list, blank=True)  # New field for multiple achievements
-    quote = models.TextField(blank=True)  # New field for a personal quote
+    # New fields
+    education=models.CharField(max_length=100, blank=True)  # New field for title
+    skills = models.JSONField(default=list, blank=True)  # New field for multiple achievements
+    # quote = models.TextField(blank=True)  # New field for a personal quote
 
     class Meta:
         ordering = ['-batch_year', 'name']
@@ -153,3 +153,25 @@ class StudentFeedback(models.Model):
     def __str__(self):
         return f"{self.name} - {self.email_id}"
 
+
+
+# Study Meterial Model
+class StudyMaterial(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    semester = models.CharField(max_length=10)
+    subject = models.CharField(max_length=255)
+    Lecture_notes = models.FileField(upload_to='lecture_notes/', validators=[
+        FileExtensionValidator(allowed_extensions=['pdf', 'docx', 'pptx'])
+    ], blank=True)
+    assignment = models.FileField(upload_to='assignments/', validators=[
+        FileExtensionValidator(allowed_extensions=['pdf', 'docx', 'pptx'])
+    ], blank=True)
+    date = models.DateField()
+    
+    class Meta:
+        ordering = ['-date']
+        verbose_name_plural = 'Study Materials'
+    
+    def __str__(self):
+        return self.title

@@ -6,7 +6,7 @@ class AlumniForm(forms.ModelForm):
         model = Alumni
         fields = [
             "name", "batch_year", "current_position", "company",
-            "profile_image", "linkedin_url", "github", "email", "bio", "passcode"
+            "profile_image", "linkedin_url", "github", "email", "bio","skills","education",
         ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your full name'}),
@@ -17,6 +17,8 @@ class AlumniForm(forms.ModelForm):
             'github': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'GitHub profile URL'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your email address'}),
             "bio": forms.Textarea(attrs={"rows": 3, "class": "form-control", "placeholder": "Write a short bio about yourself"}),
-            'passcode': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '6-digit passcode'})
+            "skills": forms.TextInput(attrs={"class": "form-control", "placeholder": "Enter your skills (comma-separated)"}),
+            "education": forms.TextInput(attrs={"class": "form-control", "placeholder": "Enter your education (e.g., B.Tech in CSE)"}),
+            
         }
     
