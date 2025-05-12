@@ -22,8 +22,8 @@ urlpatterns = [
     path('study-material/', views.study_materials, name='study-material'),
 
     path('alumni/register', views.register_alumni, name='register-alumni'),
-    path('alumni/update/<int:pk>/', views.update_alumni_profile, name='update-alumni'),
-    path('alumni/profile/<int:pk>/', views.alumni_profile, name='alumni-profile'),
+    # path('alumni/update/<slug:pk>/', views.update_alumni_profile, name='update-alumni'),
+    path('alumni/profile/<slug:name>/', views.alumni_profile, name='alumni-profile'),
 
    
 

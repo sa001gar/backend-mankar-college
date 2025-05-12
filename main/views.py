@@ -97,51 +97,52 @@ def register_alumni(request):
         "passcode_help_text": "This passcode will be required for profile updates.",})
         
 
-# Update Alumni Profile View Function
-def update_alumni_profile(request, pk):
-    alumni = get_object_or_404(Alumni, pk=pk)
+# # Update Alumni Profile View Function
+# def update_alumni_profile(request, pk):
+#     alumni = get_object_or_404(Alumni, pk=pk)
 
-    # Step 1: Enforce Passcode Verification Before Allowing Updates
-    if request.session.get("passcode_verified") != pk:
-        if request.method == "POST":
-            entered_passcode = request.POST.get("passcode")
-            if entered_passcode == alumni.passcode:
-                request.session["passcode_verified"] = pk  # Store verification in session
-                return redirect("update-alumni", pk=pk)  
-            else:
-                messages.error(request, "Incorrect passcode. Please try again.")
+#     # Step 1: Enforce Passcode Verification Before Allowing Updates
+#     if request.session.get("passcode_verified") != pk:
+#         if request.method == "POST":
+#             entered_passcode = request.POST.get("passcode")
+#             if entered_passcode == alumni.passcode:
+#                 request.session["passcode_verified"] = pk  # Store verification in session
+#                 return redirect("update-alumni", pk=pk)  
+#             else:
+#                 messages.error(request, "Incorrect passcode. Please try again.")
 
-        return render(request, "main/alumni_passcode_verify.html", {"alumni": alumni})
+#         return render(request, "main/alumni_passcode_verify.html", {"alumni": alumni})
 
-    # Step 2: Allow Profile Update Only If Passcode Is Verified
-    if request.method == "POST":
-        form = AlumniForm(request.POST, request.FILES, instance=alumni)
-        if form.is_valid():
-            form.save()
-            request.session.pop("passcode_verified", None)  # Remove verification after updating
-            messages.success(request, "Profile updated successfully!")
-            return redirect("alumni")  # Redirect to alumni page after update
-        else:
-            messages.error(request, "Please correct the errors in the form.")
+#     # Step 2: Allow Profile Update Only If Passcode Is Verified
+#     if request.method == "POST":
+#         form = AlumniForm(request.POST, request.FILES, instance=alumni)
+#         if form.is_valid():
+#             form.save()
+#             request.session.pop("passcode_verified", None)  # Remove verification after updating
+#             messages.success(request, "Profile updated successfully!")
+#             return redirect("alumni")  # Redirect to alumni page after update
+#         else:
+#             messages.error(request, "Please correct the errors in the form.")
 
-    else:
-        form = AlumniForm(instance=alumni)
+#     else:
+#         form = AlumniForm(instance=alumni)
 
-    return render(request, "main/register_alumni.html", {
-        "form": form,
-        "form_title": "Update Alumni Profile",
-        "submit_button_text": "Update Profile",
-        "passcode_label": "Enter Passcode",
-        "passcode_help_text": "Enter your 6-digit passcode to update the profile.",
-    })
+#     return render(request, "main/register_alumni.html", {
+#         "form": form,
+#         "form_title": "Update Alumni Profile",
+#         "submit_button_text": "Update Profile",
+#         "passcode_label": "Enter Passcode",
+#         "passcode_help_text": "Enter your 6-digit passcode to update the profile.",
+#     })
 
 
 # Alumni Profile View Function
-def alumni_profile(request, pk):
-    alumni=Alumni.objects.get(pk=pk)
+def alumni_profile(request, name):
+    # Convert 'john-doe' -> 'John Doe'
+    name_from_url = name.replace('-', ' ')
+    alumni = get_object_or_404(Alumni, name__iexact=name_from_url)
     return render(request, 'main/alumni_profile.html', {
         'alumni': alumni,
-        
     })
 
 # API to get alumni data by batch number

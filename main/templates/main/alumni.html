@@ -69,7 +69,7 @@
         alumni.name
       }" onerror="this.src='/static/main/images/default-profile.jpg'">
                 </div>
-                <a href="/alumni/update/${alumni.id}" class="edit-icon" title="Edit Profile">
+                <a href="/alumni/" class="edit-icon" title="Edit Profile">
                     <i class="fa-regular fa-pen-to-square"></i>
                 </a>
             </div>
@@ -105,8 +105,7 @@
                         : ""
                     }
                 </div>
-                <a href="/alumni/profile/${
-                  alumni.id
+                <a href="/alumni/profile/${alumni.name.replace(/\s+/g, '-').toLowerCase()}"
                 }" class="view-profile-link">View Profile</a>
             </div>
         </div>

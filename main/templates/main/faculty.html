@@ -34,7 +34,7 @@
     </div>
     <!-- End Faculty Page  -->
 
-    <script src="{% static 'js/faculty.js' %}"></script>
+    <script src="{% static 'js/faculty.js' %}?v={{ now|date:"U" }}"></script>
 
 {% endblock %}
 

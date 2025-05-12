@@ -11,7 +11,7 @@
 <div class="profile-page-container">
     <!-- Top Navigation Bar -->
     <div class="profile-top-bar">
-      <a href="#" class="profile-back-button">
+      <a href="{% url 'alumni'%}" class="profile-back-button">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 12H5"></path>
           <path d="M12 19l-7-7 7-7"></path>
@@ -24,24 +24,30 @@
           <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
           <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
         </svg>
-        Edit Profile
+        Edit Request
       </a>
     </div>
 
     <!-- Profile Banner and Info -->
     <div class="profile-container">
-      <div class="profile-banner">
-        <div class="profile-banner-pattern"></div>
-        <span class="profile-batch-badge">Batch 2017</span>
-      </div>
+    <div class="profile-banner">
+      <div class="profile-banner-pattern"></div>
+      <span class="profile-batch-badge">{{ alumni.batch_year }} - {{ alumni.batch_year|add:"1" }}</span>
+    </div>
       
       <div class="profile-info-wrapper">
         <div class="profile-header">
-          <img class="profile-photo" src="/api/placeholder/160/160" alt="Sourav Hazra">
+
+            {% if alumni.profile_image %}
+                <img class="profile-photo" src="{{ alumni.profile_image.url }}" alt="{{ alumni.name }}'s Profile Image">
+            {% else %}
+                <img src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1741016611~exp=1741020211~hmac=0077e334fa3d55a25de05d0e897c39e794840c6707c8849a530831e89b3136cc&w=740" alt="Default Profile Image">
+            {% endif %}
+          
           
           <div class="profile-header-content">
-            <h1 class="profile-name">Sourav Hazra</h1>
-            <p class="profile-title">Web Developer</p>
+            <h1 class="profile-name">{{alumni.name}} </h1>
+            <p class="profile-title">{{alumni.current_position}} </p>
             
             <div class="profile-actions">
               <a href="#" class="profile-company-button">
@@ -49,24 +55,24 @@
                   <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                   <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 </svg>
-                Samassa Solutions Pvt. Ltd
+                {{alumni.company}}
               </a>
               
               <div class="profile-social-links">
-                <a href="#" class="profile-social-link" aria-label="Email">
+                <a href="{{alumni.email}}" class="profile-social-link" aria-label="Email">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
                   </svg>
                 </a>
-                <a href="#" class="profile-social-link" aria-label="LinkedIn">
+                <a href="{{alumni.linkedin}}" class="profile-social-link" aria-label="LinkedIn">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                     <rect x="2" y="9" width="4" height="12"></rect>
                     <circle cx="4" cy="4" r="2"></circle>
                   </svg>
                 </a>
-                <a href="#" class="profile-social-link" aria-label="GitHub">
+                <a href="{{alumni.github}}" class="profile-social-link" aria-label="GitHub">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                   </svg>
@@ -91,7 +97,11 @@
           About
         </h2>
         <div class="profile-card-content">
-          <p>Web developer with 5+ years of experience specializing in responsive design, user experience, and modern frontend frameworks.</p>
+        {% if alumni.bio %}
+            <p>{{ alumni.bio }}</p>
+        {% else %}
+            <p>Department of Computer Science, Mankar College batch year {{ alumni.batch_year }} passout.</p>
+        {% endif %}
         </div>
       </div>
       
@@ -106,10 +116,10 @@
         </h2>
         <div class="profile-card-content">
           <div class="profile-experience-item">
-            <div class="profile-company-logo">S</div>
+            <div class="profile-company-logo">{{alumni.company|first}}</div>
             <div class="profile-experience-details">
-              <div class="profile-company-name">Samassa Solutions Pvt. Ltd</div>
-              <div class="profile-job-title">Web Developer</div>
+              <div class="profile-company-name">{{alumni.company}}</div>
+              <div class="profile-job-title">{{alumni.current_position}}</div>
               <div class="profile-job-duration">Current</div>
             </div>
           </div>

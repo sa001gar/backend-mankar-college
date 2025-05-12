@@ -13,12 +13,7 @@
     }
 
 
-    body {
-      background-color: var(--profile-light-gray);
-      color: var(--profile-dark);
-      line-height: 1.5;
-    }
-
+    
     .profile-page-container {
       max-width: 1200px;
       margin: 0 auto;
