@@ -172,7 +172,7 @@ const facultyMembers = [
         id: 9,
         name: 'Bapi Mondal',
         email: 'bapi.m@example.com',
-        image: 'https://media.computersciencemancoll.in/media/images/kunal_sir.enc',
+        image: 'https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1741016611~exp=1741020211~hmac=0077e334fa3d55a25de05d0e897c39e794840c6707c8849a530831e89b3136cc&w=740',
         featured: false,
         isTeaching: false,
         department: 'Administration',
