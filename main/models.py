@@ -159,7 +159,7 @@ class StudentFeedback(models.Model):
 class StudyMaterial(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    semester = models.IntegerField(max_length=2)
+    semester = models.IntegerField()
     subject = models.CharField(max_length=255)
     Lecture_notes = models.FileField(upload_to='lecture_notes/', validators=[
         FileExtensionValidator(allowed_extensions=['pdf', 'docx', 'pptx'])
@@ -175,3 +175,13 @@ class StudyMaterial(models.Model):
     
     def __str__(self):
         return self.title
+
+# Reminder Model
+class Reminder(models.Model):
+    name= models.CharField(max_length=255)
+    email=models.EmailField()
+    whatsapp_number=models.CharField(max_length=15)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.email}"

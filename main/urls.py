@@ -27,6 +27,7 @@ urlpatterns = [
 
    
 
+    path('api/create-reminder/', views.create_reminder, name='create_reminder'),
 
     path('api/submit-feedback/', views.submit_feedback, name='submit-feedback'),
     path('gallery-data/', views.gallery_data, name='gallery-data'),

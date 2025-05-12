@@ -12,7 +12,7 @@ import requests
 from django.conf import settings
 
 
-from .models import GalleryItem, GalleryCategory, Alumni, Notice, StudentFeedback,StudyMaterial
+from .models import GalleryItem, GalleryCategory, Alumni, Notice, StudentFeedback,StudyMaterial, Reminder
 from .forms import AlumniForm
 
 """
@@ -406,3 +406,21 @@ def check_api_status(request):
         'status': 'success',
         'api_available': api_available
     })
+
+@csrf_exempt  # For simplicity; better to use CSRF token properly in production
+def create_reminder(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            name = data.get('name')
+            email = data.get('email')
+            whatsapp = data.get('whatsapp_number')
+
+            if not name or not email or not whatsapp:
+                return JsonResponse({'error': 'All fields are required'}, status=400)
+
+            Reminder.objects.create(name=name, email=email, whatsapp_number=whatsapp)
+            return JsonResponse({'message': 'Reminder saved successfully'})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    return JsonResponse({'error': 'Invalid request'}, status=400)

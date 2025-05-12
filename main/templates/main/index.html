@@ -3,10 +3,13 @@
 
 {% block title %}
     <title>Home | Department of Computer Science, Mankar College</title>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
 {% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}?v={{ now|date:"U" }}" />
+    <link rel="stylesheet" href="{% static 'css/reminder_modal.css' %}?v={{ now|date:"U" }}" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 {% endblock %}
 
@@ -431,7 +434,7 @@
                         <div class="cs-cta-card-content">
                             <h3>Next Admission Cycle</h3>
                             <p>Applications open: June 15, 2025</p>
-                            <a href="#" class="cs-cta-card-link">Set a Reminder <i class="fas fa-bell"></i></a>
+                            <span class="cs-cta-card-link"  id="admn-trigger-link">Set a Reminder <i class="fas fa-bell"></i></span>
                         </div>
                     </div>
                 </div>
@@ -439,51 +442,87 @@
         </div>
     </section>
 
-    {% comment %} <!-- Contact Section - Redesigned CTA -->
-    <section class="cs-contact-section">
-        <div class="cs-container">
-            <div class="cs-contact-wrapper">
-                <div class="cs-contact-content">
-                    <h2>Begin Your Educational Journey With Us</h2>
-                    <p>Discover how our programs can help you achieve your academic and professional goals.</p>
-                    <div class="cs-contact-buttons">
-                        <a href="#" class="cs-btn-primary">Apply Now <i class="fas fa-arrow-right"></i></a>
-                        <a href="#" class="cs-btn-outline-light">Contact Us</a>
-                    </div>
-                </div>
-                <div class="cs-contact-image">
-                    <img src="/placeholder.svg?height=300&width=500" alt="Campus">
-                </div>
+    <!-- Modal Overlay -->
+    <div class="admn-modal-overlay" id="reminderModal">
+        <div class="admn-modal-container">
+            <!-- Modal Header -->
+            <div class="admn-modal-header">
+                <h2 class="admn-modal-title">Get Admission Reminders</h2>
+                <button class="admn-modal-close" id="admn-close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            
-            <div class="cs-contact-info-boxes">
-                <div class="cs-info-box">
-                    <div class="cs-info-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Visit Us</h3>
-                    <p>Mankar College, Mankar<br>West Bengal, India</p>
+
+            <!-- Logo (Replace with your actual logo) -->
+            <div class="admn-modal-logo">
+                <!-- Replace the src with your actual logo path -->
+                <img src="https://media.computersciencemancoll.in/media/images/favicon.png" alt="Company Logo" class="admn-logo-img">
+            </div>
+
+            <!-- Modal Form -->
+            <div class="admn-modal-form" id="admn-form">
+                <div class="admn-form-group">
+                    <label for="admn-name-input" class="admn-form-label">
+                        <i class="fas fa-user admn-form-icon"></i>
+                        Full Name
+                    </label>
+                    <input 
+                        type="text" 
+                        id="admn-name-input" 
+                        class="admn-form-input" 
+                        placeholder="Enter your full name"
+                        required
+                    >
                 </div>
-                
-                <div class="cs-info-box">
-                    <div class="cs-info-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <h3>Call Us</h3>
-                    <p>(0342)-265012, 265043<br>+91-9000000000</p>
+
+                <div class="admn-form-group">
+                    <label for="admn-whatsapp-input" class="admn-form-label">
+                        <i class="fab fa-whatsapp admn-form-icon"></i>
+                        WhatsApp Number
+                    </label>
+                    <input 
+                        type="tel" 
+                        id="admn-whatsapp-input" 
+                        class="admn-form-input" 
+                        placeholder="Enter your WhatsApp number"
+                        pattern="[0-9]{10}" 
+                        required
+                    >
                 </div>
-                
-                <div class="cs-info-box">
-                    <div class="cs-info-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>Email Us</h3>
-                    <p>info@gmail.com<br>admissions@gmail.com</p>
+
+                <div class="admn-form-group">
+                    <label for="admn-email-input" class="admn-form-label">
+                        <i class="fas fa-envelope admn-form-icon"></i>
+                        Email Address
+                    </label>
+                    <input 
+                        type="email" 
+                        id="admn-email-input" 
+                        class="admn-form-input" 
+                        placeholder="Enter your email address"
+                        required
+                    >
                 </div>
+
+                <button class="admn-submit-btn" id="admn-submit-btn">
+                    <i class="fas fa-bell"></i>
+                    Get Notified
+                </button>
+            </div>
+
+            <!-- Success Message (Initially Hidden) -->
+            <div class="admn-success-message" id="admn-success">
+                <div class="admn-success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="admn-success-title">You're All Set!</h3>
+                <p class="admn-success-text">We'll send you timely reminders about upcoming admission cycles. Stay tuned!</p>
+                <button class="admn-done-btn" id="admn-done-btn">Done</button>
             </div>
         </div>
-    </section> {% endcomment %}
-    
+    </div>
+
+   
     
     
 
@@ -492,4 +531,117 @@
 {% block scripts%}
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="{% static 'js/index.js' %}?v={{ now|date:"U" }}"></script>
+    <script>
+     // Get DOM elements
+const triggerLink = document.getElementById('admn-trigger-link');
+const modal = document.getElementById('reminderModal');
+const closeBtn = document.getElementById('admn-close-btn');
+const submitBtn = document.getElementById('admn-submit-btn');
+const nameInput = document.getElementById('admn-name-input');
+const emailInput = document.getElementById('admn-email-input');
+const whatsappInput = document.getElementById('admn-whatsapp-input');
+const form = document.getElementById('admn-form');
+const success = document.getElementById('admn-success');
+const doneBtn = document.getElementById('admn-done-btn');
+
+// CSRF helper function
+function getCSRFToken() {
+    const name = 'csrftoken';
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + '=')) {
+            return decodeURIComponent(cookie.substring(name.length + 1));
+        }
+    }
+    return '';
+}
+
+// Open modal
+function openReminderModal(e) {
+    e.preventDefault();
+    modal.classList.add('is-open');
+    form.style.display = 'flex';
+    success.classList.remove('is-visible');
+}
+
+// Close modal
+function closeReminderModal() {
+    modal.classList.remove('is-open');
+}
+
+// Submit handler
+function handleSubmit(e) {
+    e.preventDefault();
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const whatsapp = whatsappInput.value.trim();
+
+    if (name && email && whatsapp) {
+        fetch('/api/create-reminder/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify({ name, email, whatsapp_number: whatsapp })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                form.style.display = 'none';
+                success.classList.add('is-visible');
+                nameInput.value = '';
+                emailInput.value = '';
+                whatsappInput.value = '';
+            } else {
+                alert(data.error || 'Something went wrong. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error occurred. Check console.');
+        });
+    } else {
+        // Add error styles
+        if (!name) {
+            nameInput.style.borderColor = '#ef4444';
+            nameInput.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.2)';
+        }
+        if (!email) {
+            emailInput.style.borderColor = '#ef4444';
+            emailInput.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.2)';
+        }
+        if (!whatsapp) {
+            whatsappInput.style.borderColor = '#ef4444';
+            whatsappInput.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.2)';
+        }
+
+        // Reset styles after 2 seconds
+        setTimeout(() => {
+            nameInput.style.borderColor = '#e5e7eb';
+            nameInput.style.boxShadow = 'none';
+            emailInput.style.borderColor = '#e5e7eb';
+            emailInput.style.boxShadow = 'none';
+            whatsappInput.style.borderColor = '#e5e7eb';
+            whatsappInput.style.boxShadow = 'none';
+        }, 2000);
+    }
+}
+
+// Event listeners
+triggerLink.addEventListener('click', openReminderModal);
+closeBtn.addEventListener('click', closeReminderModal);
+submitBtn.addEventListener('click', handleSubmit);
+doneBtn.addEventListener('click', closeReminderModal);
+
+// Close modal if clicking outside the modal content
+modal.addEventListener('click', function (e) {
+    if (e.target === modal) {
+        closeReminderModal();
+    }
+});
+
+    </script>
 {% endblock %}
