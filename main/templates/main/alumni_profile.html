@@ -7,76 +7,142 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/alumni-profile.css'%}?v={{ now|date:"U" }}" />
-<div class="profile-container">
-    <div class="profile-header">
-        <div class="header-content">
-            <a href="{% url 'alumni' %}" class="back-link">
-                <i class="fas fa-arrow-left"></i> Back to Alumni
-            </a>
-            <a href="{% url 'update-alumni' alumni.id %}" class="edit-button">
-                <i class="fas fa-edit"></i> Edit Profile
-            </a>
-        </div>
+
+<div class="profile-page-container">
+    <!-- Top Navigation Bar -->
+    <div class="profile-top-bar">
+      <a href="#" class="profile-back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5"></path>
+          <path d="M12 19l-7-7 7-7"></path>
+        </svg>
+        Back to Alumni Directory
+      </a>
+      
+      <a href="#" class="profile-edit-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+        </svg>
+        Edit Profile
+      </a>
     </div>
-    <div class="profile-card">
-        <div class="profile-card-header">
-            <div class="profile-image-container">
-                {% if alumni.profile_image %}
-                    <img src="{{ alumni.profile_image.url }}" alt="{{ alumni.name }}'s Profile Image">
-                {% else %}
-                    <img src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?t=st=1741016611~exp=1741020211~hmac=0077e334fa3d55a25de05d0e897c39e794840c6707c8849a530831e89b3136cc&w=740" alt="Default Profile Image">
-                {% endif %}
-            </div>
-            <span class="batch-badge">Batch {{ alumni.batch_year }}</span>
-        </div>
-        
-        <div class="profile-info">
-            <h1 class="alumni-name">{{ alumni.name }}</h1>
-            <p class="alumni-position">{{ alumni.current_position }}</p>
-            <div class="alumni-company">{{ alumni.company }}</div>
+
+    <!-- Profile Banner and Info -->
+    <div class="profile-container">
+      <div class="profile-banner">
+        <div class="profile-banner-pattern"></div>
+        <span class="profile-batch-badge">Batch 2017</span>
+      </div>
+      
+      <div class="profile-info-wrapper">
+        <div class="profile-header">
+          <img class="profile-photo" src="/api/placeholder/160/160" alt="Sourav Hazra">
+          
+          <div class="profile-header-content">
+            <h1 class="profile-name">Sourav Hazra</h1>
+            <p class="profile-title">Web Developer</p>
             
-            <div class="profile-sections">
-                <div class="profile-section">
-                    <h2 class="section-title"><i class="fas fa-info-circle"></i> About</h2>
-                    <p class="section-content">{{ alumni.bio|linebreaks }}</p>
-                </div>
-                
-                <!-- Since there are no related models for experiences, education, and skills in your current model,
-                     we'll need to either add those models or remove these sections -->
-                
-                <!-- If you want to keep the sections but show a message when they're not available: -->
-                <div class="profile-section">
-                    <h2 class="section-title"><i class="fas fa-briefcase"></i> Experience</h2>
-                    <div class="section-content timeline">
-                        <p>Currently working as {{ alumni.current_position }} at {{ alumni.company }}</p>
-                    </div>
-                </div>
+            <div class="profile-actions">
+              <a href="#" class="profile-company-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+                Samassa Solutions Pvt. Ltd
+              </a>
+              
+              <div class="profile-social-links">
+                <a href="#" class="profile-social-link" aria-label="Email">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </a>
+                <a href="#" class="profile-social-link" aria-label="LinkedIn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+                <a href="#" class="profile-social-link" aria-label="GitHub">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                </a>
+              </div>
             </div>
-            
-            <div class="contact-section">
-                <h2 class="section-title"><i class="fas fa-paper-plane"></i> Connect</h2>
-                <div class="social-links">
-                    {% if alumni.email %}
-                        <a href="mailto:{{ alumni.email }}" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    {% endif %}
-                    
-                    {% if alumni.linkedin_url %}
-                        <a href="{{ alumni.linkedin_url }}" target="_blank" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    {% endif %}
-                    
-                    {% if alumni.github %}
-                        <a href="{{ alumni.github }}" target="_blank" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+    
+    <!-- Content Section -->
+    <div class="profile-content-grid">
+      <!-- About Section -->
+      <div class="profile-content-card">
+        <h2 class="profile-card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          About
+        </h2>
+        <div class="profile-card-content">
+          <p>Web developer with 5+ years of experience specializing in responsive design, user experience, and modern frontend frameworks.</p>
+        </div>
+      </div>
+      
+      <!-- Experience Section -->
+      <div class="profile-content-card">
+        <h2 class="profile-card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          Experience
+        </h2>
+        <div class="profile-card-content">
+          <div class="profile-experience-item">
+            <div class="profile-company-logo">S</div>
+            <div class="profile-experience-details">
+              <div class="profile-company-name">Samassa Solutions Pvt. Ltd</div>
+              <div class="profile-job-title">Web Developer</div>
+              <div class="profile-job-duration">Current</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Skills Section (Additional section) -->
+      <div class="profile-content-card">
+        <h2 class="profile-card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+          </svg>
+          Skills
+        </h2>
+        <div class="profile-card-content">
+          <p>Frontend development, HTML5, CSS3, JavaScript, React, Responsive Web Design, UI/UX Design</p>
+        </div>
+      </div>
+      
+      <!-- Education Section (Additional section) -->
+      <div class="profile-content-card">
+        <h2 class="profile-card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c0 3 5 3 5 0v-5"></path>
+          </svg>
+          Education
+        </h2>
+        <div class="profile-card-content">
+          <p>Bachelor of Technology in Computer Science</p>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- No JavaScript required anymore -->
 {% endblock %}
