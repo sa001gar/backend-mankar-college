@@ -199,40 +199,45 @@
           TCS, CTS, Wipro, IBM etc and in different government organisations,
           Banks and PSUs.
         </p>
-        <div class="newsletter">
+        {% comment %} <div class="newsletter">
           <h3>Subscribe to Newsletter</h3>
           <form class="newsletter-form" id="newsletter-form">
             <input type="email" class="newsletter-input" placeholder="Enter your email" required>
             <button type="submit" class="newsletter-btn">Subscribe</button>
           </form>
+        </div> {% endcomment %}
+        <div class="visitors-count">
+          <h3>Visitors Count</h3>
+          {% comment %} <p>Total Visitors: {{ visitors_count }}</p> {% endcomment %}
+          <p>Total Visitors: 500</p>
         </div>
         <div class="footer-social-links">
           <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="X"><i class="fab fa-x"></i></a>
         </div>
       </div>
 
       <div class="footer-section useful-links">
         <h2>Useful Links</h2>
         <ul>
-          <li><a href="#">Alumni</a></li>
-          <li><a href="#">Faculty</a></li>
-          <li><a href="#">Study Material</a></li>
-          <li><a href="#">Question Bank</a></li>
-          <li><a href="#">Student FeedBack</a></li>
-          <li><a href="#">Department Gallery</a></li>
-          <li><a href="#">Mankar College</a></li>
-          <li><a href="#">University of Burdwan</a></li>
+          <li><a href="{% url 'alumni' %}">Alumni</a></li>
+          <li><a href="{% url 'faculty' %}">Faculty</a></li>
+          <li><a href="{% url 'study-material' %}">Study Material</a></li>
+          <li><a href="{% url 'previous-papers' %}">Question Bank</a></li>
+          <li><a href="{% url 'feedback' %}">Student FeedBack</a></li>
+          <li><a href="{% url 'gallery' %}">Department Gallery</a></li>
+          <li><a href="https://mankarcollege.ac.in/">Mankar College</a></li>
+          <li><a href="https://www.buruniv.ac.in/" target="_blank" >University of Burdwan</a></li>
         </ul>
       </div>
 
       <div class="footer-section contact-info">
         <h2>Contact Us</h2>
         <p><i class="fas fa-phone"></i> Phone: +91 9475929208 | 8967857658</p>
-        <p><i class="fas fa-envelope"></i> Email: kkm.nitdgp@gmail.com</p>
+        <p><i class="fas fa-envelope"></i> Email: contact@computersciencemancoll.in</p>
         <p><i class="fas fa-map-marker-alt"></i> Mankar College, Mankar, West Bengal</p>
         <div class="map-container">
           <iframe

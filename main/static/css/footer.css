@@ -349,3 +349,37 @@
     padding: 0.8rem;
   }
 }
+
+.visitors-count {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: var(--accent);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.visitors-count h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--footer-text);
+  text-align: center;
+}
+
+.visitors-count p {
+  font-size: 1rem;
+  color: var(--accent);
+  margin: 0;
+}
+
+.visitors-count:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
