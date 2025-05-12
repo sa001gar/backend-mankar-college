@@ -224,8 +224,8 @@ def syllabus(request):
     return render(request, 'main/syllabus.html',{'number':number})
 
 # Previous Year Questions View Function    
-def previous_papers(request):
-    return render(request, 'main/previous-year-questions.html')
+# def previous_papers(request):
+#     return render(request, 'main/previous-year-questions.html')
 
 
 # Feedback = StudentFeedback View Function
@@ -424,3 +424,43 @@ def create_reminder(request):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+def previous_papers(request):
+    # Sample data structure - in a real app, this would come from your database
+    papers_2023 = [
+        {
+            "subject": "Introduction to Programming",
+            "code": "CS101",
+            "semester": "1",
+            "exam_type": "Midterm",
+            "duration": "1.5 hours",
+            "max_marks": 50
+        },
+        {
+            "subject": "Data Structures and Algorithms",
+            "code": "CS201",
+            "semester": "2",
+            "exam_type": "Final",
+            "duration": "3 hours",
+            "max_marks": 100
+        }
+    ]
+    
+    papers_2024 = [
+        {
+            "subject": "Introduction to Programming",
+            "code": "CS101",
+            "semester": "1",
+            "exam_type": "Midterm",
+            "duration": "1.5 hours",
+            "max_marks": 50
+        }
+    ]
+    
+    context = {
+        'papers_2023': papers_2023,
+        'papers_2024': papers_2024,
+    }
+    
+    return render(request, 'main/previous-year-questions.html', context)

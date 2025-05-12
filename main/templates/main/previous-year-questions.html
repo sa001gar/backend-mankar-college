@@ -5,16 +5,40 @@
 <title>Previous Year Question Paper | Department of Computer Science, Mankar College</title>
 {% endblock %}
 
+{% block css %}
+<style>
+    .papers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.paper-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.paper-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Add this to ensure proper display when filtering */
+.paper-card[style*="display: none"] {
+    display: none !important;
+}
+</style>
+{% endblock %}
+
+
+
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/previous-year-questions.css'%}?v={{ now|date:"U" }}" />
-
-<div class="page-banner pyq-banner">
-    <div class="banner-content">
-        <h1>Previous Year Question Papers</h1>
-        <p>Practice with past examination papers to excel in your exams</p>
-    </div>
-</div>
 
 <main class="main-content">
     <div class="container">
@@ -44,12 +68,11 @@
                 <label for="subjectFilter">Subject</label>
                 <select id="subjectFilter" class="filter-select">
                     <option value="all">All Subjects</option>
-                    <option value="CSE101">Programming Fundamentals (CSE101)</option>
+                    <option value="CS101">Programming Fundamentals (CS101)</option>
                     <option value="MAT101">Engineering Mathematics (MAT101)</option>
-                    <option value="CSE102">Object-Oriented Programming (CSE102)</option>
-                    <option value="CSE103">Data Structures (CSE103)</option>
-                    <option value="CSE201">Database Management Systems (CSE201)</option>
-                    <option value="CSE202">Computer Organization (CSE202)</option>
+                    <option value="CS201">Data Structures (CS201)</option>
+                    <option value="CS102">Object-Oriented Programming (CS102)</option>
+                    <option value="CS202">Computer Organization (CS202)</option>
                 </select>
             </div>
             <button id="resetFilters" class="reset-button">
@@ -57,20 +80,87 @@
             </button>
         </div>
 
-        <div class="search-container">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="paperSearch" placeholder="Search for question papers...">
-            </div>
-        </div>
-
         <div id="questionPapersContent" class="question-papers-content">
             <div class="papers-grid">
                 <!-- 2023 Papers -->
-                
-                
+                {% for paper in papers_2023 %}
+                <div class="paper-card" data-year="2023" data-semester="{{ paper.semester }}" data-subject="{{ paper.code }}">
+                    <div class="paper-header">
+                        <h3 class="paper-title">{{ paper.subject }}</h3>
+                        <p class="paper-code">{{ paper.code }}</p>
+                    </div>
+                    <div class="paper-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Year</span>
+                            <span class="detail-value">2023</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Semester</span>
+                            <span class="detail-value">{{ paper.semester }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Exam Type</span>
+                            <span class="detail-value">{{ paper.exam_type }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">{{ paper.duration }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Max Marks</span>
+                            <span class="detail-value">{{ paper.max_marks }}</span>
+                        </div>
+                    </div>
+                    <div class="paper-actions">
+                        <button class="paper-btn download-paper-btn">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="paper-btn view-paper-btn">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
 
-
+                <!-- 2024 Papers -->
+                {% for paper in papers_2024 %}
+                <div class="paper-card" data-year="2024" data-semester="{{ paper.semester }}" data-subject="{{ paper.code }}">
+                    <div class="paper-header">
+                        <h3 class="paper-title">{{ paper.subject }}</h3>
+                        <p class="paper-code">{{ paper.code }}</p>
+                    </div>
+                    <div class="paper-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Year</span>
+                            <span class="detail-value">2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Semester</span>
+                            <span class="detail-value">{{ paper.semester }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Exam Type</span>
+                            <span class="detail-value">{{ paper.exam_type }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">{{ paper.duration }}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Max Marks</span>
+                            <span class="detail-value">{{ paper.max_marks }}</span>
+                        </div>
+                    </div>
+                    <div class="paper-actions">
+                        <button class="paper-btn download-paper-btn">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="paper-btn view-paper-btn">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
