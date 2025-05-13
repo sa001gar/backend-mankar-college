@@ -281,15 +281,16 @@
     <!-- Header Link  -->
     <script src="{% static 'js/header.js'%}?v={{ now|date:"U" }}"></script>
     <script src="{% static 'js/chatbot.js'%}?v={{ now|date:"U" }}"></script>
-    <script>
-        setInterval(() => {
-          fetch('https://visitors.computersciencemancoll.in', {
-            method: 'POST',
-            keepalive: true
-          });
-        }, 30000); // every 30 seconds
+    {% comment %} <script>
+        (function keepVisitorAlive() {
+            function ping() {
+                navigator.sendBeacon('https://visitors.computersciencemancoll.in');
+            } 
+          ping(); // ping immediately
+          setInterval(ping, 30000); // every 30 seconds
+        })();
+</script> {% endcomment %}
 
-    </script>
 
     <script>
       
