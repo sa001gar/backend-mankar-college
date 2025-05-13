@@ -6,7 +6,7 @@
     padding: 3rem 1rem;
     inset: -1em;
     --c: 7px;
-    background: #eee1ff;
+    background: #a79fed;
     /* background-image: 
         radial-gradient(circle at 50% 50%, #0000 1.5px, #000 0 var(--c), #0000 var(--c)),
         radial-gradient(circle at 50% 50%, #0000 1.5px, #000 0 var(--c), #0000 var(--c)),
@@ -41,7 +41,7 @@
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 900px;
+    max-width: 1000px;
     overflow: hidden;
 }
 

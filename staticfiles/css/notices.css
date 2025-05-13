@@ -1,5 +1,5 @@
 main {
-    background: var(--primary);
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
     min-height: 100vh;
     color: white;
     padding: 2rem;
@@ -258,12 +258,12 @@ main::before {
 }
 
 .btn-download:hover {
-    background: var(--accent);
+    background: #f5680b;
     transform: translateY(-2px);
 }
 
 .btn-download:active {
-    background: var(--accent);
+    background: #f5680b;
     transform: translateY(0);
 }
 @media (max-width: 768px) {
