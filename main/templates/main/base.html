@@ -282,6 +282,16 @@
     <script src="{% static 'js/header.js'%}?v={{ now|date:"U" }}"></script>
     <script src="{% static 'js/chatbot.js'%}?v={{ now|date:"U" }}"></script>
     <script>
+        setInterval(() => {
+          fetch('https://visitors.computersciencemonthcall.in', {
+            method: 'POST',
+            keepalive: true
+          });
+        }, 30000); // every 30 seconds
+
+    </script>
+
+    <script>
       
       document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('current-year').textContent = new Date().getFullYear();
