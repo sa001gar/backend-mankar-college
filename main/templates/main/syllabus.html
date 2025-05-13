@@ -1,432 +1,296 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title%} 
+{% block title %} 
 <title>Syllabus | Department of Computer Science, Mankar College</title>
 {% endblock %}
 
 {% block content %}
-<!-- PDF.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 <style>
-    
     .syllabus-section {
-        min-height: calc(100vh - 300px);
-        padding: 3rem 1rem;
-        background: var(--gradient);
-        
+        padding: 2rem 1rem;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
     }
 
     .syllabus-container {
-        {% comment %} max-width: 1200px; {% endcomment %}
+        max-width: 1200px;
         margin: 0 auto;
         background: white;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         overflow: hidden;
+        transition: all 0.3s ease;
     }
 
     .syllabus-header {
         padding: 2rem;
-        background: white;
         text-align: center;
+        background: white;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .syllabus-header h1 {
         color: var(--primary);
-        font-size: 2rem;
-        margin-bottom: 1rem;
+        font-size: 2.25rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
     }
 
     .syllabus-header p {
-        color: #6b7280;
-        max-width: 600px;
-        margin: 0 auto;
+        color: #64748b;
+        font-size: 1.1rem;
     }
 
     .syllabus-content {
-        display: grid;
-        grid-template-columns: 300px 1fr;
+        display: flex;
+        flex-wrap: wrap;
         min-height: 600px;
     }
 
     .syllabus-sidebar {
+        flex: 1 1 280px;
         background: #f8fafc;
-        border-right: 1px solid var(--border);
-        padding: 1.5rem;
-    }
-
-    .semester-list {
-        list-style: none;
-        padding: 0;
-    }
-
-    .semester-item {
-        margin-bottom: 0.5rem;
+        padding: 1.75rem;
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
+        height: 100%;
     }
 
     .semester-button {
+        display: block;
         width: 100%;
-        padding: 1rem;
-        text-align: left;
-        background: none;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        font-size: 1rem;
-        color: var(--text-dark);
+        padding: 1rem 1.25rem;
+        margin-bottom: 0.75rem;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 10px;
+        background: white;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
+        text-align: left;
+        font-weight: 500;
+        font-size: 1rem;
+        color: #334155;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
     }
 
     .semester-button:hover {
-        background: #f1f5f9;
-        border-color: var(--primary);
+        background: rgba(var(--primary-rgb), 0.05);
+        border-color: rgba(var(--primary-rgb), 0.2);
+        transform: translateY(-2px);
     }
 
     .semester-button.active {
         background: var(--primary);
         color: white;
         border-color: var(--primary);
+        box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
     }
 
     .semester-button i {
-        font-size: 1.25rem;
-    }
-
-    .pdf-viewer {
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .pdf-controls {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        padding: 0.5rem;
-        background: #f8fafc;
-        border-radius: 8px;
-    }
-
-    .pdf-controls button {
-        padding: 0.5rem 1rem;
-        background: white;
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: all 0.2s ease;
-    }
-
-    .pdf-controls button:hover {
-        background: #f1f5f9;
-        border-color: var(--primary);
+        margin-right: 10px;
+        font-size: 1.1rem;
     }
 
     .pdf-container {
-        width: 100%;
-        height: 800px;
-        border: 1px solid var(--border);
+        flex: 3 1 700px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pdf-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+    }
+
+    .download-btn {
+        background: var(--primary);
+        color: white;
+        padding: 0.75rem 1.25rem;
         border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .download-btn:hover {
+        background: var(--primary-dark, #0369a1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
+    }
+
+    .download-btn i {
+        margin-right: 8px;
+    }
+
+    .pdf-viewer {
+        flex-grow: 1;
+        border-radius: 12px;
         overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        background: #f8fafc;
+    }
+
+    iframe {
+        width: 100%;
+        height: 700px;
+        border: none;
+    }
+
+    /* Loading state */
+    .pdf-loading {
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 700px;
+        background: #f8fafc;
+        color: #64748b;
+        font-size: 1.1rem;
     }
 
-    .pdf-container canvas {
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-    @media (max-width: 768px) {
-        .syllabus-content {
-            grid-template-columns: 1fr;
-        }
-
-        .syllabus-sidebar {
-            border-right: none;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pdf-container {
-            height: clamp(400px, 50vw, 800px);
-        }
-    }
-
-    /* Loading animation */
-    .loading {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 400px;
-    }
-
-    .loading-spinner {
-        width: 40px;
-        height: 40px;
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid var(--primary);
-        border-radius: 50%;
+    .pdf-loading i {
+        margin-right: 10px;
         animation: spin 1s linear infinite;
     }
 
     @keyframes spin {
-        0% {
-            transform: rotate(0deg);
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive styles */
+    @media (max-width: 992px) {
+        .syllabus-container {
+            margin: 0 1rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .syllabus-content {
+            flex-direction: column-reverse;
         }
 
-        100% {
-            transform: rotate(360deg);
+        .syllabus-sidebar {
+            border-right: none;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+        }
+
+        .pdf-container {
+            padding: 1.5rem;
+        }
+
+        iframe {
+            height: 500px;
         }
     }
 
-    /* Download button */
-    .download-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        background: var(--primary);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        margin-top: 1rem;
-    }
+    @media (max-width: 480px) {
+        .syllabus-header h1 {
+            font-size: 1.75rem;
+        }
 
-    .download-btn:hover {
-        background: var(--secondary);
-        transform: translateY(-1px);
-    }
+        .semester-button {
+            padding: 0.75rem 1rem;
+        }
 
-    /* Error message */
-    .pdf-error {
-        padding: 2rem;
-        text-align: center;
-        color: #ef4444;
+        .pdf-actions {
+            justify-content: center;
+        }
+
+        iframe {
+            height: 400px;
+        }
     }
 </style>
 
-<!-- Syllabus Section -->
 <section class="syllabus-section">
     <div class="syllabus-container">
         <div class="syllabus-header">
             <h1>Course Syllabus</h1>
-            <p>Access the detailed syllabus for each semester of the Computer Science program. Click on a semester
-                to view or download the corresponding syllabus.</p>
+            <p>Access and download the Department of Computer Science syllabi by semester</p>
         </div>
 
         <div class="syllabus-content">
             <div class="syllabus-sidebar">
-                <ul class="semester-list">
-
-                    <!-- Semester buttons -->
-                    {% for i in number %}
-                    <li class="semester-item">
-                        <button class="semester-button {% if i == 1 %}active{% endif %}"
-                            data-pdf="{% get_media_prefix %}syllabus/Semester{{ i }}.pdf">
-                            <i class="fas fa-file-pdf"></i>
-                            {{ i }}{% if i == 1 %}st{% elif i == 2 %}nd{% elif i == 3 %}rd{% else %}th{% endif %}
-                            Semester
-                        </button>
-                    {% endfor %}
-                    {% comment %} <li class="semester-item">
-                        <button class="semester-button active" data-pdf="{% get_media_prefix %}syllabus/Semester1.pdf">
-                            <i class="fas fa-file-pdf"></i>
-                            1st Semester
-                        </button>
-                    </li>
-                    {% endcomment %}
-                </ul>
+                {% for i in number %}
+                <button 
+                    class="semester-button {% if i == 1 %}active{% endif %}" 
+                    data-pdf="{% get_media_prefix %}syllabus/Semester{{ i }}.pdf">
+                    <i class="fas fa-file-pdf"></i>
+                    {{ i }}{% if i == 1 %}st{% elif i == 2 %}nd{% elif i == 3 %}rd{% else %}th{% endif %} Semester
+                </button>
+                {% endfor %}
             </div>
 
-            <div class="pdf-viewer">
-                <div class="pdf-controls">
-                    <button id="prev-page">
-                        <i class="fas fa-chevron-left"></i>
-                        Previous
-                    </button>
-                    <button id="next-page">
-                        Next
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                    <span id="page-info">Page: 1 / 1</span>
+            <div class="pdf-container">
+                <div class="pdf-actions">
+                    <a href="{% get_media_prefix %}syllabus/Semester1.pdf" class="download-btn" id="download-link" download>
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
                 </div>
-
-                <div class="pdf-container">
-                    <!-- PDF will be rendered here -->
-                    <div class="loading">
-                        <div class="loading-spinner"></div>
-                    </div>
+                
+                <div class="pdf-viewer">
+                    <iframe id="pdf-frame" src="{% get_media_prefix %}syllabus/Semester1.pdf" allowfullscreen></iframe>
                 </div>
-
-                <a href="#" class="download-btn" id="download-pdf" download>
-                    <i class="fas fa-download"></i>
-                    Download PDF
-                </a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- JavaScript for syllabus page -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const semesterButtons = document.querySelectorAll('.semester-button');
-        const pdfContainer = document.querySelector('.pdf-container');
-        const downloadBtn = document.getElementById('download-pdf');
-        const prevButton = document.getElementById('prev-page');
-        const nextButton = document.getElementById('next-page');
-        const pageInfo = document.getElementById('page-info');
+        const buttons = document.querySelectorAll('.semester-button');
+        const iframe = document.querySelector('#pdf-frame');
+        const downloadLink = document.querySelector('#download-link');
         
-        let currentPdfUrl = '';
-        let pdfDoc = null;
-        let pageNum = 1;
-        let pageRendering = false;
-        let pageNumPending = null;
-        let canvas = document.createElement('canvas');
-        let ctx = canvas.getContext('2d');
-        
-        // Initialize PDF.js
-        const pdfjsLib = window['pdfjs-dist/build/pdf'];
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://media.computersciencemancoll.in/media/images/static/js/pdf.worker.min.js';
-        
-        function renderPage(num) {
-            pageRendering = true;
-            
-            // Show loading indicator
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'loading';
-            loadingDiv.innerHTML = '<div class="loading-spinner"></div>';
-            pdfContainer.innerHTML = '';
-            pdfContainer.appendChild(loadingDiv);
-            
-            pdfDoc.getPage(num).then(function(page) {
-                // Calculate scale to fit the container
-                const viewport = page.getViewport({ scale: 1.0 });
-                const containerWidth = pdfContainer.clientWidth - 20; // Subtract padding
-                const containerHeight = pdfContainer.clientHeight - 20;
+        // Set initial download link
+        let currentPdf = "{% get_media_prefix %}syllabus/Semester1.pdf";
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Remove active from all buttons
+                buttons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Get PDF path
+                currentPdf = this.getAttribute('data-pdf');
                 
-                // Calculate scale to fit width and height
-                const scaleWidth = containerWidth / viewport.width;
-                const scaleHeight = containerHeight / viewport.height;
-                const scale = Math.min(scaleWidth, scaleHeight);
+                // Show loading state
+                iframe.style.display = 'none';
+                iframe.insertAdjacentHTML('afterend', '<div class="pdf-loading" id="loading-indicator"><i class="fas fa-spinner"></i> Loading PDF...</div>');
                 
-                const scaledViewport = page.getViewport({ scale: scale });
-                
-                canvas.height = scaledViewport.height;
-                canvas.width = scaledViewport.width;
-                
-                const renderContext = {
-                    canvasContext: ctx,
-                    viewport: scaledViewport
+                // Update iframe src
+                iframe.onload = function() {
+                    // Remove loading indicator when PDF is loaded
+                    const loadingIndicator = document.getElementById('loading-indicator');
+                    if (loadingIndicator) {
+                        loadingIndicator.remove();
+                    }
+                    iframe.style.display = 'block';
                 };
                 
-                pdfContainer.innerHTML = '';
-                pdfContainer.appendChild(canvas);
+                iframe.setAttribute('src', currentPdf);
                 
-                const renderTask = page.render(renderContext);
-                
-                renderTask.promise.then(function() {
-                    pageRendering = false;
-                    
-                    if (pageNumPending !== null) {
-                        renderPage(pageNumPending);
-                        pageNumPending = null;
-                    }
-                }).catch(function(error) {
-                    console.error('Error rendering PDF page:', error);
-                    pdfContainer.innerHTML = '<div class="pdf-error">Error rendering PDF. Please try again.</div>';
-                });
-            }).catch(function(error) {
-                console.error('Error getting PDF page:', error);
-                pdfContainer.innerHTML = '<div class="pdf-error">Error loading PDF page. Please try again.</div>';
-            });
-            
-            pageInfo.textContent = 'Page: ' + num + ' / ' + pdfDoc.numPages;
-        }
-        
-        function queueRenderPage(num) {
-            if (pageRendering) {
-                pageNumPending = num;
-            } else {
-                renderPage(num);
-            }
-        }
-        
-        function onPrevPage() {
-            if (pageNum <= 1) {
-                return;
-            }
-            pageNum--;
-            queueRenderPage(pageNum);
-        }
-        
-        function onNextPage() {
-            if (pageNum >= pdfDoc.numPages) {
-                return;
-            }
-            pageNum++;
-            queueRenderPage(pageNum);
-        }
-        
-        prevButton.addEventListener('click', onPrevPage);
-        nextButton.addEventListener('click', onNextPage);
-        
-        function loadPdf(url) {
-            currentPdfUrl = url;
-            downloadBtn.href = url;
-            
-            // Show loading indicator
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'loading';
-            loadingDiv.innerHTML = '<div class="loading-spinner"></div>';
-            pdfContainer.innerHTML = '';
-            pdfContainer.appendChild(loadingDiv);
-            
-            // Using PDF.js to load and render PDF
-            pdfjsLib.getDocument(url).promise.then(function(pdf) {
-                pdfDoc = pdf;
-                pageNum = 1;
-                renderPage(pageNum);
-            }).catch(function(error) {
-                console.error('Error loading PDF:', error);
-                pdfContainer.innerHTML = '<div class="pdf-error">Error loading PDF. Please check if the file exists and try again.</div>';
-            });
-        }
-        
-        // Initialize with first semester PDF
-        if (semesterButtons.length > 0) {
-            loadPdf(semesterButtons[0].dataset.pdf);
-        }
-        
-        // Handle semester button clicks
-        semesterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active state
-                semesterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Load PDF
-                loadPdf(button.dataset.pdf);
+                // Update download link
+                downloadLink.setAttribute('href', currentPdf);
             });
         });
         
-        // Handle window resize to adjust PDF scale
-        window.addEventListener('resize', function() {
-            if (pdfDoc) {
-                renderPage(pageNum);
-            }
+        // Add smooth hover effect to container
+        const container = document.querySelector('.syllabus-container');
+        container.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        container.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
         });
     });
 </script>

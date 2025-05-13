@@ -224,7 +224,7 @@ def get_alumni_by_batch(request):
 
 # Syllabus View Function
 def syllabus(request):
-    number=range(1,9)
+    number=range(1,3)
     return render(request, 'main/syllabus.html',{'number':number})
 
 # Previous Year Questions View Function    
