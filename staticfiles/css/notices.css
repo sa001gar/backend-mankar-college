@@ -1,5 +1,5 @@
 main {
-    background: #1B263B;
+    background: var(--primary);
     min-height: 100vh;
     color: white;
     padding: 2rem;
@@ -239,6 +239,33 @@ main::before {
     font-size: 0.9rem;
 }
 
+.download-button {
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.btn-download {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-download:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+.btn-download:active {
+    background: var(--accent);
+    transform: translateY(0);
+}
 @media (max-width: 768px) {
     main {
         padding: 1rem;

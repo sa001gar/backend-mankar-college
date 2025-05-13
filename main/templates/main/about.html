@@ -7,69 +7,59 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/about.css' %}?v={{ now|date:"U" }}" />
+<link rel="stylesheet" href="{% static 'css/index.css' %}?v={{ now|date:"U" }}" />
 {% endblock %} 
 
 {% block content %}
-<!-- About Department Section -->
-<section class="about-department">
-    <div class="container">
-        <div class="section-header">
-            <h2>About Our Department</h2>
-            <p>Excellence in Computer Science Education and Research</p>
-        </div>
-        <div class="about-content">
-            <div class="about-image">
-                <img src="https://media.computersciencemancoll.in/media/images/header/img_2.jpg" alt="Computer Science Department" />
+<!-- About Department Section - Redesigned -->
+    <section class="cs-about-department">
+        <div class="cs-container">
+            <div class="cs-section-header">
+                {% comment %} <h2>About Our Department</h2>
+                <div class="cs-underline"></div>
+                <p>Excellence in Computer Science Education and Research</p> {% endcomment %}
             </div>
-            <div class="about-text">
-                <h3>Pioneering Computer Science Education</h3>
-                <p>
-                    The Department of Computer Science at Mankar College was established
-                    in 2005 with a vision to provide quality education in the field of
-                    computer science and information technology. Over the years, we have
-                    evolved into a center of excellence, nurturing talent and fostering
-                    innovation.
-                </p>
-                <p>
-                    Our department is equipped with state-of-the-art laboratories, a
-                    comprehensive library, and experienced faculty members dedicated to
-                    providing students with both theoretical knowledge and practical
-                    skills.
-                </p>
-                <div class="about-features">
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-laptop-code"></i>
+            <div class="cs-about-content">
+                <div class="cs-about-image">
+                    <div class="cs-image-grid">
+                        <div class="cs-grid-item cs-grid-item-1">
+                            <img src="https://media.computersciencemancoll.in/media/images/header/img_4.jpg" alt="Computer Lab">
+                            <div class="cs-grid-overlay">
+                                <span>Computer Lab</span>
+                            </div>
                         </div>
-                        <div class="feature-text">
-                            <h4>Modern Curriculum</h4>
-                            <p>Industry-aligned courses updated regularly</p>
+                        <div class="cs-grid-item cs-grid-item-2">
+                            <img src="https://media.computersciencemancoll.in/media/images/header/img_3.jpg" alt="Students">
+                            <div class="cs-grid-overlay">
+                                <span>Student Activities</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-users"></i>
+                        <div class="cs-grid-item cs-grid-item-3">
+                            <img src="https://media.computersciencemancoll.in/media/images/header/img_1.jpg" alt="Campus">
+                            <div class="cs-grid-overlay">
+                                <span>Campus View</span>
+                            </div>
                         </div>
-                        <div class="feature-text">
-                            <h4>Expert Faculty</h4>
-                            <p>Experienced professors with research background</p>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <div class="feature-text">
-                            <h4>Research Focus</h4>
-                            <p>Emphasis on innovation and practical applications</p>
+                        <div class="cs-grid-item cs-grid-item-4">
+                            <img src="https://media.computersciencemancoll.in/media/images/header/img_4.jpg" alt="Event">
+                            <div class="cs-grid-overlay">
+                                <span>Tech Events</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <a href="#" class="btn-primary">Learn More</a>
+                <div class="cs-about-text">
+                    <div class="cs-about-card">
+                        <h3>Pioneering Computer Science</h3>
+                        <p>The Department of Computer Science at Mankar College was established in 2005 with a vision to provide quality education in the field of computer science and information technology. Over the years, we have evolved into a center of excellence, nurturing talent and fostering innovation.</p>
+                        <p>Our department is equipped with state-of-the-art laboratories, a comprehensive library, and a team of experienced,dedicated faculty, we ensure that students receive a balance blend of theoretical foundations & Hands on Practical Experience. Our approach is designed to equip students with the skills, knowledge and mindset require to excel in both academia & Industry.</p>
+                        
+                        <a href="{% url 'about' %}" class="cs-btn-primary">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 <!-- Programs Offered Section -->
 <section class="programs-section">
