@@ -6,7 +6,7 @@
 {% endblock %} 
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/about.css' %}" />
+<link rel="stylesheet" href="{% static 'css/about.css' %}?v={{ now|date:"U" }}" />
 {% endblock %} 
 
 {% block content %}
@@ -146,138 +146,6 @@
         </div>
     </div>
 </section>
-{% comment %} 
-<!-- Faculty Section -->
-<section class="faculty-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Our Faculty</h2>
-            <p>Meet Our Experienced and Dedicated Team</p>
-        </div>
-
-        <div class="faculty-filter">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="professor">Professors</button>
-            <button class="filter-btn" data-filter="assistant">
-                Assistant Professors
-            </button>
-            <button class="filter-btn" data-filter="visiting">
-                Visiting Faculty
-            </button>
-        </div>
-
-        <div class="faculty-container">
-            <div class="faculty-card" data-category="professor">
-                <div class="faculty-image">
-                    <img
-                        src="/placeholder.svg?height=300&width=300"
-                        alt="Dr. Amit Kumar"
-                    />
-                    <div class="faculty-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-                <div class="faculty-info">
-                    <h3>Dr. Amit Kumar</h3>
-                    <p class="faculty-position">Professor & Head of Department</p>
-                    <p class="faculty-specialization">
-                        Specialization: Artificial Intelligence, Machine Learning
-                    </p>
-                    <p class="faculty-education">
-                        Ph.D. in Computer Science, IIT Kharagpur
-                    </p>
-                    <button class="faculty-details-btn">View Profile</button>
-                </div>
-            </div>
-
-            <div class="faculty-card" data-category="assistant">
-                <div class="faculty-image">
-                    <img
-                        src="/placeholder.svg?height=300&width=300"
-                        alt="Dr. Priya Sharma"
-                    />
-                    <div class="faculty-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-                <div class="faculty-info">
-                    <h3>Dr. Priya Sharma</h3>
-                    <p class="faculty-position">Assistant Professor</p>
-                    <p class="faculty-specialization">
-                        Specialization: Data Science, Big Data Analytics
-                    </p>
-                    <p class="faculty-education">
-                        Ph.D. in Computer Science, Jadavpur University
-                    </p>
-                    <button class="faculty-details-btn">View Profile</button>
-                </div>
-            </div>
-
-            <div class="faculty-card" data-category="assistant">
-                <div class="faculty-image">
-                    <img
-                        src="/placeholder.svg?height=300&width=300"
-                        alt="Dr. Rajesh Mondal"
-                    />
-                    <div class="faculty-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-                <div class="faculty-info">
-                    <h3>Dr. Rajesh Mondal</h3>
-                    <p class="faculty-position">Assistant Professor</p>
-                    <p class="faculty-specialization">
-                        Specialization: Computer Networks, Cybersecurity
-                    </p>
-                    <p class="faculty-education">
-                        Ph.D. in Computer Science, NIT Durgapur
-                    </p>
-                    <button class="faculty-details-btn">View Profile</button>
-                </div>
-            </div>
-
-            <div class="faculty-card" data-category="visiting">
-                <div class="faculty-image">
-                    <img
-                        src="/placeholder.svg?height=300&width=300"
-                        alt="Prof. Sanjay Ghosh"
-                    />
-                    <div class="faculty-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-                <div class="faculty-info">
-                    <h3>Prof. Sanjay Ghosh</h3>
-                    <p class="faculty-position">Visiting Faculty</p>
-                    <p class="faculty-specialization">
-                        Specialization: Software Engineering, Cloud Computing
-                    </p>
-                    <p class="faculty-education">
-                        M.Tech in Computer Science, IIT Bombay
-                    </p>
-                    <button class="faculty-details-btn">View Profile</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="faculty-pagination">
-            <button class="pagination-btn active">1</button>
-            <button class="pagination-btn">2</button>
-            <button class="pagination-btn">3</button>
-            <button class="pagination-btn next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </div>
-</section> {% endcomment %}
 
 <!-- Statistics Section -->
 <section class="statistics-section">
@@ -523,5 +391,5 @@
 
 {% block scripts %}
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="{% static 'js/about.js' %}"></script>
+    <script src="{% static 'js/about.js' %}?v={{ now|date:"U" }}"></script>
 {% endblock %}

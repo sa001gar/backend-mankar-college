@@ -422,7 +422,7 @@
 }
 /* About Department Section */
 .cs-about-department {
-  padding: 80px 0;
+  padding: 40px 0;
   background-color: var(--cs-background-light);
   position: relative;
   overflow: hidden;
@@ -1417,7 +1417,14 @@
 }
 
 .cs-cta-card-link:hover {
-  color: var(--cs-primary);
+  color: var(--cs-text-light)!important;
+  cursor: pointer;
+  /* transform: translateY(-3px); */
+  background-color: var(--cs-accent);
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
 }
 
 .cs-cta-card-link i {
