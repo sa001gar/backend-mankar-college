@@ -37,7 +37,7 @@
     <div class="end">
       <p>Not in the list?<a href="{% url 'register-alumni'%}">Register</a></p>
       <select class="batch-select" id="batchSelect">
-        <option value="">All Batches</option>
+
         {% for batch_year in batch_years %}
         <option value="{{ batch_year }}">Batch {{ batch_year }}</option>
         {% endfor %}
@@ -118,9 +118,9 @@
         '<div class="loading"><i class="fas fa-spinner fa-2x"></i></div>';
 
       try {
-        let url = "/api/alumni/?";
+        let url = "/api/alumni/?batch_no=";
         if (currentBatch) {
-          url += `batch_no=${currentBatch}`;
+          url += `${currentBatch}`;
         }
 
         const response = await fetch(url);

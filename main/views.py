@@ -3,8 +3,6 @@ from django.http import HttpResponse,JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 import json
-
-
 from django.views.decorators.http import require_POST
 import json
 import os
@@ -145,12 +143,20 @@ def alumni_profile(request, name):
         'alumni': alumni,
     })
 
+from django.db.models import Max
 # API to get alumni data by batch number
 def get_alumni_by_batch(request):
     batch_no = request.GET.get('batch_no')
-    
-    # Get all alumni if no batch number is provided
-    if not batch_no:
+
+    if batch_no == "":
+        # Get the latest (maximum) batch year
+        latest_batch_year = Alumni.objects.aggregate(Max('batch_year'))['batch_year__max']
+        if latest_batch_year is not None:
+            alumni_list = Alumni.objects.filter(batch_year=latest_batch_year)
+        else:
+            alumni_list = Alumni.objects.none()
+    elif not batch_no:
+        # Get all alumni if batch_no is completely missing
         alumni_list = Alumni.objects.all()
     else:
         try:
@@ -158,8 +164,7 @@ def get_alumni_by_batch(request):
             alumni_list = Alumni.objects.filter(batch_year=batch_no)
         except ValueError:
             return JsonResponse({'error': 'Invalid batch number'}, status=400)
-    
-    # Convert alumni data to JSON format
+
     alumni_data = []
     for alumni in alumni_list:
         alumni_data.append({
@@ -168,17 +173,16 @@ def get_alumni_by_batch(request):
             'batch_year': alumni.batch_year,
             'current_position': alumni.current_position,
             'company': alumni.company,
-            'profile_image': alumni.profile_image.url if alumni.profile_image and alumni.profile_image.url else (alumni.img_url if alumni.img_url and alumni.img_url else None),
+            'profile_image': alumni.profile_image.url if alumni.profile_image and alumni.profile_image.url else (alumni.img_url if alumni.img_url else None),
             'linkedin_url': alumni.linkedin_url,
             'github': alumni.github,
             'email': alumni.email
         })
-    
+
     return JsonResponse({
         'count': len(alumni_data),
         'alumni': alumni_data
     })
-
 
 # def register_alumni_api(request):
 #     if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
