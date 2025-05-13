@@ -11,19 +11,19 @@
 
 <!-- Hero Section -->
 
-<div class="hero-header">
+{% comment %} <div class="hero-header">
   <div class="hero-content">
-    {% comment %} <h1>Our Alumni Network</h1>
+    <h1>Our Alumni Network</h1>
     <p>
       Meet our successful graduates who are making a difference in the tech
       world
-    </p> {% endcomment %}
+    </p>
   </div>
-</div>
+</div> {% endcomment %}
 
 <!-- End Hero Section -->
 
-<div class="container">
+<div class="container" style="margin-top: 20px;">
   <div class="controls">
     <div class="search-bar">
       <i class="fas fa-search"></i>
@@ -37,6 +37,7 @@
     <div class="end">
       <p>Not in the list?<a href="{% url 'register-alumni'%}">Register</a></p>
       <select class="batch-select" id="batchSelect">
+        <option value="">All Batches</option>
         {% for batch_year in batch_years %}
         <option value="{{ batch_year }}">Batch {{ batch_year }}</option>
         {% endfor %}
