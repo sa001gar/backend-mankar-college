@@ -168,7 +168,7 @@ def get_alumni_by_batch(request):
             'batch_year': alumni.batch_year,
             'current_position': alumni.current_position,
             'company': alumni.company,
-            'profile_image': alumni.profile_image.url if alumni.profile_image else None,
+            'profile_image': alumni.profile_image.url if alumni.profile_image and alumni.profile_image.url else (alumni.img_url.url if alumni.img_url and alumni.img_url.url else None),
             'linkedin_url': alumni.linkedin_url,
             'github': alumni.github,
             'email': alumni.email

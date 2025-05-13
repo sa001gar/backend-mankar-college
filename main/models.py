@@ -63,6 +63,7 @@ class Alumni(models.Model):
     current_position = models.CharField(max_length=100, blank=True)
     company = models.CharField(max_length=100, blank=True)
     profile_image = models.ImageField(upload_to='alumni_photos/', null=True, blank=True)
+    img_url = models.URLField(blank=True)
     linkedin_url = models.URLField(blank=True)
     github = models.URLField(blank=True)
     email = models.EmailField(blank=True)
